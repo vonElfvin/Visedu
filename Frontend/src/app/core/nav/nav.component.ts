@@ -6,18 +6,8 @@ import { FeedbackService } from '../feedback/feedback.service';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-export class NavComponent implements OnInit {
+export class NavComponent {
 
-  constructor(private feedbackService: FeedbackService) { }
-
-  ngOnInit() {
-  }
-
-  onLogoutClick() {
-    this.feedbackService.openSnackbar('Du har loggats ut.');
-    this.feedbackService.openConfirmDialog('Logga ut?', 'Nej', 'Ja').subscribe(res => {
-      console.log(res);
-    });
-  }
+  constructor() { }
 
 }
