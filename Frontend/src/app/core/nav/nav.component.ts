@@ -14,7 +14,10 @@ export class NavComponent implements OnInit {
   }
 
   onLogoutClick() {
-    this.feedbackService.openSnackBar('Du har loggats ut.');
+    this.feedbackService.openSnackbar('Du har loggats ut.');
+    this.feedbackService.openConfirmDialog('Logga ut?', 'Nej', 'Ja').subscribe(res => {
+      console.log(res);
+    });
   }
 
 }
