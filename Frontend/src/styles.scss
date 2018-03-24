@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@import 'theme.scss';
 
 .fill-remaining-space {
   flex: 1 1 auto;
@@ -11,4 +13,8 @@ html{
 
 body {
   margin: 0;
+}
+
+.snackbar {
+  background-color: mat-color($accent) !important;
 }

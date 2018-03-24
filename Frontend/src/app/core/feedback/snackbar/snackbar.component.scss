@@ -1,0 +1,7 @@
+@import '~@angular/material/theming';
+
+$config: mat-typography-config();
+
+p {
+  font-family: mat-font-family($config);
+}

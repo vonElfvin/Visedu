@@ -1,16 +1,35 @@
-import { Component, Inject, Injectable } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
+import { Injectable } from '@angular/core';
+import { MatDialog, MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { SnackbarComponent } from './snackbar/snackbar.component';
 
 @Injectable()
 export class FeedbackService {
 
-  constructor(
-    private snackBar: MatSnackBar,
-    private dialog: MatDialog,
-    ) { }
+  snackbarConfig: MatSnackBarConfig = new MatSnackBarConfig();
 
-  openSnackBar(message: string) {
-    this.snackBar.open(message, '', {duration: 1500});
+  constructor(
+    private snackbar: MatSnackBar,
+    private dialog: MatDialog,
+    ) {
+    this.snackbarConfig.duration = 2000;
+    this.snackbarConfig.panelClass = ['snackbar'];
+  }
+
+  openSnackbar(message: string) {
+    this.snackbarConfig.data = {message: message};
+    this.snackbar.openFromComponent(SnackbarComponent, this.snackbarConfig);
+  }
+
+  openConfirmDialog(title: string, cancel: string, confirm: string) {
+    return this.dialog.open(ConfirmDialogComponent, {
+        data: {
+          title: title,
+          cancel: cancel,
+          confirm: confirm,
+        }
+      }
+    ).afterClosed(); // returns subject of result: true/false
   }
 
 }

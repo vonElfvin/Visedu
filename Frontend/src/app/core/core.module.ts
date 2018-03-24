@@ -14,6 +14,8 @@ import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 import { FeedbackService } from './feedback/feedback.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ConfirmDialogComponent } from './feedback/confirm-dialog/confirm-dialog.component';
+import { SnackbarComponent } from './feedback/snackbar/snackbar.component';
 
 @NgModule({
   imports: [
@@ -30,7 +32,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatDialogModule,
   ],
   providers: [FeedbackService],
-  declarations: [NavComponent, FooterComponent],
+  declarations: [NavComponent, FooterComponent, ConfirmDialogComponent, ConfirmDialogComponent, SnackbarComponent],
+  entryComponents: [ConfirmDialogComponent, SnackbarComponent],
   exports: [NavComponent, FooterComponent]
 })
 export class CoreModule { }
