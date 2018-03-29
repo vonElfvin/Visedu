@@ -1,17 +1,35 @@
 {
-  "name": "api",
+  "name": "node-app",
   "version": "1.0.0",
-  "description": "Node.js App using Docker",
-  "main": "server.js",
+  "description": "Node.js API",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
   "author": "Elvin Granat <elvin.granat@gmail.com>",
   "license": "ISC",
+  "engines": {
+    "node": ">=4.3.2"
+  },
   "dependencies": {
     "express": "^4.16.3",
     "mongodb": "^3.0.5",
     "mongoose": "^5.0.11"
   },
-  "repository": "https://github.com/vonElfvin/Visedu"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vonElfvin/Visedu"
+  },
+  "devDependencies": {
+    "@google-cloud/nodejs-repo-tools": "2.2.1"
+  },
+  "cloud-repo-tools": {
+    "test": {
+      "app": {
+        "msg": "No tests have been created by vonElfvin yet."
+      }
+    },
+    "requiresKeyFile": true,
+    "requiresProjectId": true
+  }
 }

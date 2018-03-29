@@ -3,16 +3,17 @@
 const express = require("express");
 
 // constants
-const PORT = 8080;
-const HOST = '0.0.0.0';
+const PORT = process.env.PORT || 8080;
 
 // app
 const app = express();
 
 // get
 app.get('/', (req, res) => {
-    res.send('Hello world\n');
+    res.status(200).send('Node app API called.\n');
 });
 
-app.listen(PORT, HOST);
-console.log(`Server listening on: http://${HOST}:${PORT}`);
+app.listen(PORT, () => {
+    console.log(`App listening on port: ${PORT}`);
+    console.log('Press Ctrl+C to quit.');
+});

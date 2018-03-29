@@ -21,7 +21,7 @@ Hosting: [Firebase Hosting](https://firebase.google.com/docs/hosting/)
 #### Backend
 Framework: [Node.js](https://nodejs.org/en/)<br>
 Packages: [Express](https://expressjs.com/en/4x/api.html), [mongoose](http://mongoosejs.com/docs/guide.html), [mongodb](http://mongodb.github.io/node-mongodb-native/3.0/api/)<br>
-Hosting: [Google Container Enginer (Kubernetes)](https://cloud.google.com/kubernetes-engine/)
+Hosting: [Google Cloud App Engine](https://cloud.google.com/appengine/)
 
 #### Database
 Framework: [MongoDB](https://www.mongodb.com/)<br>
