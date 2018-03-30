@@ -14,6 +14,7 @@ import { environment } from '../environments/environment';
 import { AdminModule } from './admin/admin.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
+import { InfoModule } from './info/info.module';
 
 // custom modules
 

@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './shared/login/login.component';
+import { InfoModule } from './info/info.module';
 
 const routes: Routes = [
   {
-    path: '',
-    component: LoginComponent,
-  },
-  {
-    path: 'login',
+    path: 'logga-in',
     component: LoginComponent,
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+    InfoModule,
+  ],
   exports: [RouterModule]
 })
 
