@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedbackService } from '../feedback/feedback.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,6 +9,6 @@ import { FeedbackService } from '../feedback/feedback.service';
 })
 export class NavComponent {
 
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
 }

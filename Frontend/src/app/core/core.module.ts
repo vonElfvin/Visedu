@@ -9,6 +9,10 @@ import {
   MatToolbarModule
 } from '@angular/material';
 
+// custom
+import { AuthService } from './auth/auth.service';
+import { FirebaseModule } from './firebase/firebase.module';
+
 // components
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
@@ -30,8 +34,11 @@ import { SnackbarComponent } from './feedback/snackbar/snackbar.component';
     MatIconModule,
     MatSnackBarModule,
     MatDialogModule,
+
+    // custom modules
+    FirebaseModule,
   ],
-  providers: [FeedbackService],
+  providers: [FeedbackService, AuthService],
   declarations: [NavComponent, FooterComponent, ConfirmDialogComponent, ConfirmDialogComponent, SnackbarComponent],
   entryComponents: [ConfirmDialogComponent, SnackbarComponent],
   exports: [NavComponent, FooterComponent]
