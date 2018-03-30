@@ -21,7 +21,11 @@ body {
   margin: 0;
 }
 
-.snackbar {
+.successSnackbar {
   background-color: mat-color($accent) !important;
+  margin-bottom: 10px!important;
+}
+.errorSnackbar {
+  background-color: mat-color($warn) !important;
   margin-bottom: 10px!important;
 }
