@@ -1,0 +1,31 @@
+<form (ngSubmit)="login()" [formGroup]="emailAndPasswordForm">
+
+  <!--Email-->
+  <mat-input-container>
+    <input matInput placeholder="Email" formControlName="email">
+    <mat-error *ngIf="email.touched && email.hasError('required')">
+      Email är obligatoriskt.
+    </mat-error>
+  </mat-input-container>
+
+  <!--Password-->
+  <mat-input-container>
+    <input matInput placeholder="Password" type="password" formControlName="password">
+    <mat-error *ngIf="password.touched && password.hasError('required')">
+      Lösenord är obligatoriskt.
+    </mat-error>
+  </mat-input-container>
+
+  <!--Submit-->
+  <div class="login-button-div">
+    <button
+      mat-raised-button
+      color="primary"
+      id="email"
+      class="login-button"
+      [disabled]="emailAndPasswordForm.invalid"
+    >
+      Logga in med Email
+    </button>
+  </div>
+</form>

@@ -18,4 +18,8 @@ export class FirebaseAuthService {
   loginFacebook() {
     return this.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider);
   }
+
+  loginEmailAndPassword(email, password) {
+    return this.auth.signInWithEmailAndPassword(email, password);
+  }
 }

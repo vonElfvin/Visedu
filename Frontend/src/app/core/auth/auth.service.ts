@@ -16,4 +16,8 @@ export class AuthService {
     return this.firebaseAuthService.loginFacebook();
   }
 
+  loginEmailAndPassword(email: string, password: string) {
+    return this.firebaseAuthService.loginEmailAndPassword(email, password);
+  }
+
 }

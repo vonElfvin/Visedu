@@ -1,0 +1,13 @@
+@import '../login.component';
+
+
+#email {
+  background-image: url('../../../../assets/svg/envelope.svg');
+  background-repeat: no-repeat;
+  background-position: 10px;
+  background-size: 25px;
+}
+
+mat-input-container {
+  display: block;
+}
