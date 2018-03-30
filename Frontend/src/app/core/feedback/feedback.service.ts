@@ -18,8 +18,21 @@ export class FeedbackService {
 
   openSnackbar(feedback: Feedback) {
     this.setSnackbarClass(feedback.type);
-    this.snackbarConfig.data = {message: feedback.message};
+    this.setSnackbarMessage(feedback.message);
     this.snackbar.openFromComponent(SnackbarComponent, this.snackbarConfig);
+  }
+
+  setSnackbarMessage(message: string) {
+    let result: string;
+    switch (message) {
+      case 'login':
+        result = 'Du har loggats in.';
+        break;
+      default:
+        result = message;
+        break;
+    }
+    this.snackbarConfig.data = {message: result};
   }
 
   setSnackbarClass(type: FeedbackType) {

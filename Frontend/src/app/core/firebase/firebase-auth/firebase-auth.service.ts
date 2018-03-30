@@ -7,16 +7,22 @@ export class FirebaseAuthService {
 
   private auth;
 
-  constructor(afAuth: AngularFireAuth) {
+  constructor(
+    afAuth: AngularFireAuth,
+    ) {
     this.auth = afAuth.auth;
   }
 
+  loginProvider(provider: firebase.auth.AuthProvider) {
+    return this.auth.signInWithPopup(provider);
+  }
+
   loginGoogle() {
-    return this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider);
+    return this.loginProvider(new firebase.auth.GoogleAuthProvider);
   }
 
   loginFacebook() {
-    return this.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider);
+    return this.loginProvider(new firebase.auth.FacebookAuthProvider);
   }
 
   loginEmailAndPassword(email, password) {
