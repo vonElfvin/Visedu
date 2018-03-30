@@ -1,19 +1,30 @@
 'use strict';
 
-const express = require("express");
+// imports
+const mongoose = require('mongoose');
+const express = require('express');
+const config = require('./config');
 
-// constants
-const PORT = process.env.PORT || 8080;
+// connect mongoose
+mongoose.connect(config.db);
+const connection = mongoose.connection;
 
-// app
-const app = express();
-
-// get
-app.get('/', (req, res) => {
-    res.status(200).send('Node app API called.\n');
+// if connection error
+connection.on('error', () => {
+   console.log('Mongoose connection ERROR');
 });
 
-app.listen(PORT, () => {
-    console.log(`App listening on port: ${PORT}`);
-    console.log('Press Ctrl+C to quit.');
+// if connection open
+connection.on('open', () => {
+    console.log('Mongoose connection OPEN');
+
+    // initialize app
+    const app = express();
+    require('./config/express')(app);
+    require('./config/routes')(app);
+
+    app.listen(config.port, () => {
+        console.log(`App listening on port: ${config.port}`);
+        console.log('Press Ctrl+C to quit.');
+    });
 });
