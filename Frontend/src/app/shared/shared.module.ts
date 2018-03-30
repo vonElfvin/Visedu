@@ -10,12 +10,14 @@ import { LoginGoogleComponent } from './login/login-google/login-google.componen
 import { LoginFacebookComponent } from './login/login-facebook/login-facebook.component';
 import { LoginEmailComponent } from './login/login-email/login-email.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
     // angular modules
     CommonModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
 
     // material modules
     MatButtonModule,

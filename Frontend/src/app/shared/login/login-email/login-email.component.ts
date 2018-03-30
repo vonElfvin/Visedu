@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../core/auth/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { EMAIL_PATTERN } from '../../shared.constants';
 
 @Component({
   selector: 'app-login-email',
@@ -9,9 +10,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginEmailComponent {
 
-  emailAndPasswordForm = new FormGroup({
+  form = new FormGroup({
     email: new FormControl('',
-      [Validators.required],
+      [Validators.required, Validators.pattern(EMAIL_PATTERN)],
     ),
     password: new FormControl('',
       [Validators.required],
@@ -20,19 +21,15 @@ export class LoginEmailComponent {
 
   constructor(private authService: AuthService) { }
 
-  get form() {
-    return this.emailAndPasswordForm;
-  }
-
   get email() {
-    return this.form.get('email').value;
+    return this.form.get('email');
   }
 
   get password() {
-    return this.form.get('password').value;
+    return this.form.get('password');
   }
 
   login() {
-    this.authService.loginEmailAndPassword(this.email, this.password);
+    this.authService.loginEmailAndPassword(this.email.value, this.password.value);
   }
 }
