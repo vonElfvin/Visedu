@@ -6,8 +6,11 @@
     </a>
     <span class="fill-remaining-space"></span>
     <!-- Login -->
-    <button (click)="authService.loginGoogle()" mat-raised-button color="accent">
-      Logga in
+    <button (click)="authService.loginGoogle()" mat-raised-button color="warn" style="margin-right: 10px;">
+      Logga in via Google
+    </button>
+    <button (click)="authService.loginFacebook()" mat-raised-button color="accent">
+      Logga in via Facebook
     </button>
   </mat-toolbar>
 </nav>

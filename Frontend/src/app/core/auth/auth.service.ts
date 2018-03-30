@@ -12,4 +12,8 @@ export class AuthService {
     return this.firebaseAuthService.loginGoogle();
   }
 
+  loginFacebook() {
+    return this.firebaseAuthService.loginFacebook();
+  }
+
 }
