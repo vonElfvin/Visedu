@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { AdminModule } from './admin/admin.module';
 import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 
 // custom modules
 
@@ -28,7 +29,7 @@ import { CoreModule } from './core/core.module';
 
     // custom modules
     CoreModule,
-    AdminModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,6 +6,12 @@
   flex: 1 1 auto;
 }
 
+.center {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 html{
   position:relative;
   min-height: 100%;

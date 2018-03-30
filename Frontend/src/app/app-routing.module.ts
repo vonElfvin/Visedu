@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
-import { ExtraOptions, Routes, RouterModule } from '@angular/router';
-import { AdminComponent } from './admin/admin.component';
+import { Routes, RouterModule } from '@angular/router';
+import { LoginComponent } from './shared/login/login.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AdminComponent,
+    component: LoginComponent,
   },
+  {
+    path: 'login',
+    component: LoginComponent,
+  }
 ];
 
-const config: ExtraOptions = {
-  useHash: true,
-};
-
 @NgModule({
-  imports: [RouterModule.forRoot(routes, config)],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 

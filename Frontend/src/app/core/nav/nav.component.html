@@ -1,16 +1,13 @@
 <nav>
   <mat-toolbar color="primary">
     <!-- Logo -->
-    <a mat-button href="#">
+    <a mat-button href="">
       <img id="logo" src="../../../assets/logos/logo-solid-negative.png">
     </a>
     <span class="fill-remaining-space"></span>
     <!-- Login -->
-    <button (click)="authService.loginGoogle()" mat-raised-button color="warn" style="margin-right: 10px;">
-      Logga in via Google
-    </button>
-    <button (click)="authService.loginFacebook()" mat-raised-button color="accent">
-      Logga in via Facebook
-    </button>
+    <a mat-raised-button href="login" color="accent">
+      Logga in
+    </a>
   </mat-toolbar>
 </nav>
