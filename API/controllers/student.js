@@ -13,7 +13,16 @@ module.exports = (mongoose) => {
                     res.json(students);
                 }).catch(err => {
                     res.send(422).send(err.errors);
-            })
+            });
+        },
+        get: (req, res) => {
+            const id = req.params.id;
+
+            Student.findById(id).then(student => {
+                res.json(student);
+            }).catch(err => {
+                res.status(500).send(err.errors);
+            });
         },
         post: (req, res) => {
             const data = req.body || {};
@@ -23,6 +32,15 @@ module.exports = (mongoose) => {
             }).catch(err => {
                 res.status(500).send(err.errors);
             });
+        },
+        delete: (req, res) => {
+            const query = {_id: req.params.id};
+
+            Student.remove(query).then(student => {
+                res.json(student);
+            }).catch(err => {
+                res.status(500).send(err.errors);
+            })
         }
     }
 };
