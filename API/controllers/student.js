@@ -1,5 +1,8 @@
 module.exports = (mongoose) => {
+    // setup model
     const Student = require('../models/student')(mongoose);
+
+    // bind methods
     return {
         list: (req, res) => {
             const query = req.query || {};

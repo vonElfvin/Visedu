@@ -8,5 +8,5 @@ export const environment = {
     storageBucket: 'visedu-app.appspot.com',
     messagingSenderId: '1002636738243'
   },
-  basePath: '//localhost:8080/'
+  basePath: 'https://visedu-app.appspot.com/'
 };
