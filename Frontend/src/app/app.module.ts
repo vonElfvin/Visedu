@@ -11,8 +11,8 @@ import { AppComponent } from './app.component';
 
 // other
 import { environment } from '../environments/environment';
-import { AdminModule } from './admin/admin.module';
 import { CoreModule } from './core/core.module';
+import { StudentsModule } from './students/students.module';
 import { SharedModule } from './shared/shared.module';
 import { InfoModule } from './info/info.module';
 
@@ -20,17 +20,19 @@ import { InfoModule } from './info/info.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     // angular modules
     BrowserModule,
-    AppRoutingModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
 
     // custom modules
     CoreModule,
     SharedModule,
+    StudentsModule,
+    InfoModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

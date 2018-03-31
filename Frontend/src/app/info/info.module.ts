@@ -4,6 +4,7 @@ import { InfoComponent } from './info.component';
 import { InfoRoutingModule } from './info-routing.module';
 import { InfoHomeComponent } from './info-home/info-home.component';
 import { MatButtonModule, MatCardModule } from '@angular/material';
+import { InfoNotFoundComponent } from './info-not-found/info-not-found.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { MatButtonModule, MatCardModule } from '@angular/material';
     // custom modules
     InfoRoutingModule,
   ],
-  declarations: [InfoComponent, InfoHomeComponent],
-  exports: [InfoComponent]
+  declarations: [InfoComponent, InfoHomeComponent, InfoNotFoundComponent],
+  exports: [InfoComponent, InfoNotFoundComponent]
 })
 export class InfoModule { }

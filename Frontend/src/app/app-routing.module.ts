@@ -1,19 +1,22 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, ExtraOptions } from '@angular/router';
 import { LoginComponent } from './shared/login/login.component';
-import { InfoModule } from './info/info.module';
+import { InfoHomeComponent } from './info/info-home/info-home.component';
+import { InfoNotFoundComponent } from './info/info-not-found/info-not-found.component';
 
 const routes: Routes = [
-  {
-    path: 'logga-in',
-    component: LoginComponent,
-  }
+  { path: '', component: InfoHomeComponent },
+  { path: 'logga-in', component: LoginComponent },
+  { path: '**', component: InfoNotFoundComponent }
 ];
+
+const config: ExtraOptions = {
+  useHash: true,
+};
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes),
-    InfoModule,
+    RouterModule.forRoot(routes, config),
   ],
   exports: [RouterModule]
 })

@@ -19,8 +19,9 @@
 }
 
 $config: mat-typography-config();
+$font: mat-font-family($config);
 
 h1 {
-  font-family: mat-font-family($config);
+  font-family: $font;
   font-size: 50px;
 }
