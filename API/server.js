@@ -20,9 +20,14 @@ connection.on('open', () => {
 
     // initialize app
     const app = express();
-    require('./config/express')(app);
-    require('./config/routes')(app);
 
+    // config express
+    require('./config/express')(app);
+
+    // config routes
+    require('./config/routes')(app, mongoose);
+
+    // serve app
     app.listen(config.port, () => {
         console.log(`App listening on port: ${config.port}`);
         console.log('Press Ctrl+C to quit.');
