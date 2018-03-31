@@ -1,5 +1,7 @@
 # Visedu
-Repository for the course TDDD27 - Advanced Web Programming <br>
+Repository for the course TDDD27 - Advanced Web Programming <br><br>
+Application available live at: https://visedu-app.firebaseapp.com <br>
+API available through: https://visedu-app.appspot.com/
 
 ## Functionalities
 ### The idea
