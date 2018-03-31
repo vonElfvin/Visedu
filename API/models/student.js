@@ -1,7 +1,6 @@
 module.exports = (mongoose) => {
-    const Schema = mongoose.Schema;
 
-    const StudentSchema = new Schema({
+    const StudentSchema = new mongoose.Schema({
         name: {
             type: String,
             default: '',
