@@ -15,6 +15,7 @@ import { CoreModule } from './core/core.module';
 import { StudentsModule } from './students/students.module';
 import { SharedModule } from './shared/shared.module';
 import { InfoModule } from './info/info.module';
+import { TeachersModule } from './teachers/teachers.module';
 
 // custom modules
 
@@ -32,6 +33,7 @@ import { InfoModule } from './info/info.module';
     SharedModule,
     StudentsModule,
     InfoModule,
+    TeachersModule,
     AppRoutingModule,
   ],
   providers: [],

@@ -1,50 +1,50 @@
 module.exports = (mongoose) => {
     // setup model
-    const Student = require('../models/student')(mongoose);
+    const Teacher = require('../models/teacher')(mongoose);
 
     // bind methods
     return {
-        // get all students
+        // get all teachers
         list: (req, res) => {
             const query = req.query || {};
 
-            Student.find(query)
-                // .select('name _id')
-                .then(students => {
-                    res.json(students);
+            Teacher.find(query)
+            // .select('name _id')
+                .then(teachers => {
+                    res.json(teachers);
                 }).catch(err => {
-                    res.send(422).send(err.errors);
+                res.send(422).send(err.errors);
             });
         },
 
-        // get single student
+        // get single teacher
         get: (req, res) => {
             const id = req.params.id;
 
-            Student.findById(id).then(student => {
-                res.json(student);
+            Teacher.findById(id).then(teacher => {
+                res.json(teacher);
             }).catch(err => {
                 res.status(500).send(err.errors);
             });
         },
 
-        // post student
+        // post teacher
         post: (req, res) => {
             const data = req.body || {};
 
-            Student.create(data).then(student => {
-                res.json(student);
+            Teacher.create(data).then(teacher => {
+                res.json(teacher);
             }).catch(err => {
                 res.status(500).send(err.errors);
             });
         },
 
-        // delete student
+        // delete teacher
         delete: (req, res) => {
             const query = {_id: req.params.id};
 
-            Student.remove(query).then(student => {
-                res.json(student);
+            Teacher.remove(query).then(teacher => {
+                res.json(teacher);
             }).catch(err => {
                 res.status(500).send(err.errors);
             })
