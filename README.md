@@ -18,16 +18,20 @@ This project is a pilot project to build a prototype for the system Visedu are g
 #### Frontend
 Framework: [Angular](https://angular.io/)<br>
 Packages: [Angular Material](https://material.angular.io/), [Flex Layout](https://github.com/angular/flex-layout), [AngularFire2](https://github.com/angular/angularfire2) (for Firebase authentication)<br>
-Hosting: [Firebase Hosting](https://firebase.google.com/docs/hosting/)
+Hosting: [Firebase Hosting](https://firebase.google.com/docs/hosting/)<br>
+Live: https://visedu-app.appspot.com/
 
 #### Backend
 Framework: [Node.js](https://nodejs.org/en/)<br>
 Packages: [Express](https://expressjs.com/en/4x/api.html), [mongoose](http://mongoosejs.com/docs/guide.html), [mongodb](http://mongodb.github.io/node-mongodb-native/3.0/api/)<br>
-Hosting: [Google Cloud App Engine](https://cloud.google.com/appengine/)
+Hosting: [Google Cloud App Engine](https://cloud.google.com/appengine/) (using [Docker](https://www.docker.com/))<br>
+Live: https://visedu-app.appspot.com/
 
 #### Database
 Framework: [MongoDB](https://www.mongodb.com/)<br>
-Hosting: [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) "Database as a service", hosted on [AWS](https://aws.amazon.com/)
+Hosting: [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) "Database as a service", hosted on [AWS](https://aws.amazon.com/)<br>
+ER Diagram: <br>
+![ER Diagram](https://i.imgur.com/5eG9fas.png)
 
 #### Other
 Help programs: [Docker](https://www.docker.com/), [Travis CI](https://travis-ci.org)
