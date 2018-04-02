@@ -10,7 +10,6 @@ export interface User {
   lastName: string;
   lastLogin: number;
   email: string;
-  parentEmail: string;
   classCode: string;
   role: Role;
 }

@@ -1,9 +1,24 @@
 module.exports = (mongoose) => {
 
     const StudentSchema = new mongoose.Schema({
-        name: {
+        classCode: {
             type: String,
-            default: '',
+            required: true,
+            trim: true,
+        },
+        total_problems: {
+            skill_training: {
+                type: Number,
+                default: 0,
+            },
+            problem_solving: {
+                type: Number,
+                default: 0,
+            },
+            tricky_question: {
+                type: Number,
+                default: 0,
+            },
         }
     });
 

@@ -1,9 +1,9 @@
 module.exports = (mongoose) => {
 
     const TeacherSchema = new mongoose.Schema({
-        name: {
+        phone: {
             type: String,
-            default: '',
+            required: true,
         }
     });
 

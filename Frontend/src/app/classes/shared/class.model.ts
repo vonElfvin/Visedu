@@ -3,6 +3,5 @@ export interface Class {
   name: string;
   code: string;
   school: string;
-  schoolPath: string;
   teacherId: string;
 }

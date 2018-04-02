@@ -1,9 +1,21 @@
 module.exports = (mongoose) => {
 
     const ProblemSchema = new mongoose.Schema({
-        name: {
+        question: {
             type: String,
-            default: '',
+            required: true,
+            trim: true,
+        },
+        answer: {
+            type: Number,
+            required: true,
+            trim: true,
+        },
+        area: {
+            type: String,
+            required: true,
+            trim: true,
+            enum: ["skill_training", "problem_solving", "tricky_question"],
         }
     });
 
