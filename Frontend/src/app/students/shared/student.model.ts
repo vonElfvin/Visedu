@@ -1,3 +1,4 @@
 export interface Student {
-  name: string;
+  _id: string;
+  classCode: string;
 }
