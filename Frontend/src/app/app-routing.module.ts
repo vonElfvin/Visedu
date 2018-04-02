@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, ExtraOptions } from '@angular/router';
-import { LoginComponent } from './shared/login/login.component';
 import { InfoHomeComponent } from './info/info-home/info-home.component';
 import { InfoNotFoundComponent } from './info/info-not-found/info-not-found.component';
 
 const routes: Routes = [
   { path: '', component: InfoHomeComponent },
-  { path: 'logga-in', component: LoginComponent },
   { path: '**', component: InfoNotFoundComponent }
 ];
 

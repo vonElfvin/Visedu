@@ -9,7 +9,7 @@ import { AdminRoutingModule } from './admin-routing.module';
     // angular modules
     CommonModule,
 
-    // custom modules
+    // admin modules
     AdminRoutingModule,
   ],
   declarations: [AdminPageComponent, AdminComponent],

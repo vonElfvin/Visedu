@@ -56,7 +56,7 @@ export class FeedbackService {
           confirm: confirm,
         }
       }
-    ).afterClosed(); // returns subject of result: true/false
+    ).afterClosed(); // returns Observable.of(true or undefined)
   }
 
 }

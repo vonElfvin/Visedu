@@ -15,7 +15,7 @@ import { InfoNotFoundComponent } from './info-not-found/info-not-found.component
     MatButtonModule,
     MatCardModule,
 
-    // custom modules
+    // info modules
     InfoRoutingModule,
   ],
   declarations: [InfoComponent, InfoHomeComponent, InfoNotFoundComponent],

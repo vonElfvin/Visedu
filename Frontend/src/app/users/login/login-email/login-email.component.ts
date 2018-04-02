@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../../core/auth/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { EMAIL_PATTERN } from '../../shared.constants';
+import { EMAIL_PATTERN } from '../../../shared/shared.constants';
+import { UserService } from '../../shared/user.service';
 
 @Component({
   selector: 'app-login-email',
@@ -19,7 +19,7 @@ export class LoginEmailComponent {
     ),
   });
 
-  constructor(private authService: AuthService) { }
+  constructor(private userService: UserService) { }
 
   get email() {
     return this.form.get('email');
@@ -30,6 +30,6 @@ export class LoginEmailComponent {
   }
 
   login() {
-    this.authService.loginEmailAndPassword(this.email.value, this.password.value);
+    this.userService.loginEmailAndPassword(this.email.value, this.password.value);
   }
 }
