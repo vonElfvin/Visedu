@@ -31,7 +31,7 @@ Live: https://visedu-app.appspot.com/
 Framework: [MongoDB](https://www.mongodb.com/)<br>
 Hosting: [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) "Database as a service", hosted on [AWS](https://aws.amazon.com/)<br>
 ER Diagram: <br>
-![ER Diagram](https://i.imgur.com/5eG9fas.png)
+![ER Diagram](https://i.imgur.com/WZEPnf0.png)
 
 #### Other
 Help programs: [Docker](https://www.docker.com/), [Travis CI](https://travis-ci.org)
