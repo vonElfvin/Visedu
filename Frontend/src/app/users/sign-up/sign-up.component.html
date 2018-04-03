@@ -1,6 +1,6 @@
 <div id="sign-up-div" class="center">
   <mat-card id="sign-up-card">
-    <mat-vertical-stepper>
+    <mat-vertical-stepper [linear]="true">
 
       <!-- Personal Info -->
       <mat-step [stepControl]="userForm">
@@ -22,49 +22,66 @@
             <mat-radio-button value="student" color="primary">Elev</mat-radio-button>
             <mat-radio-button value="teacher">Lärare</mat-radio-button>
           </mat-radio-group>
+
+          <!-- Next -->
+          <button class="next" mat-raised-button color="primary" matStepperNext [disabled]="userForm.invalid">
+            Nästa<mat-icon>navigate_next</mat-icon>
+          </button>
+
         </form>
       </mat-step>
       <!-- END Personal Info -->
 
       <!-- Role Info -->
-        <!-- Student Info -->
-        <mat-step *ngIf="role.value==='student'" [stepControl]="studentForm">
-          <form [formGroup]="studentForm">
+      <!-- Student Info -->
+      <mat-step *ngIf="role.value==='student'" [stepControl]="studentForm">
+        <form [formGroup]="studentForm">
 
-            <ng-template matStepLabel>Kontoinformation</ng-template>
-
-            <!-- Class Code -->
-            <mat-form-field>
-              <input matInput placeholder="Klasskod" formControlName="classCode">
-              <mat-icon matSuffix [ngStyle]="{'background-color': classCode.status==='VALID' ? '#8BC34A' : '#F44336'}">
-                {{classCode.status==='VALID' ? 'check' : 'clear'}}
-              </mat-icon>
-              <mat-error *ngIf="classCode.touched && classCode.hasError('required')">
-                Klasskod krävs.
-              </mat-error>
-            </mat-form-field>
-
-          </form>
-        </mat-step>
-
-        <!-- Teacher Info -->
-        <mat-step *ngIf="role.value==='teacher'" [stepControl]="teacherForm">
           <ng-template matStepLabel>Kontoinformation</ng-template>
-          <form [formGroup]="teacherForm">
 
-            <!-- Phone -->
-            <mat-form-field>
-              <input matInput placeholder="Telefonnummer" formControlName="phone">
-              <mat-error *ngIf="phone.touched && phone.hasError('required')">
-                Telefonnummer krävs.
-              </mat-error>
-              <mat-error *ngIf="phone.touched && !phone.hasError('required') && phone.hasError('pattern')">
-                Felaktigt format.
-              </mat-error>
-            </mat-form-field>
+          <!-- Class Code -->
+          <mat-form-field>
+            <input matInput placeholder="Klasskod" formControlName="classCode">
+            <mat-icon matSuffix [ngStyle]="{'background-color': classCode.status==='VALID' ? '#8BC34A' : '#F44336'}">
+              {{classCode.status==='VALID' ? 'check' : 'clear'}}
+            </mat-icon>
+            <mat-error *ngIf="classCode.touched && classCode.hasError('required')">
+              Klasskod krävs.
+            </mat-error>
+          </mat-form-field>
 
-          </form>
-        </mat-step>
+          <!-- Next -->
+          <button class="next" mat-raised-button color="primary" matStepperNext
+                  [disabled]="studentForm.invalid || classCode.status!=='VALID'">
+            Nästa<mat-icon>navigate_next</mat-icon>
+          </button>
+
+        </form>
+      </mat-step>
+
+      <!-- Teacher Info -->
+      <mat-step *ngIf="role.value==='teacher'" [stepControl]="teacherForm">
+        <ng-template matStepLabel>Kontoinformation</ng-template>
+        <form [formGroup]="teacherForm">
+
+          <!-- Phone -->
+          <mat-form-field>
+            <input matInput placeholder="Telefonnummer" formControlName="phone">
+            <mat-error *ngIf="phone.touched && phone.hasError('required')">
+              Telefonnummer krävs.
+            </mat-error>
+            <mat-error *ngIf="phone.touched && !phone.hasError('required') && phone.hasError('pattern')">
+              Felaktigt format.
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Next -->
+          <button class="next" mat-raised-button color="primary" matStepperNext [disabled]="teacherForm.invalid">
+            Nästa<mat-icon>navigate_next</mat-icon>
+          </button>
+
+        </form>
+      </mat-step>
       <!-- END Role Info -->
 
       <!-- Login Info -->
@@ -109,7 +126,7 @@
           </mat-form-field>
 
           <!-- Signup Email -->
-          <button class="email" mat-raised-button color="primary">
+          <button id="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">
             <mat-icon>person_add</mat-icon>
             Skapa konto
           </button>

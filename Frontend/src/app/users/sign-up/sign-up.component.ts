@@ -116,6 +116,7 @@ export class SignUpComponent implements OnInit {
       ...this.userForm.value,
       ...this.loginForm.value,
     };
+
     // student
     if (user.role === Role.student) {
       const student = this.studentForm.value;
