@@ -1,6 +1,10 @@
 module.exports = (mongoose) => {
 
     const UserSchema = new mongoose.Schema({
+        uid: {
+            type: String,
+            required: true,
+        },
         firstName: {
             type: String,
             required: true,
@@ -20,25 +24,16 @@ module.exports = (mongoose) => {
             type: Boolean,
             default: false,
         },
-        classCode: {
-            type: String,
-            required: true,
-            trim: true,
-        },
         role: {
             type: String,
             required: true,
             enum: ['student', 'teacher', 'admin'],
+        },
+        lastLogin: {
+            type: Number,
+            default: 0,
         }
     });
 
     return mongoose.model('User', UserSchema);
 };
-
-// _id: string;
-// firstName: string;
-// lastName: string;
-// lastLogin: number;
-// email: string;
-// classCode: string;
-// role: Role;

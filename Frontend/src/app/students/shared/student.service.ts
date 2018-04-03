@@ -6,11 +6,21 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class StudentService {
 
-  private readonly path = 'students';
+  private readonly path: string = 'students';
+  student: Observable<Student>;
 
   constructor(private httpService: HttpService<Student>) { }
 
   getStudents(): Observable<Student[]> {
     return this.httpService.list(this.path);
+  }
+
+  createStudent(studentData, user) {
+    const student: Student = {
+      _id: user._id,
+      classCode: studentData.classCode,
+    };
+    console.log(student);
+    return this.httpService.post(this.path, student);
   }
 }

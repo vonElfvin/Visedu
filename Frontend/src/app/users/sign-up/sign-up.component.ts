@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ALPHABET_PATTERN, EMAIL_PATTERN, PHONE_PATTERN } from '../../shared/shared.constants';
 import { PasswordValidators } from '../../shared/validators/password.validators';
 import { ClassCodeValidators } from '../../shared/validators/class-code.validators';
+import { UserService } from '../shared/user.service';
+import { Role } from '../shared/user.model';
 
 @Component({
   selector: 'app-sign-up',
@@ -70,6 +72,7 @@ export class SignUpComponent implements OnInit {
   }, PasswordValidators.passwordsDoNotMatch);
 
   constructor(
+    private userService: UserService,
   ) { }
 
   ngOnInit() {
@@ -105,5 +108,23 @@ export class SignUpComponent implements OnInit {
 
   get repeat() {
     return this.loginForm.get('repeat');
+  }
+
+  signUp() {
+    // user
+    const user = {
+      ...this.userForm.value,
+      ...this.loginForm.value,
+    };
+    // student
+    if (user.role === Role.student) {
+      const student = this.studentForm.value;
+      this.userService.createStudentUser(student, user);
+
+    // teacher
+    } else if (user.role === Role.teacher) {
+      const teacher = this.teacherForm.value;
+      this.userService.createTeacherUser(teacher, user);
+    }
   }
 }

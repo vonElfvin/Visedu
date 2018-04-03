@@ -4,36 +4,34 @@ import { Feedback, FeedbackType } from '../feedback/feedback.model';
 import { FeedbackService } from '../feedback/feedback.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
-  constructor(private feedbackService: FeedbackService) { }
+  constructor(
+    private feedbackService: FeedbackService
+  ) { }
 
   handleError(error: HttpErrorResponse) {
-    const feedback: Feedback = {type: FeedbackType.Error};
 
     // client error
     if (error.error instanceof ErrorEvent) {
-      feedback.message = 'Något gick fel här i klienten.';
-      this.feedbackService.openSnackbar(feedback);
       console.log('Client error occured: ', error.error.message);
 
     // server error
     } else {
+      console.log('Server error occured: ', error.status, error.error);
+
       switch (error.status) {
         case(404):
-          feedback.message = '404: servern känner inte igen ditt kall.';
+          // handle 404 error
           break;
         case(500):
-          feedback.message = '500: något gick snett på servern.';
+          // handle 500 error
           break;
         default:
-          feedback.message = error.status + ': ' + error.error.message;
       }
-      this.feedbackService.openSnackbar(feedback);
-      console.log('Server error occured: ', error.status, error.error.message);
     }
-    return new ErrorObservable(
-      'Something bad happened; please try again later.');
+    return new ErrorObservable(error);
   }
 
   errorFeedback(error: firebase.auth.Error) {

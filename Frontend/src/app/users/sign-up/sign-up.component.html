@@ -72,7 +72,7 @@
         <ng-template matStepLabel>Logininformation</ng-template>
 
         <!-- Email and Password -->
-        <form [formGroup]="loginForm">
+        <form [formGroup]="loginForm" (ngSubmit)="signUp()">
 
           <!-- Email -->
           <mat-form-field>
@@ -87,7 +87,7 @@
 
           <!-- Password -->
           <mat-form-field>
-            <input matInput placeholder="Lösenord" formControlName="password">
+            <input matInput placeholder="Lösenord" formControlName="password" type="password">
             <mat-error *ngIf="password.touched && password.hasError('required')">
               Lösenord krävs.
             </mat-error>
@@ -98,7 +98,7 @@
 
           <!-- Repeat -->
           <mat-form-field>
-            <input matInput placeholder="Upprepa lösenord" formControlName="repeat">
+            <input matInput placeholder="Upprepa lösenord" formControlName="repeat" type="password">
             <mat-error *ngIf="repeat.touched && repeat.hasError('required')">
               Var vänlig upprepa lösenordet.
             </mat-error>

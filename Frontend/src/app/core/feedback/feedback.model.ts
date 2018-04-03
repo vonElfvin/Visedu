@@ -4,7 +4,7 @@ export enum FeedbackType {
 }
 
 export interface Feedback {
-  type: FeedbackType;
+  type?: FeedbackType;
   message?: string;
 }
 
