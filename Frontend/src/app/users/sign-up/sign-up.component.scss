@@ -1,0 +1,33 @@
+@import '../login/login.component';
+
+#sign-up-div {
+  margin-top: 10px;
+}
+
+#sign-up-card {
+  width: 100%;
+  max-width: 400px;
+}
+
+.role-button {
+  width: 49%;
+  margin: 0;
+}
+
+mat-form-field {
+  display: block;
+}
+
+#role-radio-group {
+  text-align: center;
+  display: block;
+}
+
+mat-radio-button {
+  padding: 0 25px;
+}
+
+mat-icon {
+  border-radius: 100%;
+  color: white;
+}

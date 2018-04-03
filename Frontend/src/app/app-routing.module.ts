@@ -4,7 +4,6 @@ import { InfoHomeComponent } from './info/info-home/info-home.component';
 import { InfoNotFoundComponent } from './info/info-not-found/info-not-found.component';
 
 const routes: Routes = [
-  { path: '', component: InfoHomeComponent },
   { path: '**', component: InfoNotFoundComponent }
 ];
 

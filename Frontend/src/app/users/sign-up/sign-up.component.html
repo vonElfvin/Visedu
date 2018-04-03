@@ -1,3 +1,124 @@
-<p>
-  sign-up works!
-</p>
+<div id="sign-up-div" class="center">
+  <mat-card id="sign-up-card">
+    <mat-vertical-stepper>
+
+      <!-- Personal Info -->
+      <mat-step [stepControl]="userForm">
+        <form [formGroup]="userForm">
+          <ng-template matStepLabel>Personinformation</ng-template>
+
+          <!-- First Name -->
+          <mat-form-field>
+            <input matInput placeholder="Förnamn" formControlName="firstName">
+          </mat-form-field>
+
+          <!-- Last Name -->
+          <mat-form-field>
+            <input matInput placeholder="Efternamn" formControlName="lastName">
+          </mat-form-field>
+
+          <!-- Role -->
+          <mat-radio-group id="role-radio-group" formControlName="role">
+            <mat-radio-button value="student" color="primary">Elev</mat-radio-button>
+            <mat-radio-button value="teacher">Lärare</mat-radio-button>
+          </mat-radio-group>
+        </form>
+      </mat-step>
+      <!-- END Personal Info -->
+
+      <!-- Role Info -->
+        <!-- Student Info -->
+        <mat-step *ngIf="role.value==='student'" [stepControl]="studentForm">
+          <form [formGroup]="studentForm">
+
+            <ng-template matStepLabel>Kontoinformation</ng-template>
+
+            <!-- Class Code -->
+            <mat-form-field>
+              <input matInput placeholder="Klasskod" formControlName="classCode">
+              <mat-icon matSuffix [ngStyle]="{'background-color': classCode.status==='VALID' ? '#8BC34A' : '#F44336'}">
+                {{classCode.status==='VALID' ? 'check' : 'clear'}}
+              </mat-icon>
+              <mat-error *ngIf="classCode.touched && classCode.hasError('required')">
+                Klasskod krävs.
+              </mat-error>
+            </mat-form-field>
+
+          </form>
+        </mat-step>
+
+        <!-- Teacher Info -->
+        <mat-step *ngIf="role.value==='teacher'" [stepControl]="teacherForm">
+          <ng-template matStepLabel>Kontoinformation</ng-template>
+          <form [formGroup]="teacherForm">
+
+            <!-- Phone -->
+            <mat-form-field>
+              <input matInput placeholder="Telefonnummer" formControlName="phone">
+              <mat-error *ngIf="phone.touched && phone.hasError('required')">
+                Telefonnummer krävs.
+              </mat-error>
+              <mat-error *ngIf="phone.touched && !phone.hasError('required') && phone.hasError('pattern')">
+                Felaktigt format.
+              </mat-error>
+            </mat-form-field>
+
+          </form>
+        </mat-step>
+      <!-- END Role Info -->
+
+      <!-- Login Info -->
+      <mat-step>
+        <ng-template matStepLabel>Logininformation</ng-template>
+
+        <!-- Email and Password -->
+        <form [formGroup]="loginForm">
+
+          <!-- Email -->
+          <mat-form-field>
+            <input matInput placeholder="E-mail" formControlName="email">
+            <mat-error *ngIf="email.touched && email.hasError('required')">
+              E-mail krävs.
+            </mat-error>
+            <mat-error *ngIf="email.touched && !email.hasError('required') && email.hasError('pattern')">
+              Ogiltig E-mailadress.
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Password -->
+          <mat-form-field>
+            <input matInput placeholder="Lösenord" formControlName="password">
+            <mat-error *ngIf="password.touched && password.hasError('required')">
+              Lösenord krävs.
+            </mat-error>
+            <mat-error *ngIf="password.touched && !password.hasError('required') && password.hasError('minlength')">
+              Lösenordet måste innehålla minst {{ password.errors.minlength.requiredLength }} tecken.
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Repeat -->
+          <mat-form-field>
+            <input matInput placeholder="Upprepa lösenord" formControlName="repeat">
+            <mat-error *ngIf="repeat.touched && repeat.hasError('required')">
+              Var vänlig upprepa lösenordet.
+            </mat-error>
+            <mat-hint style="color:red;"
+                      *ngIf="repeat.touched && loginForm.errors && loginForm.errors.passwordsDoNotMatch">
+              Lösenorden skiljer sig.
+            </mat-hint>
+          </mat-form-field>
+
+          <!-- Signup Email -->
+          <button class="email" mat-raised-button color="primary">
+            <mat-icon>person_add</mat-icon>
+            Skapa konto
+          </button>
+
+        </form>
+
+      </mat-step>
+      <!-- END Login Info -->
+
+    </mat-vertical-stepper>
+  </mat-card>
+</div>

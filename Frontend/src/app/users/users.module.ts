@@ -4,7 +4,10 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 // material imports
-import { MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
+import {
+  MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatRadioModule,
+  MatStepperModule
+} from '@angular/material';
 
 // users imports
 import { UsersRoutingModule } from './users-routing.module';
@@ -28,6 +31,8 @@ import { UserService } from './shared/user.service';
     MatInputModule,
     MatCardModule,
     MatIconModule,
+    MatStepperModule,
+    MatRadioModule,
 
     // custom modules
     UsersRoutingModule,

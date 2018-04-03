@@ -17,7 +17,7 @@ module.exports = (mongoose) => {
             trim: true,
         },
         emailVerified: {
-            type: boolean,
+            type: Boolean,
             default: false,
         },
         classCode: {
