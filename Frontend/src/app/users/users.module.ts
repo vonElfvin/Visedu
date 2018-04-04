@@ -18,6 +18,7 @@ import { LoginFacebookComponent } from './login/login-facebook/login-facebook.co
 import { LoginEmailComponent } from './login/login-email/login-email.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { UserService } from './shared/user.service';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { UserService } from './shared/user.service';
     LoginGoogleComponent,
     LoginFacebookComponent,
     LoginEmailComponent,
-    SignUpComponent
+    SignUpComponent,
+    ProfileComponent
   ]
 })
 export class UsersModule { }

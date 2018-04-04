@@ -25,6 +25,7 @@ import { ConfirmDialogComponent } from './feedback/confirm-dialog/confirm-dialog
 import { SnackbarComponent } from './feedback/snackbar/snackbar.component';
 import { GlobalErrorHandler } from './error-handler/global-error-handler';
 import { RouterModule } from '@angular/router';
+import { AuthGuard } from './auth/guards/auth.guard';
 
 @NgModule({
   imports: [
@@ -44,7 +45,7 @@ import { RouterModule } from '@angular/router';
     // custom modules
     FirebaseModule,
   ],
-  providers: [FeedbackService, AuthService, HttpService, GlobalErrorHandler],
+  providers: [FeedbackService, AuthService, AuthGuard, HttpService, GlobalErrorHandler],
   declarations: [NavComponent, FooterComponent, ConfirmDialogComponent, ConfirmDialogComponent, SnackbarComponent],
   entryComponents: [ConfirmDialogComponent, SnackbarComponent],
   exports: [NavComponent, FooterComponent]

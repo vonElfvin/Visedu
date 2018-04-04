@@ -31,6 +31,9 @@ export class FeedbackService {
       case 'logout':
         result = 'Du har loggats ut.';
         break;
+      case 'guard':
+        result = 'Du måste logga in för att komma åt den sidan.';
+        break;
       default:
         result = message;
         break;
