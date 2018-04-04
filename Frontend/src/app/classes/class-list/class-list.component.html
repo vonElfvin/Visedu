@@ -1,4 +1,1 @@
-<p>
-  class-list works!
-</p>
-<app-class-card></app-class-card>
+<app-class-card *ngFor="let c of classes" [class]="c"></app-class-card>

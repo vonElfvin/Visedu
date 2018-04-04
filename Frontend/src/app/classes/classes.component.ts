@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Teacher } from '../teachers/shared/teacher.model';
+import { Component, OnInit } from '@angular/core';
 import { TeacherService } from '../teachers/shared/teacher.service';
+import { ClassService } from './shared/class.service';
+import { Class } from './shared/class.model';
 
 @Component({
   selector: 'app-classes',
@@ -9,14 +10,18 @@ import { TeacherService } from '../teachers/shared/teacher.service';
 })
 export class ClassesComponent implements OnInit {
 
-  teacher: Teacher;
+  classes: Class[];
 
-  constructor(private teacherService: TeacherService) { }
+  constructor(
+    private teacherService: TeacherService,
+    private classService: ClassService,
+  ) { }
 
   ngOnInit() {
     this.teacherService.teacher.subscribe(teacher => {
-      this.teacher = teacher;
-      console.log(teacher);
+      this.classService.getTeacherClasses(teacher._id).subscribe(classes => {
+        this.classes = classes;
+      });
     });
   }
 
