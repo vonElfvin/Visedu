@@ -12,17 +12,18 @@ export class HttpService<ItemClass> {
 
   constructor(private http: HttpClient, private errorHandler: GlobalErrorHandler) { }
 
-  list(collectionPath: string): Observable<ItemClass[]> {
-    const path: string = this.basePath + collectionPath;
-    return this.http.get<ItemClass[]>(path)
+  list(collection: string): Observable<ItemClass[]> {
+    return this.http.get<ItemClass[]>(`${this.basePath}${collection}`)
       .pipe(
         retry(2),
       );
   }
 
   post(collection: string, body: ItemClass) {
-    console.log(this.basePath + collection);
-    console.log(body);
-    return this.http.post<ItemClass>(this.basePath + collection, body);
+    return this.http.post<ItemClass>(`${this.basePath}${collection}`, body);
+  }
+
+  get(collection: string, _id: string) {
+    return this.http.get<ItemClass>(`${this.basePath}${collection}/${_id}`);
   }
 }

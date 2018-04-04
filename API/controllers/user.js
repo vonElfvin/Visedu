@@ -23,8 +23,12 @@ module.exports = (mongoose) => {
 
             User.findById(id).then(user => {
                 res.json(user);
-            }).catch(err => {
-                res.status(500).send(err.errors);
+            }).catch(() => {
+                User.findOne({'uid': id}).then(user => {
+                    res.json(user);
+                }).catch(err => {
+                    res.status(500).send(err.errors);
+                });
             });
         },
 

@@ -10,7 +10,7 @@ export class ClassCodeValidators {
         } else {
           resolve(null);
         }
-      }, 2000);
+      }, 1000);
     });
   }
 }

@@ -10,10 +10,12 @@ import { StudentService } from '../../students/shared/student.service';
 import { TeacherService } from '../../teachers/shared/teacher.service';
 import { FeedbackService } from '../../core/feedback/feedback.service';
 import { Feedback, FeedbackType } from '../../core/feedback/feedback.model';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
 
+  private userObservable: Observable<User>;
   private readonly path = 'users';
   private feedback: Feedback = {};
 
@@ -25,6 +27,10 @@ export class UserService {
     private feedbackService: FeedbackService,
   ) { }
 
+  get user(): Observable<User> {
+    return this.userObservable;
+  }
+
   loginGoogle() {
     return this.authService.loginGoogle();
   }
@@ -34,25 +40,15 @@ export class UserService {
   }
 
   loginEmailAndPassword(email, password) {
-    return this.authService.loginEmailAndPassword(email, password);
+    this.authService.loginEmailAndPassword(email, password).then((credentials) => {
+      this.feedback = {type: FeedbackType.Success, message: 'login'};
+      this.feedbackService.openSnackbar(this.feedback);
+      this.setUser(credentials.uid);
+    });
   }
 
-  createAccountWithAndPassword(email, password) {
+  private createAccountWithAndPassword(email, password) {
     return this.authService.createAccountWithAndPassword(email, password);
-  }
-
-  createUser(userData) {
-    const user: User = {
-      uid: userData.uid,
-      firstName: userData.firstName,
-      lastName: userData.lastName,
-      email: userData.email,
-      role: userData.role,
-      lastLogin: + Date.now(),
-    };
-    return this.httpService.post(this.path, user).pipe(
-      catchError(this.createUserError)
-    );
   }
 
   createStudentUser(studentData, userData) {
@@ -66,6 +62,7 @@ export class UserService {
           return this.studentService.createStudent(studentData, user)
             .subscribe(() => {
               this.createUserSuccess(Role.student);
+              this.setUser(user._id);
             });
         });
       });
@@ -82,17 +79,41 @@ export class UserService {
           return this.teacherService.createTeacher(teacherData, user)
             .subscribe(() => {
               this.createUserSuccess(Role.teacher);
+              this.setUser(user._id);
             });
         });
       });
   }
 
-  createUserError(error: HttpErrorResponse) {
-    firebase.auth().currentUser.delete();
-    return new ErrorObservable('Error creating user');
+  private getUser(id: string) {
+    return this.httpService.get(this.path, id);
   }
 
-  createUserSuccess(role: Role) {
+  private setUser(id: string) {
+    this.userObservable = this.getUser(id);
+  }
+
+  private createUser(userData) {
+    const user: User = {
+      uid: userData.uid,
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      email: userData.email,
+      role: userData.role,
+      lastLogin: + Date.now(),
+    };
+    return this.httpService.post(this.path, user)
+      .pipe(
+        catchError(this.createUserError)
+      );
+  }
+
+  private createUserError(error: HttpErrorResponse) {
+    firebase.auth().currentUser.delete();
+    return new ErrorObservable(error);
+  }
+
+  private createUserSuccess(role: Role) {
     this.feedback.type = FeedbackType.Success;
     switch (role) {
       case Role.student:

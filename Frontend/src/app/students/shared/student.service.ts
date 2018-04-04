@@ -20,7 +20,6 @@ export class StudentService {
       _id: user._id,
       classCode: studentData.classCode,
     };
-    console.log(student);
     return this.httpService.post(this.path, student);
   }
 }
