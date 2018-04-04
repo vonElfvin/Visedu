@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from '../../core/auth/auth.service';
 import { Role, User } from './user.model';
 import { HttpService } from '../../core/http/http.service';
-import { catchError } from 'rxjs/operators';
+import { catchError, map, take, tap } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import * as firebase from 'firebase';
@@ -11,6 +11,8 @@ import { TeacherService } from '../../teachers/shared/teacher.service';
 import { FeedbackService } from '../../core/feedback/feedback.service';
 import { Feedback, FeedbackType } from '../../core/feedback/feedback.model';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/take';
 
 @Injectable()
 export class UserService {
@@ -27,6 +29,30 @@ export class UserService {
     private feedbackService: FeedbackService,
   ) {
     this.setUser();
+  }
+
+  get user(): Observable<User> {
+    return this.userObservable;
+  }
+
+  isStudent(user: User): boolean {
+    return user.role === Role.student;
+  }
+
+  get isStudentObservable(): Observable<boolean> {
+    return this.user.pipe(
+      take(1),
+      map(user => user && user.role === Role.student));
+  }
+
+  isTeacher(user: User): boolean {
+    return user.role === Role.teacher;
+  }
+
+  get isTeacherObservable(): Observable<boolean> {
+    return this.user.pipe(
+      take(1),
+      map(user => user && this.isTeacher(user)));
   }
 
   loginGoogle() {
@@ -88,10 +114,6 @@ export class UserService {
             });
         });
       });
-  }
-
-  get user(): Observable<User> {
-    return this.userObservable;
   }
 
   private getUser(id: string) {

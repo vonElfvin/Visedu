@@ -26,6 +26,8 @@ import { SnackbarComponent } from './feedback/snackbar/snackbar.component';
 import { GlobalErrorHandler } from './error-handler/global-error-handler';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/guards/auth.guard';
+import { TeacherGuard } from './auth/guards/teacher.guard';
+import { StudentGuard } from './auth/guards/student.guard';
 
 @NgModule({
   imports: [
@@ -45,7 +47,7 @@ import { AuthGuard } from './auth/guards/auth.guard';
     // custom modules
     FirebaseModule,
   ],
-  providers: [FeedbackService, AuthService, AuthGuard, HttpService, GlobalErrorHandler],
+  providers: [FeedbackService, AuthService, AuthGuard, TeacherGuard, StudentGuard, HttpService, GlobalErrorHandler],
   declarations: [NavComponent, FooterComponent, ConfirmDialogComponent, ConfirmDialogComponent, SnackbarComponent],
   entryComponents: [ConfirmDialogComponent, SnackbarComponent],
   exports: [NavComponent, FooterComponent]

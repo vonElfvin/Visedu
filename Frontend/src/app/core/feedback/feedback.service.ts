@@ -13,7 +13,7 @@ export class FeedbackService {
     private snackbar: MatSnackBar,
     private dialog: MatDialog,
     ) {
-    this.snackbarConfig.duration = 2000;
+    this.snackbarConfig.duration = 2500;
   }
 
   openSnackbar(feedback: Feedback) {
@@ -33,6 +33,12 @@ export class FeedbackService {
         break;
       case 'guard':
         result = 'Du måste logga in för att komma åt den sidan.';
+        break;
+      case 'guard-teacher':
+        result = 'Endast lärare kommer åt den sidan.';
+        break;
+      case 'guard-student':
+        result = 'Endast studenter kommer åt den sidan.';
         break;
       default:
         result = message;

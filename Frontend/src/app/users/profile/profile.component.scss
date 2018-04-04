@@ -1,0 +1,18 @@
+div {
+  margin-top: 20px;
+}
+mat-card {
+  width: 100%;
+  max-width: 800px;
+  padding: 0;
+}
+
+#sidenav-content {
+  height: calc(100vh - 128px - 40px);
+}
+
+button {
+  display: block;
+  width: 130px;
+  margin: 10px;
+}

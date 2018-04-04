@@ -11,6 +11,7 @@ import { ClassService } from './shared/class.service';
     ClassesRoutingModule
   ],
   providers: [ClassService],
-  declarations: [ClassesComponent]
+  declarations: [ClassesComponent],
+  exports: [ClassesComponent]
 })
 export class ClassesModule { }

@@ -4,6 +4,10 @@ import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from '../core/auth/guards/auth.guard';
+import { AccountComponent } from './account/account.component';
+import { InfoGameDownloadComponent } from '../info/info-game-download/info-game-download.component';
+import { ClassesComponent } from '../classes/classes.component';
+import { TeacherGuard } from '../core/auth/guards/teacher.guard';
 
 const routes: Routes = [
   {
@@ -18,6 +22,26 @@ const routes: Routes = [
     path: 'profilsida',
     component: ProfileComponent,
     canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: 'konto',
+        pathMatch: 'full',
+      },
+      {
+        path: 'konto',
+        component: AccountComponent,
+      },
+      {
+        path: 'spelet',
+        component: InfoGameDownloadComponent,
+      },
+      {
+        path: 'klassrum',
+        component: ClassesComponent,
+        canActivate: [TeacherGuard],
+      }
+    ]
   }
 ];
 

@@ -1,3 +1,23 @@
-<p>
-  profile works!
-</p>
+<div class="center">
+  <mat-card>
+    <!--<button mat-icon-button (click)="sidenav.toggle()">-->
+      <!--<mat-icon >menu</mat-icon>-->
+    <!--</button>-->
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav [mode]="'side'" [opened]="true">
+        <button mat-raised-button color="primary" routerLink="konto">Konto</button>
+        <button *ngIf="user && userService.isTeacher(user)" mat-raised-button color="primary"
+        routerLink="klassrum">
+          Klassrum
+        </button>
+        <button *ngIf="user && userService.isStudent(user)" mat-raised-button color="primary"
+        routerLink="spelet">
+          Spelet
+        </button>
+      </mat-sidenav>
+      <mat-sidenav-content id="sidenav-content">
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </mat-card>
+</div>

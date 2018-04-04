@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 // material imports
 import {
-  MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatRadioModule,
+  MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatRadioModule, MatSidenavModule,
   MatStepperModule
 } from '@angular/material';
 
@@ -19,6 +19,8 @@ import { LoginEmailComponent } from './login/login-email/login-email.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { UserService } from './shared/user.service';
 import { ProfileComponent } from './profile/profile.component';
+import { SettingsComponent } from './settings/settings.component';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   imports: [
@@ -34,6 +36,7 @@ import { ProfileComponent } from './profile/profile.component';
     MatIconModule,
     MatStepperModule,
     MatRadioModule,
+    MatSidenavModule,
 
     // custom modules
     UsersRoutingModule,
@@ -46,7 +49,9 @@ import { ProfileComponent } from './profile/profile.component';
     LoginFacebookComponent,
     LoginEmailComponent,
     SignUpComponent,
-    ProfileComponent
+    ProfileComponent,
+    SettingsComponent,
+    AccountComponent
   ]
 })
 export class UsersModule { }
