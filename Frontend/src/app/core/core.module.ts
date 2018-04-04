@@ -2,6 +2,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // material modules
 import {
@@ -15,16 +17,16 @@ import { FirebaseModule } from './firebase/firebase.module';
 // services
 import { AuthService } from './auth/auth.service';
 import { HttpService } from './http/http.service';
+import { GlobalErrorHandler } from './error-handler/global-error-handler';
+import { FeedbackService } from './feedback/feedback.service';
 
 // components
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
-import { FeedbackService } from './feedback/feedback.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmDialogComponent } from './feedback/confirm-dialog/confirm-dialog.component';
 import { SnackbarComponent } from './feedback/snackbar/snackbar.component';
-import { GlobalErrorHandler } from './error-handler/global-error-handler';
-import { RouterModule } from '@angular/router';
+
+// guards
 import { AuthGuard } from './auth/guards/auth.guard';
 import { TeacherGuard } from './auth/guards/teacher.guard';
 import { StudentGuard } from './auth/guards/student.guard';

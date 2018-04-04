@@ -8,6 +8,8 @@ import { AccountComponent } from './account/account.component';
 import { InfoGameDownloadComponent } from '../info/info-game-download/info-game-download.component';
 import { ClassesComponent } from '../classes/classes.component';
 import { TeacherGuard } from '../core/auth/guards/teacher.guard';
+import { StudentGuard } from '../core/auth/guards/student.guard';
+import { UserService } from './shared/user.service';
 
 const routes: Routes = [
   {
@@ -35,6 +37,7 @@ const routes: Routes = [
       {
         path: 'spelet',
         component: InfoGameDownloadComponent,
+        canActivate: [StudentGuard],
       },
       {
         path: 'klassrum',
@@ -49,4 +52,6 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class UsersRoutingModule { }
+export class UsersRoutingModule {
+  constructor(private userService: UserService) { }
+}

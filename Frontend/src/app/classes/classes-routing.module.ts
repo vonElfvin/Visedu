@@ -1,12 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ClassesComponent } from './classes.component';
 
 const routes: Routes = [
-  {
-    path: 'klassrum',
-    component: ClassesComponent,
-  }
 ];
 
 @NgModule({

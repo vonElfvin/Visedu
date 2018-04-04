@@ -6,13 +6,17 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class StudentService {
 
-  private readonly path: string = 'students';
-  student: Observable<Student>;
+  private readonly COLLECTION: string = 'students';
+  studentObservable: Observable<Student>;
 
   constructor(private httpService: HttpService<Student>) { }
 
+  get student() {
+    return this.studentObservable;
+  }
+
   getStudents(): Observable<Student[]> {
-    return this.httpService.list(this.path);
+    return this.httpService.list(this.COLLECTION);
   }
 
   createStudent(studentData, user) {
@@ -20,6 +24,10 @@ export class StudentService {
       _id: user._id,
       classCode: studentData.classCode,
     };
-    return this.httpService.post(this.path, student);
+    return this.httpService.post(this.COLLECTION, student);
+  }
+
+  setStudent(id: string) {
+    this.studentObservable = this.httpService.get(this.COLLECTION, id);
   }
 }

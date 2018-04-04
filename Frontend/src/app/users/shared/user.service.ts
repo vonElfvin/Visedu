@@ -125,6 +125,7 @@ export class UserService {
   }
 
   private setUser() {
+    // set user
     this.userObservable = this.authService.authUser
       .switchMap(user => {
         if (user) {
@@ -132,7 +133,22 @@ export class UserService {
         } else {
           return Observable.of(null);
         }
-      });
+      }).pipe(
+        tap(user => {
+          if (user) {
+            switch (user.role) {
+              // set student
+              case Role.student:
+                this.studentService.setStudent(user._id);
+                break;
+              // set teacher
+              case Role.teacher:
+                this.teacherService.setTeacher(user._id);
+                break;
+            }
+          }
+        }),
+      );
   }
 
   private createUser(userData) {
