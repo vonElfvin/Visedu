@@ -25,10 +25,8 @@ export class UserService {
     private studentService: StudentService,
     private teacherService: TeacherService,
     private feedbackService: FeedbackService,
-  ) { }
-
-  get user(): Observable<User> {
-    return this.userObservable;
+  ) {
+    this.setUser();
   }
 
   loginGoogle() {
@@ -40,15 +38,22 @@ export class UserService {
   }
 
   loginEmailAndPassword(email, password) {
-    this.authService.loginEmailAndPassword(email, password).then((credentials) => {
+    this.authService.loginEmailAndPassword(email, password).then(() => {
       this.feedback = {type: FeedbackType.Success, message: 'login'};
       this.feedbackService.openSnackbar(this.feedback);
-      this.setUser(credentials.uid);
+      this.setUser();
     });
   }
 
   private createAccountWithAndPassword(email, password) {
     return this.authService.createAccountWithAndPassword(email, password);
+  }
+
+  logout() {
+    this.resetUser();
+    this.authService.logout();
+    this.feedback = {type: FeedbackType.Success, message: 'logout'};
+    this.feedbackService.openSnackbar(this.feedback);
   }
 
   createStudentUser(studentData, userData) {
@@ -62,7 +67,7 @@ export class UserService {
           return this.studentService.createStudent(studentData, user)
             .subscribe(() => {
               this.createUserSuccess(Role.student);
-              this.setUser(user._id);
+              this.setUser();
             });
         });
       });
@@ -79,18 +84,33 @@ export class UserService {
           return this.teacherService.createTeacher(teacherData, user)
             .subscribe(() => {
               this.createUserSuccess(Role.teacher);
-              this.setUser(user._id);
+              this.setUser();
             });
         });
       });
+  }
+
+  get user(): Observable<User> {
+    return this.userObservable;
   }
 
   private getUser(id: string) {
     return this.httpService.get(this.path, id);
   }
 
-  private setUser(id: string) {
-    this.userObservable = this.getUser(id);
+  resetUser() {
+    this.userObservable = Observable.of(null);
+  }
+
+  private setUser() {
+    this.userObservable = this.authService.authUser
+      .switchMap(user => {
+        if (user) {
+          return this.getUser(user.uid);
+        } else {
+          return Observable.of(null);
+        }
+      });
   }
 
   private createUser(userData) {

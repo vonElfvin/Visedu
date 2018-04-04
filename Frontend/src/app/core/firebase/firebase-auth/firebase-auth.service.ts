@@ -11,11 +11,23 @@ export class FirebaseAuthService {
   private auth;
 
   constructor(
-    afAuth: AngularFireAuth,
+    private afAuth: AngularFireAuth,
     private feedbackService: FeedbackService,
     private errorHandler: GlobalErrorHandler,
     ) {
-    this.auth = afAuth.auth;
+    this.auth = this.afAuth.auth;
+  }
+
+  get uid() {
+    return this.auth.currentUser.uid;
+  }
+
+  get isLoggedIn() {
+    return !!this.auth.currentUser;
+  }
+
+  get authUser() {
+    return this.afAuth.authState;
   }
 
   loginProvider(provider: firebase.auth.AuthProvider) {
@@ -44,13 +56,7 @@ export class FirebaseAuthService {
     });
   }
 
-  deleteUser() {
-    console.log('raderar');
-    return firebase.auth().currentUser.delete().then(success => {
-      console.log('raderat');
-    }).catch(er => {
-      console.log('raderade inte ett skit');
-    });
+  logout() {
+    return this.auth.signOut();
   }
-
 }

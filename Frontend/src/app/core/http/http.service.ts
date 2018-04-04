@@ -24,6 +24,9 @@ export class HttpService<ItemClass> {
   }
 
   get(collection: string, _id: string) {
-    return this.http.get<ItemClass>(`${this.basePath}${collection}/${_id}`);
+    return this.http.get<ItemClass>(`${this.basePath}${collection}/${_id}`)
+      .pipe(
+        retry(2),
+      );
   }
 }

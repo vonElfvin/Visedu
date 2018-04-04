@@ -26,7 +26,10 @@ export class FeedbackService {
     let result: string;
     switch (message) {
       case 'login':
-        result = 'Du har loggats in.';
+        result = 'Du har loggats in. Välkommen!';
+        break;
+      case 'logout':
+        result = 'Du har loggats ut.';
         break;
       default:
         result = message;

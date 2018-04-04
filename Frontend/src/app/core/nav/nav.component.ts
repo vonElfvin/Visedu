@@ -1,14 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { FeedbackService } from '../feedback/feedback.service';
 import { AuthService } from '../auth/auth.service';
+import { UserService } from '../../users/shared/user.service';
+import { User } from '../../users/shared/user.model';
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-export class NavComponent {
+export class NavComponent implements OnInit {
 
-  constructor(public authService: AuthService) { }
+  user: User;
+
+  constructor(public authService: AuthService, public userService: UserService) { }
+
+  ngOnInit(): void {
+    this.userService.user.subscribe(user => {
+      this.user = user;
+    });
+  }
 
 }

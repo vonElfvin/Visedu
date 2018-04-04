@@ -5,9 +5,33 @@
       <img id="logo" src="../../../assets/logos/logo-solid-negative.png">
     </a>
     <span class="fill-remaining-space"></span>
-    <!-- Login -->
-    <a mat-raised-button href="#/logga-in" color="accent">
-      Logga in
-    </a>
+    <!-- if logged in -->
+    <span *ngIf="authService.isLoggedIn && user">
+
+      <!-- Profile -->
+      <button mat-button routerLink="profilsida">
+        {{ user.firstName }}
+      </button>
+
+      <!-- Logout -->
+      <button mat-raised-button (click)="userService.logout()" color="primary">
+        Logga ut
+      </button>
+
+    </span>
+    <!-- if NOT logged in -->
+    <span *ngIf="!authService.isLoggedIn">
+
+      <!-- Create Account -->
+      <button mat-button routerLink="skapa-konto">
+        Skapa konto
+      </button>
+
+      <!-- Login -->
+      <button mat-raised-button routerLink="logga-in" color="accent">
+        Logga in
+      </button>
+
+      </span>
   </mat-toolbar>
 </nav>

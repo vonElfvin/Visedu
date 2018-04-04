@@ -8,6 +8,18 @@ export class AuthService {
     private firebaseAuthService: FirebaseAuthService,
     ) { }
 
+  get isLoggedIn() {
+    return this.firebaseAuthService.isLoggedIn;
+  }
+
+  get uid() {
+    return this.firebaseAuthService.uid;
+  }
+
+  get authUser() {
+    return this.firebaseAuthService.authUser;
+  }
+
   loginGoogle() {
     return this.firebaseAuthService.loginGoogle();
   }
@@ -24,7 +36,7 @@ export class AuthService {
     return this.firebaseAuthService.createAccountWithAndPassword(email, password);
   }
 
-  deleteUser() {
-    return this.firebaseAuthService.deleteUser();
+  logout() {
+    return this.firebaseAuthService.logout();
   }
 }

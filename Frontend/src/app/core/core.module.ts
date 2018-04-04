@@ -24,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmDialogComponent } from './feedback/confirm-dialog/confirm-dialog.component';
 import { SnackbarComponent } from './feedback/snackbar/snackbar.component';
 import { GlobalErrorHandler } from './error-handler/global-error-handler';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { GlobalErrorHandler } from './error-handler/global-error-handler';
     CommonModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    RouterModule,
 
     // material modules
     MatToolbarModule,
