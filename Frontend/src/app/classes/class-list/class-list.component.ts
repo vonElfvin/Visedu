@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Class } from '../shared/class.model';
+import { ClassService } from '../shared/class.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-class-list',
@@ -8,11 +10,12 @@ import { Class } from '../shared/class.model';
 })
 export class ClassListComponent implements OnInit {
 
-  @Input() classes: Class[];
+  classes: Observable<Class[]>;
 
-  constructor() { }
+  constructor(private classService: ClassService) { }
 
   ngOnInit() {
+    this.classes = this.classService.classesObservable;
   }
 
 }

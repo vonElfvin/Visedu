@@ -19,9 +19,9 @@ module.exports = (mongoose) => {
 
         // get single class
         get: (req, res) => {
-            const id = req.params.id;
+            const code = req.params.code;
 
-            Class.findById(id).then(c => {
+            Class.findOne({'code': code}).then(c => {
                 res.json(c);
             }).catch(err => {
                 res.status(500).send(err.errors);
@@ -30,7 +30,7 @@ module.exports = (mongoose) => {
 
         // post class
         post: (req, res) => {
-            const data = req.body || {};
+            let data = req.body || {};
 
             Class.create(data).then(c => {
                 res.json(c);

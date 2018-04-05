@@ -6,14 +6,7 @@
     <mat-sidenav-container>
       <mat-sidenav #sidenav [mode]="'side'" [opened]="true">
         <button mat-raised-button color="primary" routerLink="konto">Konto</button>
-        <button *ngIf="user && userService.isTeacher(user)" mat-raised-button color="primary"
-        routerLink="klassrum">
-          Klassrum
-        </button>
-        <button *ngIf="user && userService.isStudent(user)" mat-raised-button color="primary"
-        routerLink="spelet">
-          Spelet
-        </button>
+        <button mat-raised-button color="primary" routerLink="installningar">Inställningar</button>
       </mat-sidenav>
       <mat-sidenav-content id="sidenav-content">
         <router-outlet></router-outlet>

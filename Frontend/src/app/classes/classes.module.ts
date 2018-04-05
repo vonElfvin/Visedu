@@ -12,14 +12,28 @@ import { ClassService } from './shared/class.service';
 import { ClassesComponent } from './classes.component';
 import { ClassCardComponent } from './class-card/class-card.component';
 import { ClassListComponent } from './class-list/class-list.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatButtonModule, MatCardModule } from '@angular/material';
+import { RouterModule } from '@angular/router';
+import { ClassPageComponent } from './class-page/class-page.component';
+import { CreateClassComponent } from './create-class/create-class.component';
 
 @NgModule({
   imports: [
+    // angular
     CommonModule,
-    ClassesRoutingModule
+    FlexLayoutModule,
+    RouterModule,
+
+    // material
+    MatCardModule,
+    MatButtonModule,
+
+    // custom
+    ClassesRoutingModule,
   ],
   providers: [ClassService],
-  declarations: [ClassesComponent, ClassCardComponent, ClassListComponent],
+  declarations: [ClassesComponent, ClassCardComponent, ClassListComponent, ClassPageComponent, CreateClassComponent],
   exports: [ClassesComponent]
 })
 export class ClassesModule { }

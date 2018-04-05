@@ -10,6 +10,7 @@ import { ClassesComponent } from '../classes/classes.component';
 import { TeacherGuard } from '../core/auth/guards/teacher.guard';
 import { StudentGuard } from '../core/auth/guards/student.guard';
 import { UserService } from './shared/user.service';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   {
@@ -35,14 +36,8 @@ const routes: Routes = [
         component: AccountComponent,
       },
       {
-        path: 'spelet',
-        component: InfoGameDownloadComponent,
-        canActivate: [StudentGuard],
-      },
-      {
-        path: 'klassrum',
-        component: ClassesComponent,
-        canActivate: [TeacherGuard],
+        path: 'installningar',
+        component: SettingsComponent,
       }
     ]
   }
@@ -53,5 +48,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class UsersRoutingModule {
-  constructor(private userService: UserService) { }
+  constructor() { }
 }

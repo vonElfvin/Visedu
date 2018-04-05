@@ -1,9 +1,15 @@
+shortid = require('shortid');
+
 module.exports = (mongoose) => {
 
     const ClassSchema = new mongoose.Schema({
         name: {
             type: String,
             required: true,
+        },
+        code: {
+            type: String,
+            default: shortid.generate,
         },
         school: {
             type: String,

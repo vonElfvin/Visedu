@@ -1,3 +1,6 @@
-<pre>
-  {{class | json}}
-</pre>
+<div>
+  <mat-card class="class-card" routerLink="../{{class.code}}">
+    <h1>{{class.name}}</h1>
+    <p>{{class.school}}</p>
+  </mat-card>
+</div>

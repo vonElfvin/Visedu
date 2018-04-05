@@ -10,19 +10,9 @@ import { Class } from './shared/class.model';
 })
 export class ClassesComponent implements OnInit {
 
-  classes: Class[];
-
-  constructor(
-    private teacherService: TeacherService,
-    private classService: ClassService,
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-    this.teacherService.teacher.subscribe(teacher => {
-      this.classService.getTeacherClasses(teacher._id).subscribe(classes => {
-        this.classes = classes;
-      });
-    });
   }
 
 }

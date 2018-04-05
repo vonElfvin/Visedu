@@ -1,1 +1,6 @@
-<app-class-card *ngFor="let c of classes" [class]="c"></app-class-card>
+
+<div fxLayout>
+  <app-class-card *ngFor="let c of classes | async"
+                  [class]="c" fxFlex="25"
+  ></app-class-card>
+</div>

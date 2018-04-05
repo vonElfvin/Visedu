@@ -5,8 +5,18 @@
       <img id="logo" src="../../../assets/logos/logo-solid-negative.png">
     </a>
     <span class="fill-remaining-space"></span>
+
     <!-- if logged in -->
     <span *ngIf="authService.isLoggedIn && user">
+
+      <!-- if student -->
+
+      <!-- if teacher -->
+      <span *ngIf="userService.isTeacher(user)">
+
+        <button mat-raised-button routerLink="klassrum" color="accent">Klassrum</button>
+
+      </span>
 
       <!-- Profile -->
       <button mat-button routerLink="profilsida">
