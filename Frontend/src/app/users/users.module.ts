@@ -21,6 +21,7 @@ import { UserService } from './shared/user.service';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AccountComponent } from './account/account.component';
+import { ClassesModule } from '../classes/classes.module';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { AccountComponent } from './account/account.component';
 
     // custom modules
     UsersRoutingModule,
+    ClassesModule,
   ],
   providers: [UserService],
   declarations: [

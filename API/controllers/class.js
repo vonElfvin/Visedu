@@ -9,6 +9,7 @@ module.exports = (mongoose) => {
             const query = req.query || {};
 
             Class.find(query)
+                .sort('name')
             // .select('name _id')
                 .then(classes => {
                     res.json(classes);

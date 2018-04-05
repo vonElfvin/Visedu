@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ALPHABET_PATTERN, EMAIL_PATTERN, PHONE_PATTERN } from '../../shared/shared.constants';
 import { PasswordValidators } from '../../shared/validators/password.validators';
-import { ClassCodeValidators } from '../../shared/validators/class-code.validators';
 import { UserService } from '../shared/user.service';
 import { Role } from '../shared/user.model';
+import { ClassService } from '../../classes/shared/class.service';
+import { invalidClassCodeValidator } from '../../shared/validators/class-code.validators';
 
 @Component({
   selector: 'app-sign-up',
@@ -40,7 +41,7 @@ export class SignUpComponent implements OnInit {
       [
         Validators.required,
         Validators.minLength(2),
-      ], [ClassCodeValidators.invalidClassCode]
+      ], [invalidClassCodeValidator(this.classService)]
     ),
   });
 
@@ -73,6 +74,7 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private classService: ClassService,
   ) { }
 
   ngOnInit() {

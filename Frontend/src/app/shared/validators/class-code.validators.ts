@@ -1,16 +1,15 @@
-import { AbstractControl } from '@angular/forms/src/model';
-import { ValidationErrors } from '@angular/forms';
+import { AsyncValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import { ClassService } from '../../classes/shared/class.service';
 
-export class ClassCodeValidators {
-  static invalidClassCode(control: AbstractControl): Promise<ValidationErrors | null> {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (control.value.toLowerCase() !== 'abc') {
-          resolve({invalidClassCode: true});
-        } else {
-          resolve(null);
-        }
-      }, 1000);
-    });
-  }
+export function invalidClassCodeValidator(classService: ClassService): AsyncValidatorFn {
+  return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    const classCode = control.value;
+    return classService.getClass(classCode).map(
+      c => {
+        return !c ? {'invalidClassCode': true} : null;
+      }
+    );
+  };
 }
