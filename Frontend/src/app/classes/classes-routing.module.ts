@@ -18,6 +18,10 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
+        path: 'skapa-klassrum',
+        component: CreateClassComponent,
+      },
+      {
         path: 'mina-klassrum',
         component: ClassListComponent,
       },
@@ -25,10 +29,6 @@ const routes: Routes = [
         path: ':code',
         component: ClassPageComponent,
       },
-      {
-        path: 'skapa-klassrum',
-        component: CreateClassComponent,
-      }
     ]
   }
 ];

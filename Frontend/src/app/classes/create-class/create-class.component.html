@@ -1,3 +1,33 @@
-<p>
-  create-class works!
-</p>
+<div class="center">
+  <mat-card>
+    <h2>Nytt klassrum</h2>
+    <form [formGroup]="classForm" (ngSubmit)="submit()">
+
+      <!-- School -->
+      <mat-form-field>
+        <input matInput placeholder="Skola" formControlName="school">
+        <mat-error *ngIf="school.touched && school.hasError('required')">
+          Skola krävs.
+        </mat-error>
+        <mat-error *ngIf="school.touched && !school.hasError('required') && school.hasError('pattern')">
+          Enbart bokstäver tillåtna.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Name -->
+      <mat-form-field>
+        <input matInput placeholder="Klassnamn" formControlName="name">
+        <mat-error *ngIf="name.hasError('required')">
+          Klassnamn krävs.
+        </mat-error>
+        <mat-error *ngIf="school.touched && !name.hasError('required') && name.hasError('pattern')">
+          Enbart bokstäver och siffror tillåtna.
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Submit -->
+      <button mat-raised-button color="accent" [disabled]="classForm.invalid">Skapa klassrum</button>
+
+    </form>
+  </mat-card>
+</div>

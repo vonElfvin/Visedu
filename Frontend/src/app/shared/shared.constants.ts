@@ -5,5 +5,6 @@ export const EMAIL_PATTERN = [
 ].join('');
 
 export const ALPHABET_PATTERN = /^[a-zA-ZäöåÄÖÅ]+$/;
+export const ALPHABET_NUMBERS_PATTERN = /^[0-9a-zA-ZåäöÅÄÖ]+$/;
 
 export const PHONE_PATTERN = '^(\\+46|0) *7[0236] *\\d{4} *\\d{3}$';

@@ -1,3 +1,14 @@
-div {
+#classes-div {
+  width: 100%;
+  max-width: 800px;
+}
+
+#create-class-button-div {
+  overflow: hidden;
   padding: 5px;
+  margin-top: 5px;
+}
+
+#create-class-button {
+  float: right;
 }

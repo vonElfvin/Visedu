@@ -40,6 +40,12 @@ export class FeedbackService {
       case 'guard-student':
         result = 'Endast studenter kommer åt den sidan.';
         break;
+      case 'create-class':
+        result = 'Nytt klassrum skapat.';
+        break;
+      case 'create-class-fail':
+        result = 'Kunde inte skapa nytt klassrum.';
+        break;
       default:
         result = message;
         break;
