@@ -6,7 +6,7 @@ import { ClassService } from '../../classes/shared/class.service';
 export function invalidClassCodeValidator(classService: ClassService): AsyncValidatorFn {
   return (control: AbstractControl): Observable<ValidationErrors | null> => {
     const classCode = control.value;
-    return classService.getClass(classCode).map(
+    return classService.getClassWithCode(classCode).map(
       c => {
         return !c ? {'invalidClassCode': true} : null;
       }

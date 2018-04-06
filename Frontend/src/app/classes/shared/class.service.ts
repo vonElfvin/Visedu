@@ -34,8 +34,12 @@ export class ClassService {
     this.classesObservable = this.getTeacherClasses();
   }
 
-  getClass(className: string) {
+  getClassWithName(className: string) {
     return this.httpService.get(this.COLLECTION, `${this.teacherId}/${className}`);
+  }
+
+  getClassWithCode(classCode: string) {
+    return this.httpService.get(this.COLLECTION, classCode);
   }
 
   createClass(classBody: Class) {

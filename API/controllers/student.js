@@ -9,6 +9,7 @@ module.exports = (mongoose) => {
             const query = req.query || {};
 
             Student.find(query)
+                .populate("user")
                 // .select('name _id')
                 .then(students => {
                     res.json(students);

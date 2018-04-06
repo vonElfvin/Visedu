@@ -1,5 +1,6 @@
 export interface Student {
-  _id: string;
+  _id?: string;
+  user: string;
   classCode: string;
   total_problems?: {
     skill_training: number,
