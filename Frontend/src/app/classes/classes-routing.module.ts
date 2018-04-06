@@ -14,19 +14,14 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'mina-klassrum',
-        pathMatch: 'full'
+        component: ClassListComponent,
       },
       {
         path: 'skapa-klassrum',
         component: CreateClassComponent,
       },
       {
-        path: 'mina-klassrum',
-        component: ClassListComponent,
-      },
-      {
-        path: ':code',
+        path: ':className',
         component: ClassPageComponent,
       },
     ]

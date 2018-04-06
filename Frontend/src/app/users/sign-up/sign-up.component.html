@@ -11,11 +11,17 @@
           <!-- First Name -->
           <mat-form-field>
             <input matInput placeholder="Förnamn" formControlName="firstName">
+            <mat-error *ngIf="firstName.touched && firstName.hasError('required')">
+              Förnamn krävs.
+            </mat-error>
           </mat-form-field>
 
           <!-- Last Name -->
           <mat-form-field>
             <input matInput placeholder="Efternamn" formControlName="lastName">
+            <mat-error *ngIf="lastName.touched && lastName.hasError('required')">
+              Efternamn krävs.
+            </mat-error>
           </mat-form-field>
 
           <!-- Role -->

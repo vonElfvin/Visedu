@@ -17,8 +17,8 @@ export class ClassPageComponent implements OnInit {
     private route: ActivatedRoute,
     private classService: ClassService,
   ) {
-    const code = route.snapshot.params['code'];
-    this.class = this.classService.getClass(code);
+    const className = route.snapshot.params['className'];
+    this.class = this.classService.getClass(className);
   }
 
   ngOnInit() {

@@ -22,11 +22,27 @@ module.exports = (mongoose) => {
         get: (req, res) => {
             const code = req.params.code;
 
-            Class.findOne({'code': code}).then(c => {
-                res.json(c);
-            }).catch(err => {
-                res.status(500).send(err.errors);
-            });
+            // path: classes/:code
+            if (code) {
+                Class.findOne({'code': code}).then(c => {
+                    res.json(c);
+                }).catch(err => {
+                    res.status(500).send(err.errors);
+                });
+            // path: classes/:teacherId/:name
+            } else {
+                const teacherId = req.params.teacherId;
+                const name = req.params.name;
+                console.log(teacherId);
+                console.log(name);
+                Class.findOne({'teacherId': teacherId, 'name': name}).then(c => {
+                    console.log(c);
+                    res.json(c);
+                }).catch(err => {
+                    res.status(500).send(err.errors);
+                });
+            }
+
         },
 
         // post class
