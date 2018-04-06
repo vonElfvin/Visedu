@@ -19,6 +19,7 @@ import { ClassPageComponent } from './class-page/class-page.component';
 import { CreateClassComponent } from './create-class/create-class.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { StudentsModule } from '../students/students.module';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { SharedModule } from '../shared/shared.module';
 
     // custom
     ClassesRoutingModule,
+    StudentsModule,
     SharedModule,
   ],
   providers: [ClassService],

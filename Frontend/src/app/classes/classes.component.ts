@@ -11,19 +11,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ClassesComponent implements OnInit {
 
-  private routeArray: string[];
-
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
-    this.setRouteArray();
-    this.router.events.subscribe(event => {
-      this.setRouteArray();
-    });
-  }
-
-  setRouteArray() {
-    this.routeArray = this.router.url.split('/').splice(1);
   }
 
 }

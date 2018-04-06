@@ -1,12 +1,13 @@
 <div class="center">
   <div id="classes-div">
-    <div id="create-class-button-div">
-      <app-nav-arrows fxFlex="50" [routeArray]="routeArray"></app-nav-arrows>
-      <button fxFlexOffset="26" fxFlex="24" id="create-class-button"
+    <mat-card id="create-class-button-div">
+      <app-nav-arrows fxFlex="50"></app-nav-arrows>
+      <button
+              fxFlexOffset="26" fxFlex="24" id="create-class-button"
               mat-raised-button color="primary" routerLink="skapa-klassrum">
         Lägg till klassrum
       </button>
-    </div>
+    </mat-card>
     <router-outlet></router-outlet>
   </div>
 </div>

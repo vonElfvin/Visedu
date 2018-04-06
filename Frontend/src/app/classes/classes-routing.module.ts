@@ -5,6 +5,7 @@ import { TeacherGuard } from '../core/auth/guards/teacher.guard';
 import { CreateClassComponent } from './create-class/create-class.component';
 import { ClassListComponent } from './class-list/class-list.component';
 import { ClassPageComponent } from './class-page/class-page.component';
+import { StudentPageComponent } from '../students/student-page/student-page.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
         path: ':className',
         component: ClassPageComponent,
       },
+      {
+        path: ':className/:fullName',
+        component: StudentPageComponent,
+      }
     ]
   }
 ];

@@ -8,13 +8,17 @@ import { Router } from '@angular/router';
 })
 export class NavArrowsComponent implements OnInit {
 
-  @Input() routeArray: string[];
+  routeArray: string[];
 
   constructor(
     private router: Router,
   ) { }
 
   ngOnInit() {
+    this.setRouteArray();
+    this.router.events.subscribe(() => {
+      this.setRouteArray();
+    });
   }
 
   navigate(index: number) {
@@ -22,5 +26,9 @@ export class NavArrowsComponent implements OnInit {
       this.router.navigate([this.routeArray.splice(0, index + 1).join('/')]);
     }
 
+  }
+
+  setRouteArray() {
+    this.routeArray = this.router.url.split('/').splice(1);
   }
 }

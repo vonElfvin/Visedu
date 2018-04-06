@@ -1,7 +1,1 @@
-<pre>
-  {{class | async | json}}
-</pre>
-
-<pre>
-  {{students | async | json}}
-</pre>
+<app-student-list *ngIf="class" [classCode]="class.code"></app-student-list>

@@ -13,20 +13,16 @@ import { tap } from 'rxjs/operators';
 })
 export class ClassPageComponent implements OnInit {
 
-  class: Observable<Class>;
-  students: Observable<any[]>;
+  class: Class;
 
   constructor(
     private route: ActivatedRoute,
     private classService: ClassService,
-    private studentService: StudentService,
   ) {
-    const className = route.snapshot.params['className'];
-    this.class = this.classService.getClassWithName(className).pipe(
-      tap(c => {
-        this.students = this.studentService.getStudents(c.code);
-      })
-    );
+    const className = this.route.snapshot.params['className'];
+    this.classService.getClassWithName(className).subscribe(c => {
+      this.class = c;
+    });
   }
 
   ngOnInit() {

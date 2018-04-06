@@ -1,0 +1,6 @@
+<div *ngIf="students" fxLayout="row wrap">
+  <div fxFlex="20" *ngFor="let student of students">
+    <app-student-card [student]="student"></app-student-card>
+  </div>
+  <router-outlet></router-outlet>
+</div>
