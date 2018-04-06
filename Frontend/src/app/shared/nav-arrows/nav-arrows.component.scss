@@ -1,0 +1,17 @@
+div {
+  display: inline-flex;
+  vertical-align: middle;
+  align-items: center;
+}
+
+span {
+  height: 37px;
+}
+
+mat-icon {
+  opacity: 0.6;
+}
+
+/deep/ button{
+  min-width: 1% !important;
+}
