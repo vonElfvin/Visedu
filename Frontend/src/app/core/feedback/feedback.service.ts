@@ -40,6 +40,9 @@ export class FeedbackService {
       case 'guard-student':
         result = 'Endast studenter kommer åt den sidan.';
         break;
+      case 'guard-admin':
+        result = 'Endast admin kommer åt den sidan.';
+        break;
       case 'create-class':
         result = 'Nytt klassrum skapat.';
         break;

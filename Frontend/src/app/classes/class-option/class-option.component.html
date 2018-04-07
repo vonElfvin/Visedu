@@ -1,0 +1,11 @@
+<button *ngIf="routeArray.length === 1"
+  class="create-button"
+  mat-raised-button color="primary" routerLink="skapa-klassrum">
+  Skapa klassrum
+</button>
+
+<button *ngIf="routeArray.length === 2 && routeArray[1] !== 'skapa-klassrum'"
+        class="create-button"
+        mat-raised-button color="primary" (click)="navigate(routeArray[1])">
+  Lägg till elev
+</button>

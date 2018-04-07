@@ -30,6 +30,7 @@ import { SnackbarComponent } from './feedback/snackbar/snackbar.component';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { TeacherGuard } from './auth/guards/teacher.guard';
 import { StudentGuard } from './auth/guards/student.guard';
+import { AdminGuard } from './auth/guards/admin.guard';
 
 @NgModule({
   imports: [
@@ -49,7 +50,7 @@ import { StudentGuard } from './auth/guards/student.guard';
     // custom modules
     FirebaseModule,
   ],
-  providers: [FeedbackService, AuthService, AuthGuard, TeacherGuard, StudentGuard, HttpService, GlobalErrorHandler],
+  providers: [FeedbackService, AuthService, AuthGuard, TeacherGuard, StudentGuard, AdminGuard, HttpService, GlobalErrorHandler],
   declarations: [NavComponent, FooterComponent, ConfirmDialogComponent, ConfirmDialogComponent, SnackbarComponent],
   entryComponents: [ConfirmDialogComponent, SnackbarComponent],
   exports: [NavComponent, FooterComponent]

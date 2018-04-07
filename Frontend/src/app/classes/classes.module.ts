@@ -20,6 +20,7 @@ import { CreateClassComponent } from './create-class/create-class.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { StudentsModule } from '../students/students.module';
+import { ClassOptionComponent } from './class-option/class-option.component';
 
 @NgModule({
   imports: [
@@ -41,7 +42,7 @@ import { StudentsModule } from '../students/students.module';
     SharedModule,
   ],
   providers: [ClassService],
-  declarations: [ClassesComponent, ClassCardComponent, ClassListComponent, ClassPageComponent, CreateClassComponent],
+  declarations: [ClassesComponent, ClassCardComponent, ClassListComponent, ClassPageComponent, CreateClassComponent, ClassOptionComponent],
   exports: [ClassesComponent]
 })
 export class ClassesModule { }

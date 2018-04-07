@@ -1,1 +1,4 @@
-<app-student-list *ngIf="class" [classCode]="class.code"></app-student-list>
+<span *ngIf="class">
+  <h2 class="mat-h2">Klasskod: {{class.code}}</h2>
+  <app-student-list [classCode]="class.code"></app-student-list>
+</span>

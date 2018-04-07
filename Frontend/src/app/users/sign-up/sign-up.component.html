@@ -1,6 +1,7 @@
 <div id="sign-up-div" class="center">
   <mat-card id="sign-up-card">
-    <h2>Skapa konto</h2>
+    <h2 *ngIf="!classCode.value">Skapa konto</h2>
+    <h2 *ngIf="classCode.value">Lägg till elevkonto</h2>
     <mat-vertical-stepper [linear]="true">
 
       <!-- Personal Info -->
@@ -25,7 +26,7 @@
           </mat-form-field>
 
           <!-- Role -->
-          <mat-radio-group id="role-radio-group" formControlName="role">
+          <mat-radio-group *ngIf="!classCode.value" id="role-radio-group" formControlName="role">
             <mat-radio-button value="student" color="primary">Elev</mat-radio-button>
             <mat-radio-button value="teacher">Lärare</mat-radio-button>
           </mat-radio-group>

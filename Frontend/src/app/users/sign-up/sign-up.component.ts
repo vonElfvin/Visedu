@@ -6,6 +6,7 @@ import { UserService } from '../shared/user.service';
 import { Role } from '../shared/user.model';
 import { ClassService } from '../../classes/shared/class.service';
 import { invalidClassCodeValidator } from '../../shared/validators/class-code.validators';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -75,9 +76,11 @@ export class SignUpComponent implements OnInit {
   constructor(
     private userService: UserService,
     private classService: ClassService,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
+    this.classCode = this.route.snapshot.queryParams.classCode;
   }
 
   get firstName() {
@@ -94,6 +97,10 @@ export class SignUpComponent implements OnInit {
 
   get classCode() {
     return this.studentForm.get('classCode');
+  }
+
+  set classCode(classCode) {
+    this.classCode.setValue(classCode);
   }
 
   get phone() {

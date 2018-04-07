@@ -25,7 +25,6 @@ export class NavArrowsComponent implements OnInit {
     if (index !== this.routeArray.length - 1) {
       this.router.navigate([this.routeArray.splice(0, index + 1).join('/')]);
     }
-
   }
 
   setRouteArray() {

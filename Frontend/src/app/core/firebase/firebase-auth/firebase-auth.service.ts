@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { FeedbackService } from '../../feedback/feedback.service';
-import { Feedback, FeedbackType } from '../../feedback/feedback.model';
 import { GlobalErrorHandler } from '../../error-handler/global-error-handler';
 
 @Injectable()
@@ -49,7 +48,7 @@ export class FirebaseAuthService {
     });
   }
 
-  createAccountWithAndPassword(email, password) {
+  createAccountWithEmailAndPassword(email, password) {
     return this.auth.createUserWithEmailAndPassword(email, password).catch(err => {
       this.errorHandler.errorFeedback(err);
       throw err;

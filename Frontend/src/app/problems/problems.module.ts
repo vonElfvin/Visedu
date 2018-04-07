@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProblemsRoutingModule } from './problems-routing.module';
 import { ProblemsComponent } from './problems.component';
 import { ProblemService } from './shared/problem.service';
+import { CreateProblemComponent } from './create-problem/create-problem.component';
 
 @NgModule({
   imports: [
@@ -11,6 +12,6 @@ import { ProblemService } from './shared/problem.service';
     ProblemsRoutingModule
   ],
   providers: [ProblemService],
-  declarations: [ProblemsComponent]
+  declarations: [ProblemsComponent, CreateProblemComponent]
 })
 export class ProblemsModule { }

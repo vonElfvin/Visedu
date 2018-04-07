@@ -58,6 +58,17 @@ export class UserService {
     );
   }
 
+  isAdmin(user: User): boolean {
+    return user.role === Role.admin;
+  }
+
+  get isAdminObservable(): Observable<boolean> {
+    return this.user.pipe(
+      take(1),
+      map(user => user && this.isAdmin(user))
+    );
+  }
+
   loginGoogle() {
     return this.authService.loginGoogle();
   }
@@ -74,8 +85,8 @@ export class UserService {
     });
   }
 
-  private createAccountWithAndPassword(email, password) {
-    return this.authService.createAccountWithAndPassword(email, password);
+  private createAccountWithEmailAndPassword(email, password) {
+    return this.authService.createAccountWithEmailAndPassword(email, password);
   }
 
   logout() {
@@ -86,7 +97,7 @@ export class UserService {
   }
 
   createStudentUser(studentData, userData) {
-    return this.createAccountWithAndPassword(userData.email, userData.password)
+    return this.createAccountWithEmailAndPassword(userData.email, userData.password)
       .then((credentials: firebase.User) => {
         userData = {
           ...userData,
@@ -103,7 +114,7 @@ export class UserService {
   }
 
   createTeacherUser(teacherData, userData) {
-    return this.createAccountWithAndPassword(userData.email, userData.password)
+    return this.createAccountWithEmailAndPassword(userData.email, userData.password)
       .then((credentials: firebase.User) => {
         userData = {
           ...userData,
@@ -152,6 +163,7 @@ export class UserService {
           }
         }),
       );
+    this.userObservable.subscribe();
   }
 
   private createUser(userData) {

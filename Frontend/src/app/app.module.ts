@@ -17,6 +17,7 @@ import { SharedModule } from './shared/shared.module';
 import { InfoModule } from './info/info.module';
 import { TeachersModule } from './teachers/teachers.module';
 import { UsersModule } from './users/users.module';
+import { AdminModule } from './admin/admin.module';
 
 // custom modules
 
@@ -36,6 +37,7 @@ import { UsersModule } from './users/users.module';
     InfoModule,
     TeachersModule,
     UsersModule,
+    AdminModule,
     AppRoutingModule,
   ],
   providers: [],
