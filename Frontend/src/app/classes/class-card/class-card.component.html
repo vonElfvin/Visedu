@@ -1,6 +1,14 @@
 <div>
-  <mat-card class="class-card" [routerLink]="[class.name]">
+  <mat-card class="class-card"[routerLink]="[class.name]" >
     <h1>{{class.name}}</h1>
     <p>{{class.school}}</p>
   </mat-card>
+  <button class="fab-button left-button" mat-fab color="warn"
+          (click)="delete()">
+    <mat-icon>delete_forever</mat-icon>
+  </button>
+  <button class="fab-button right-button" mat-fab color="primary"
+          routerLink="redigera-klassrum" [queryParams]="{klass: class.name}">
+    <mat-icon>mode_edit</mat-icon>
+  </button>
 </div>

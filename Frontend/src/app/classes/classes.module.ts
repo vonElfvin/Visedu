@@ -13,7 +13,7 @@ import { ClassesComponent } from './classes.component';
 import { ClassCardComponent } from './class-card/class-card.component';
 import { ClassListComponent } from './class-list/class-list.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { ClassPageComponent } from './class-page/class-page.component';
 import { CreateClassComponent } from './create-class/create-class.component';
@@ -35,6 +35,7 @@ import { ClassOptionComponent } from './class-option/class-option.component';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule,
 
     // custom
     ClassesRoutingModule,

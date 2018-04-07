@@ -23,10 +23,18 @@ export class HttpService<ItemClass> {
     return this.http.post<ItemClass>(`${this.basePath}${collection}`, body);
   }
 
+  update(collection: string, body: ItemClass, id: string) {
+    return this.http.patch<ItemClass>(`${this.basePath}${collection}/${id}`, body);
+  }
+
   get(collection: string, path: string) {
     return this.http.get<ItemClass>(`${this.basePath}${collection}/${path}`)
       .pipe(
         retry(2),
       );
+  }
+
+  delete(collection: string, id: string) {
+    return this.http.delete<ItemClass>(`${this.basePath}${collection}/${id}`);
   }
 }

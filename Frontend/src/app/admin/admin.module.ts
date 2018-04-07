@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
+import { ProblemsModule } from '../problems/problems.module';
 
 @NgModule({
   imports: [
@@ -11,6 +12,9 @@ import { AdminRoutingModule } from './admin-routing.module';
 
     // admin modules
     AdminRoutingModule,
+
+    // custom modules
+    ProblemsModule,
   ],
   declarations: [AdminPageComponent, AdminComponent],
   exports: []

@@ -1,11 +1,11 @@
 <h1 mat-dialog-title>{{data.title}}</h1>
-<mat-dialog-actions>
+<mat-dialog-actions fxLayout="wrap row">
   <!-- Cancel Button -->
-  <button mat-raised-button mat-dialog-close (click)="onCancelClick()" color="primary">
+  <button fxFlex="50" mat-raised-button mat-dialog-close (click)="onCancelClick()" color="primary">
     {{data.cancel}}
   </button>
   <!-- Confirm Button -->
-  <button mat-raised-button mat-dialog-close (click)="onConfirmClick()">
+  <button fxFlex="50" mat-raised-button mat-dialog-close (click)="onConfirmClick()" color="warn">
     {{data.confirm}}
   </button>
 </mat-dialog-actions>

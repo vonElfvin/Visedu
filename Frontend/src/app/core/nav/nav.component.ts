@@ -19,7 +19,7 @@ export class NavComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.userObservable.subscribe(user => {
+    this.userService.user.subscribe(user => {
       this.user = user;
     });
   }

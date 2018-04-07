@@ -12,6 +12,7 @@ import { CreateProblemComponent } from './create-problem/create-problem.componen
     ProblemsRoutingModule
   ],
   providers: [ProblemService],
-  declarations: [ProblemsComponent, CreateProblemComponent]
+  declarations: [ProblemsComponent, CreateProblemComponent],
+  exports: [CreateProblemComponent],
 })
 export class ProblemsModule { }

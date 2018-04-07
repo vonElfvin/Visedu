@@ -51,9 +51,37 @@ export class ClassService {
       // if success
       this.feedback = {type: FeedbackType.Success, message: 'create-class'};
       this.feedbackService.openSnackbar(this.feedback);
-    }, () => {
+
       // if error
+    }, () => {
       this.feedback = {type: FeedbackType.Error, message: 'create-class-fail'};
+      this.feedbackService.openSnackbar(this.feedback);
+    });
+  }
+
+  updateClass(classBody: Class, id: string) {
+    return this.httpService.update(this.COLLECTION, classBody, id).subscribe(() => {
+      // if success
+      this.feedback = {type: FeedbackType.Success, message: 'edit-class'};
+      this.feedbackService.openSnackbar(this.feedback);
+
+      // if error
+    }, () => {
+      this.feedback = {type: FeedbackType.Error, message: 'edit-class-fail'};
+      this.feedbackService.openSnackbar(this.feedback);
+    });
+  }
+
+  deleteClass(id: string) {
+    return this.httpService.delete(this.COLLECTION, id).subscribe(() => {
+      // if success
+      this.feedback = {type: FeedbackType.Success, message: 'delete-class'};
+      this.feedbackService.openSnackbar(this.feedback);
+      window.location.reload();
+
+      // if error
+    }, () => {
+      this.feedback = {type: FeedbackType.Error, message: 'delete-class-fail'};
       this.feedbackService.openSnackbar(this.feedback);
     });
   }

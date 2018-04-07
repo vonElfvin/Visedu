@@ -31,6 +31,7 @@ import { AuthGuard } from './auth/guards/auth.guard';
 import { TeacherGuard } from './auth/guards/teacher.guard';
 import { StudentGuard } from './auth/guards/student.guard';
 import { AdminGuard } from './auth/guards/admin.guard';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { AdminGuard } from './auth/guards/admin.guard';
     HttpClientModule,
     BrowserAnimationsModule,
     RouterModule,
+    FlexLayoutModule,
 
     // material modules
     MatToolbarModule,

@@ -49,6 +49,18 @@ export class FeedbackService {
       case 'create-class-fail':
         result = 'Kunde inte skapa nytt klassrum.';
         break;
+      case 'edit-class':
+        result = 'Klassrummet har redigerats.';
+        break;
+      case 'edit-class-fail':
+        result = 'Kunde inte redigera klassrummet.';
+        break;
+      case 'delete-class':
+        result = 'Klassrummet har raderats.';
+        break;
+      case 'delete-class-fail':
+        result = 'Kunde inte radera klassrummet.';
+        break;
       default:
         result = message;
         break;

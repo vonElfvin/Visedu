@@ -33,10 +33,8 @@ module.exports = (mongoose) => {
             } else {
                 const teacherId = req.params.teacherId;
                 const name = req.params.name;
-                console.log(teacherId);
-                console.log(name);
+
                 Class.findOne({'teacherId': teacherId, 'name': name}).then(c => {
-                    console.log(c);
                     res.json(c);
                 }).catch(err => {
                     res.status(500).send(err.errors);
@@ -50,6 +48,18 @@ module.exports = (mongoose) => {
             let data = req.body || {};
 
             Class.create(data).then(c => {
+                res.json(c);
+            }).catch(err => {
+                res.status(500).send(err.errors);
+            });
+        },
+
+        update: (req, res) => {
+            let data = req.body || {};
+
+            let id = req.params.id;
+
+            Class.findByIdAndUpdate(id, data).then(c  => {
                 res.json(c);
             }).catch(err => {
                 res.status(500).send(err.errors);

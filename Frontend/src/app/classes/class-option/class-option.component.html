@@ -4,7 +4,8 @@
   Skapa klassrum
 </button>
 
-<button *ngIf="routeArray.length === 2 && routeArray[1] !== 'skapa-klassrum'"
+<button *ngIf="routeArray.length === 2 && routeArray[1] !== 'skapa-klassrum'
+              && routeArray[1].split('?')[0] != 'redigera-klassrum'"
         class="create-button"
         mat-raised-button color="primary" (click)="navigate(routeArray[1])">
   Lägg till elev

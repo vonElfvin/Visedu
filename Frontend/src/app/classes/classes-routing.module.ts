@@ -22,6 +22,10 @@ const routes: Routes = [
         component: CreateClassComponent,
       },
       {
+        path: 'redigera-klassrum',
+        component: CreateClassComponent,
+      },
+      {
         path: ':className',
         component: ClassPageComponent,
       },

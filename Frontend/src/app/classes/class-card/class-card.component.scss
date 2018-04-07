@@ -2,10 +2,32 @@ div {
   padding: 5px;
   text-align: center;
   margin-top: 0;
+  position: relative;
+}
+
+.class-card {
+  padding-bottom: 70px;
 }
 
 .class-card:hover {
   box-shadow: 0 3px 10px -3px rgba(0,0,0,0.6);
   cursor: pointer;
   opacity: 0.95;
+}
+
+mat-icon {
+  vertical-align: center!important;
+}
+
+.fab-button {
+  position: absolute;
+  bottom: 10px;
+}
+
+.left-button {
+  left: 10px;
+}
+
+.right-button {
+  right: 10px;
 }

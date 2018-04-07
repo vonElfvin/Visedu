@@ -6,6 +6,7 @@ module.exports = (app, mongoose) => {
     app.route('/classes').get(Class.list);
     app.route('/classes/:code').get(Class.get);
     app.route('/classes/:teacherId/:name').get(Class.get);
+    app.route('/classes/:id').patch(Class.update);
     app.route('/classes').post(Class.post);
     app.route('/classes/:id').delete(Class.delete);
 };

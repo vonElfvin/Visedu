@@ -1,6 +1,7 @@
 <div class="center">
   <mat-card>
-    <h2>Nytt klassrum</h2>
+    <h2 *ngIf="!_id">Nytt klassrum</h2>
+    <h2 *ngIf="_id">Redigera klassrum</h2>
     <form [formGroup]="classForm" (ngSubmit)="submit()">
 
       <!-- School -->
@@ -26,7 +27,14 @@
       </mat-form-field>
 
       <!-- Submit -->
-      <button mat-raised-button color="accent" [disabled]="classForm.invalid">Skapa klassrum</button>
+      <button mat-raised-button color="accent" [disabled]="classForm.invalid">
+        <span *ngIf="!_id">
+          Skapa klassrum
+        </span>
+        <span *ngIf="_id">
+          Redigera klassrum
+        </span>
+      </button>
 
     </form>
   </mat-card>

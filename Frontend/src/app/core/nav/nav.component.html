@@ -11,17 +11,24 @@
 
       <!-- if student -->
 
-      <!-- Profile -->
-      <button mat-button routerLink="profilsida">
-        {{ user.firstName }}
-      </button>
-
       <!-- if teacher -->
       <span *ngIf="userService.isTeacher(user)">
 
         <button mat-raised-button routerLink="klassrum" color="accent">Klassrum</button>
 
       </span>
+
+      <!-- if admin -->
+      <span *ngIf="userService.isAdmin(user)">
+
+        <button mat-raised-button routerLink="admin" color="accent">Admin</button>
+
+      </span>
+
+      <!-- Profile -->
+      <button mat-button routerLink="profilsida">
+        {{ user.firstName }}
+      </button>
 
       <!-- Logout -->
       <button mat-raised-button (click)="userService.logout()" color="primary">
