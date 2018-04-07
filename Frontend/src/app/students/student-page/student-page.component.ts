@@ -10,7 +10,7 @@ import { StudentService } from '../shared/student.service';
 })
 export class StudentPageComponent implements OnInit {
 
-  private student: Student;
+  student: Student;
 
   constructor(
     private route: ActivatedRoute,
