@@ -15,6 +15,10 @@ export class StudentService {
     return this.studentObservable;
   }
 
+  getStudent(studentId: string): Observable<Student> {
+    return this.httpService.get(this.COLLECTION, studentId);
+  }
+
   getStudents(classCode: string): Observable<Student[]> {
     return this.httpService.list(`${this.COLLECTION}?classCode=${classCode}`);
   }
@@ -27,7 +31,7 @@ export class StudentService {
     return this.httpService.post(this.COLLECTION, student);
   }
 
-  setStudent(id: string) {
-    this.studentObservable = this.httpService.get(this.COLLECTION, id);
+  setStudent(studentId: string) {
+    this.studentObservable = this.httpService.get(this.COLLECTION, studentId);
   }
 }

@@ -23,8 +23,8 @@ export class HttpService<ItemClass> {
     return this.http.post<ItemClass>(`${this.basePath}${collection}`, body);
   }
 
-  get(collection: string, _id: string) {
-    return this.http.get<ItemClass>(`${this.basePath}${collection}/${_id}`)
+  get(collection: string, path: string) {
+    return this.http.get<ItemClass>(`${this.basePath}${collection}/${path}`)
       .pipe(
         retry(2),
       );

@@ -1,6 +1,8 @@
 <div>
   <span *ngFor="let route of routeArray; let last = last; let i = index">
-    <button mat-button (click)="navigate(i)" [ngStyle]="{'opacity': last ? '1' : '0.6' }">{{route | uppercase | nodashes}}</button>
+    <button mat-button (click)="navigate(i)" [ngStyle]="{'opacity': last ? '1' : '0.6' }">
+      {{route | uppercase | nodashes | noquery}}
+    </button>
     <mat-icon style="vertical-align:middle;" *ngIf="!last">navigate_next</mat-icon>
   </span>
 </div>

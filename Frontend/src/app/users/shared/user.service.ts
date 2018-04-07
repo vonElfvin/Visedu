@@ -43,7 +43,8 @@ export class UserService {
   get isStudentObservable(): Observable<boolean> {
     return this.user.pipe(
       take(1),
-      map(user => user && user.role === Role.student));
+      map(user => user && this.isStudent(user))
+    );
   }
 
   isTeacher(user: User): boolean {
@@ -53,7 +54,8 @@ export class UserService {
   get isTeacherObservable(): Observable<boolean> {
     return this.user.pipe(
       take(1),
-      map(user => user && this.isTeacher(user)));
+      map(user => user && this.isTeacher(user))
+    );
   }
 
   loginGoogle() {

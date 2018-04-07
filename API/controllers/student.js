@@ -22,7 +22,9 @@ module.exports = (mongoose) => {
         get: (req, res) => {
             const id = req.params.id;
 
-            Student.findById(id).then(student => {
+            Student.findById(id)
+                .populate("user")
+                .then(student => {
                 res.json(student);
             }).catch(err => {
                 res.status(500).send(err.errors);

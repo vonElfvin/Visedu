@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { StudentService } from '../shared/student.service';
+import { Student } from '../shared/student.model';
 
 @Component({
   selector: 'app-student-list',
@@ -11,7 +12,7 @@ export class StudentListComponent implements OnInit {
 
   @Input() classCode: string;
 
-  private students: any[];
+  private students: Student[];
 
   constructor(
     private studentService: StudentService,

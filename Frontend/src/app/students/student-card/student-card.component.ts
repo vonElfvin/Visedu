@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Student } from '../shared/student.model';
 
 @Component({
   selector: 'app-student-card',
@@ -7,12 +9,24 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class StudentCardComponent implements OnInit {
 
-  @Input() student: any;
+  @Input() student: Student;
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit() {
-    console.log(this.student);
   }
 
+  navigate() {
+    this.router.navigate(
+      [this.student.user.firstName + '-' + this.student.user.lastName],
+      {
+        relativeTo: this.route,
+        skipLocationChange: true,
+        queryParams: {studentId: this.student._id},
+      }
+    );
+  }
 }

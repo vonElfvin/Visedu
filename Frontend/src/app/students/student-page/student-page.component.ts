@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Student } from '../shared/student.model';
+import { StudentService } from '../shared/student.service';
 
 @Component({
   selector: 'app-student-page',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentPageComponent implements OnInit {
 
-  constructor() { }
+  private student: Student;
+
+  constructor(
+    private route: ActivatedRoute,
+    private studentService: StudentService
+  ) { }
 
   ngOnInit() {
+    const studentId = this.route.snapshot.queryParams.studentId;
+    this.studentService.getStudent(studentId).subscribe(student => {
+      this.student = student;
+      console.log(this.student);
+    });
   }
 
 }

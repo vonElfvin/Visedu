@@ -5,6 +5,7 @@ import { NavArrowsComponent } from './nav-arrows/nav-arrows.component';
 import { MatButtonModule, MatIconModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { NoDashesPipe } from './pipes/no-dashes.pipe';
+import { NoQueryPipe } from './pipes/no-query.pipe';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { NoDashesPipe } from './pipes/no-dashes.pipe';
     MatButtonModule,
     MatIconModule,
   ],
-  declarations: [NavArrowsComponent, NoDashesPipe],
+  declarations: [NavArrowsComponent, NoDashesPipe, NoQueryPipe],
   exports: [NavArrowsComponent]
 })
 export class SharedModule { }

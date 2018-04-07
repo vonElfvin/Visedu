@@ -1,5 +1,6 @@
 <div>
-  <mat-card class="student-card" routerLink="{{student.user.firstName + '-' + student.user.lastName}}">
+  <mat-card class="student-card"
+            (click)="navigate()">
     <h3>{{student.user.firstName}}</h3>
   </mat-card>
 </div>

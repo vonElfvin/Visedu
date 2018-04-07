@@ -36,7 +36,6 @@ export class CreateClassComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.classForm.value);
     this.classService.createClass(this.classForm.value);
   }
 }

@@ -1,10 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-arrows',
   templateUrl: './nav-arrows.component.html',
-  styleUrls: ['./nav-arrows.component.scss']
+  styleUrls: ['./nav-arrows.component.scss'],
 })
 export class NavArrowsComponent implements OnInit {
 
@@ -32,3 +32,4 @@ export class NavArrowsComponent implements OnInit {
     this.routeArray = this.router.url.split('/').splice(1);
   }
 }
+
