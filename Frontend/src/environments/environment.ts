@@ -6,12 +6,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyBcsOkV4SdWeeYQvz6pnB2Z6w3qqWoiNi8',
-    authDomain: 'visedu-app.firebaseapp.com',
-    databaseURL: 'https://visedu-app.firebaseio.com',
-    projectId: 'visedu-app',
-    storageBucket: 'visedu-app.appspot.com',
-    messagingSenderId: '1002636738243'
+    apiKey: 'AIzaSyDsz08guwtgC5xPQM8tK7tCYeA0y5_LFeA',
+    authDomain: 'visedu-firebase-only-project.firebaseapp.com',
+    databaseURL: 'https://visedu-firebase-only-project.firebaseio.com',
+    projectId: 'visedu-firebase-only-project',
+    storageBucket: 'visedu-firebase-only-project.appspot.com',
+    messagingSenderId: '750535296812'
   },
   basePath: '//localhost:8080/'
 };

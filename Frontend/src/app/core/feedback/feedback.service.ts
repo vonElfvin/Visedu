@@ -49,6 +49,12 @@ export class FeedbackService {
       case 'create-class-fail':
         result = 'Kunde inte skapa nytt klassrum.';
         break;
+      case 'add-problem-success':
+        result = 'Problem skapats.';
+        break;
+      case 'add-problem-error':
+        result = 'Problem kunde inte skapas, var vänlig försök igen.';
+        break;
       case 'edit-class':
         result = 'Klassrummet har redigerats.';
         break;
