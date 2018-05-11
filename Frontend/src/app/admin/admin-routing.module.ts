@@ -1,8 +1,10 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AdminComponent } from './admin.component';
-import { AdminPageComponent } from './admin-page/admin-page.component';
 import { AdminGuard } from '../core/auth/guards/admin.guard';
+import { CreateProblemComponent } from '../problems/create-problem/create-problem.component';
+import { ProblemListComponent } from '../problems/problem-list/problem-list.component';
+import { UserListComponent } from '../users/user-list/user-list.component';
 
 const routes: Routes = [
   {
@@ -10,7 +12,10 @@ const routes: Routes = [
     component: AdminComponent,
     canActivate: [AdminGuard],
     children: [
-      {path: '', component: AdminPageComponent},
+      {path: '', component: CreateProblemComponent},
+      {path: 'skapa-problem', component: CreateProblemComponent},
+      {path: 'problem-lista', component: ProblemListComponent},
+      {path: 'konton', component: UserListComponent},
     ]},
 ];
 

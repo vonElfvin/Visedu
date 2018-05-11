@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminPageComponent } from './admin-page/admin-page.component';
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { ProblemsModule } from '../problems/problems.module';
-import { MatCardModule } from '@angular/material';
+import { MatCardModule, MatTabsModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -13,6 +12,7 @@ import { MatCardModule } from '@angular/material';
 
     // material modules
     MatCardModule,
+    MatTabsModule,
 
     // admin modules
     AdminRoutingModule,
@@ -20,7 +20,7 @@ import { MatCardModule } from '@angular/material';
     // custom modules
     ProblemsModule,
   ],
-  declarations: [AdminPageComponent, AdminComponent],
+  declarations: [AdminComponent],
   exports: []
 })
 export class AdminModule { }

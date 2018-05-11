@@ -22,6 +22,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AccountComponent } from './account/account.component';
 import { ClassesModule } from '../classes/classes.module';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
   imports: [
@@ -53,7 +54,11 @@ import { ClassesModule } from '../classes/classes.module';
     SignUpComponent,
     ProfileComponent,
     SettingsComponent,
-    AccountComponent
+    AccountComponent,
+    UserListComponent
+  ],
+  exports: [
+    UserListComponent,
   ]
 })
 export class UsersModule { }

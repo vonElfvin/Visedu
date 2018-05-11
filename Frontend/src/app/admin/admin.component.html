@@ -1,5 +1,10 @@
-<div class="center">
-  <mat-card id="admin-page-div">
-    <router-outlet></router-outlet>
-  </mat-card>
+<div style="width:100%;">
+  <nav mat-tab-nav-bar>
+    <a mat-tab-link
+       *ngFor="let link of links"
+       [routerLink]="link.path">
+      {{link.label}}
+    </a>
+  </nav>
+  <router-outlet></router-outlet>
 </div>

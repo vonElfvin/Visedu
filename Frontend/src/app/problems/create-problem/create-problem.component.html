@@ -1,29 +1,34 @@
-<form [formGroup]="problemForm" (ngSubmit)="create()">
+<div class="center">
+  <mat-card id="create-problem-card" class="mat-elevation-z5">
+    <h1>Skapa problem</h1>
+    <form [formGroup]="problemForm" (ngSubmit)="create()">
 
-  <!-- Question -->
-  <mat-form-field>
+      <!-- Question -->
+      <mat-form-field>
     <textarea matInput matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="5"
               formControlName="question" placeholder="Fråga" ></textarea>
-    <mat-error *ngIf="question.touched && question.hasError('required')">
-      Fråga krävs.
-    </mat-error>
-  </mat-form-field>
+        <mat-error *ngIf="question.touched && question.hasError('required')">
+          Fråga krävs.
+        </mat-error>
+      </mat-form-field>
 
-  <!-- Answer -->
-  <mat-form-field>
-    <input matInput formControlName="answer" placeholder="Svar">
-    <mat-error *ngIf="answer.touched && answer.hasError('required')">
-      Svar krävs.
-    </mat-error>
-  </mat-form-field>
+      <!-- Answer -->
+      <mat-form-field>
+        <input matInput formControlName="answer" placeholder="Svar">
+        <mat-error *ngIf="answer.touched && answer.hasError('required')">
+          Svar krävs.
+        </mat-error>
+      </mat-form-field>
 
-  <!-- Problem Area -->
-  <mat-radio-group formControlName="area">
-    <mat-radio-button value="{{areas.skill_training}}" color="primary">Färdighetsproblem</mat-radio-button>
-    <mat-radio-button value="{{areas.problem_solving}}" color="primary">Problem i kontext</mat-radio-button>
-    <mat-radio-button value="{{areas.tricky_question}}" color="primary">Kluring</mat-radio-button>
-  </mat-radio-group>
+      <!-- Problem Area -->
+      <mat-radio-group formControlName="area">
+        <mat-radio-button value="{{areas.skill_training}}" color="primary">Färdighetsproblem</mat-radio-button>
+        <mat-radio-button value="{{areas.problem_solving}}" color="primary">Problem i kontext</mat-radio-button>
+        <mat-radio-button value="{{areas.tricky_question}}" color="primary">Kluring</mat-radio-button>
+      </mat-radio-group>
 
-  <!-- Submit Button -->
-  <button mat-raised-button color="primary" [disabled]="problemForm.invalid">Skapa fråga</button>
-</form>
+      <!-- Submit Button -->
+      <button mat-raised-button color="primary" [disabled]="problemForm.invalid">Skapa fråga</button>
+    </form>
+  </mat-card>
+</div>

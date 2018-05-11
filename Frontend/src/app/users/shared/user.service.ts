@@ -13,7 +13,6 @@ import { Feedback, FeedbackType } from '../../core/feedback/feedback.model';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
-import { Student } from '../../students/shared/student.model';
 
 @Injectable()
 export class UserService {
