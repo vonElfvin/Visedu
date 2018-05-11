@@ -1,3 +1,5 @@
-<p>
-  problem-list works!
-</p>
+<mat-grid-list cols="4" rowHeight="2:1">
+  <mat-grid-tile *ngFor="let problem of problems | async" role="list">
+    <p>{{problem.question}}</p>
+  </mat-grid-tile>
+</mat-grid-list>

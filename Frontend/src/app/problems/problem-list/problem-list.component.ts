@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ProblemService } from '../shared/problem.service';
+import { Problem } from '../shared/problem.model';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-problem-list',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProblemListComponent implements OnInit {
 
-  constructor() { }
+  problems: Observable<Problem[]>;
+
+  constructor(
+    private problemService: ProblemService
+  ) { }
 
   ngOnInit() {
+    this.problems = this.problemService.getProblems();
   }
 
 }

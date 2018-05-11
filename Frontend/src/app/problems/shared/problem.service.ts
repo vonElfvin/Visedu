@@ -28,4 +28,8 @@ export class ProblemService {
     });
   }
 
+  getProblems() {
+    return this.firebaseDatabaseService.list(this.COLLECTION_PATH);
+  }
+
 }
