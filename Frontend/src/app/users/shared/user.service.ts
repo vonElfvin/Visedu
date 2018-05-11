@@ -163,7 +163,15 @@ export class UserService {
           }
         }),
       );
-    this.userObservable.subscribe();
+
+    // subscribe to trigger http call
+    this.userObservable.subscribe(user => {
+      if (user) {
+        return this.getUser(user.uid);
+      } else {
+        return Observable.of(null);
+      }
+    });
   }
 
   private createUser(userData) {
