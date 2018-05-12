@@ -15,6 +15,7 @@ const routes: Routes = [
       {path: '', component: ProblemListComponent},
       {path: 'problem-lista', component: ProblemListComponent},
       {path: 'skapa-problem', component: CreateProblemComponent},
+      {path: 'redigera-problem/:problemId', component: CreateProblemComponent},
       {path: 'konton', component: UserListComponent},
     ]},
 ];

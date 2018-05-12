@@ -61,6 +61,12 @@ export class FeedbackService {
       case 'delete-problem-error':
         result = 'Problem kunde inte raderas, var vänlig försök igen.';
         break;
+      case 'update-problem-success':
+        result = 'Problem uppdaterat.';
+        break;
+      case 'update-problem-error':
+        result = 'Problem kunde inte uppdateras, var vänlig försök igen.';
+        break;
       case 'edit-class':
         result = 'Klassrummet har redigerats.';
         break;

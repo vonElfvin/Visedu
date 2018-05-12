@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Problem } from '../shared/problem.model';
 import { ProblemService } from '../shared/problem.service';
 import { FeedbackService } from '../../core/feedback/feedback.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-problem-card',
@@ -15,9 +16,14 @@ export class ProblemCardComponent implements OnInit {
   constructor(
     private problemService: ProblemService,
     private feedbackService: FeedbackService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
+  }
+
+  edit() {
+    this.router.navigate([`admin/redigera-problem/${this.problem._id}`]);
   }
 
   delete() {

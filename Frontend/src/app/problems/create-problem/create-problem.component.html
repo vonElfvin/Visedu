@@ -1,7 +1,8 @@
 <div class="center">
   <mat-card id="create-problem-card" class="mat-elevation-z5">
-    <h1>Skapa problem</h1>
-    <form [formGroup]="problemForm" (ngSubmit)="create()">
+    <h1 *ngIf="!problemId">Skapa problem</h1>
+    <h1 *ngIf="problemId">Redigera problem</h1>
+    <form [formGroup]="problemForm" (ngSubmit)="submit()">
 
       <!-- Question -->
       <mat-form-field>

@@ -10,7 +10,15 @@ export class FirebaseDatabaseService<Item> {
   ) { }
 
   insert(path: string, item: Item): Promise<any> {
-    return this.afs.collection(path).add(item);
+    return this.col(path).add(item);
+  }
+
+  update(path: string, id: string, item: Item) {
+    return this.doc(path, id).update(item);
+  }
+
+  get(path: string, id: string) {
+    return this.doc(path, id).valueChanges();
   }
 
   list(path: string, queryFn?: QueryFn): Observable<Item[]> {
