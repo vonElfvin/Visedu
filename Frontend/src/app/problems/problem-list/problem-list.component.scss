@@ -1,0 +1,9 @@
+@import '../../../theme.scss';
+
+mat-grid-list {
+  margin: 10px;
+}
+
+mat-grid-tile-header::ng-deep {
+  background-color: mat-color($accent)!important;
+}

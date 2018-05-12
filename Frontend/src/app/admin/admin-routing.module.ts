@@ -12,9 +12,9 @@ const routes: Routes = [
     component: AdminComponent,
     canActivate: [AdminGuard],
     children: [
-      {path: '', component: CreateProblemComponent},
-      {path: 'skapa-problem', component: CreateProblemComponent},
+      {path: '', component: ProblemListComponent},
       {path: 'problem-lista', component: ProblemListComponent},
+      {path: 'skapa-problem', component: CreateProblemComponent},
       {path: 'konton', component: UserListComponent},
     ]},
 ];

@@ -1,5 +1,9 @@
 <mat-grid-list cols="4" rowHeight="2:1">
-  <mat-grid-tile *ngFor="let problem of problems | async" role="list">
-    <p>{{problem.question}}</p>
+  <mat-grid-tile *ngFor="let problem of problems | async" class="mat-body mat-elevation-z1">
+    <mat-grid-tile-header>
+      {{problem.question}}
+    </mat-grid-tile-header>
+    <br><br>
+    {{problem.answer}}
   </mat-grid-tile>
 </mat-grid-list>

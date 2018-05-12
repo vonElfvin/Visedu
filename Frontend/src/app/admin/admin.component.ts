@@ -8,12 +8,12 @@ import { Component } from '@angular/core';
 export class AdminComponent {
   links = [
     {
-      path: 'skapa-problem',
-      label: 'Skapa Problem',
-    },
-    {
       path: 'problem-lista',
       label: 'Problemlista',
+    },
+    {
+      path: 'skapa-problem',
+      label: 'Skapa Problem',
     },
     {
       path: 'konton',
