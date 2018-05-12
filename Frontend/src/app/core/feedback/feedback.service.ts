@@ -55,6 +55,12 @@ export class FeedbackService {
       case 'add-problem-error':
         result = 'Problem kunde inte skapas, var vänlig försök igen.';
         break;
+      case 'delete-problem-success':
+        result = 'Problem raderats.';
+        break;
+      case 'delete-problem-error':
+        result = 'Problem kunde inte raderas, var vänlig försök igen.';
+        break;
       case 'edit-class':
         result = 'Klassrummet har redigerats.';
         break;

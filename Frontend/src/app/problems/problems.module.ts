@@ -6,11 +6,12 @@ import { ProblemsComponent } from './problems.component';
 import { ProblemService } from './shared/problem.service';
 import { CreateProblemComponent } from './create-problem/create-problem.component';
 import {
-  MatButtonModule, MatCardModule, MatFormFieldModule, MatGridListModule, MatInputModule,
+  MatButtonModule, MatCardModule, MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule,
   MatRadioModule
 } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProblemListComponent } from './problem-list/problem-list.component';
+import { ProblemCardComponent } from './problem-card/problem-card.component';
 
 @NgModule({
   imports: [
@@ -25,12 +26,13 @@ import { ProblemListComponent } from './problem-list/problem-list.component';
     MatRadioModule,
     MatCardModule,
     MatGridListModule,
+    MatIconModule,
 
     // custom
     ProblemsRoutingModule,
   ],
   providers: [ProblemService],
-  declarations: [ProblemsComponent, CreateProblemComponent, ProblemListComponent],
+  declarations: [ProblemsComponent, CreateProblemComponent, ProblemListComponent, ProblemCardComponent],
   exports: [
     CreateProblemComponent,
     ProblemListComponent,

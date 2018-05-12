@@ -17,14 +17,11 @@ export class ProblemService {
 
   createProblem(problem: Problem) {
     this.firebaseDatabaseService.insert(this.COLLECTION_PATH, problem).then(() => {
-        this.feedback.type = FeedbackType.Success;
-        this.feedback.message = 'add-problem-success';
-        this.feedbackService.openSnackbar(this.feedback);
+      this.problemFeedback('add-problem-success', FeedbackType.Success);
       }
     ).catch(err => {
-      this.feedback.type = FeedbackType.Error;
-      this.feedback.message = 'add-problem-error';
-      this.feedbackService.openSnackbar(this.feedback);
+      console.log(err);
+      this.problemFeedback('add-problem-error', FeedbackType.Error);
     });
   }
 
@@ -32,4 +29,19 @@ export class ProblemService {
     return this.firebaseDatabaseService.list(this.COLLECTION_PATH);
   }
 
+  deleteProblem(id: string) {
+    this.firebaseDatabaseService.delete(this.COLLECTION_PATH, id).then(() => {
+      this.problemFeedback('delete-problem-success', FeedbackType.Success);
+      }
+    ).catch(err => {
+      console.log(err);
+      this.problemFeedback('delete-problem-error', FeedbackType.Error);
+    });
+  }
+
+  problemFeedback(message: string, feedbackType: FeedbackType) {
+    this.feedback.type = feedbackType;
+    this.feedback.message = message;
+    this.feedbackService.openSnackbar(this.feedback);
+  }
 }

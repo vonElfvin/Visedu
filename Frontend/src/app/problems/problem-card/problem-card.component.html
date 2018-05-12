@@ -1,0 +1,13 @@
+<mat-grid-tile-header>
+  {{problem.question}}
+</mat-grid-tile-header>
+<b>{{problem.answer}}</b>
+<mat-grid-tile-footer>
+  <button mat-icon-button class="edit-button">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <span class="fill-remaining-space"></span>
+  <button mat-icon-button class="delete-button" (click)="delete()">
+    <mat-icon>delete</mat-icon>
+  </button>
+</mat-grid-tile-footer>

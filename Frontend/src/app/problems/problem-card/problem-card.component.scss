@@ -1,0 +1,9 @@
+@import '../../../theme.scss';
+
+mat-grid-tile-header::ng-deep {
+  background-color: mat-color($accent)!important;
+}
+
+button {
+  float: right!important;
+}

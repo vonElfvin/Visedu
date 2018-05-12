@@ -14,18 +14,26 @@ export class FirebaseDatabaseService<Item> {
   }
 
   list(path: string, queryFn?: QueryFn): Observable<Item[]> {
-    return this.colWithIds$(path);
+    return this.colWithIds(path);
   }
 
-  col$(path: string, queryFn?: QueryFn): AngularFirestoreCollection<Item> {
+  delete(path: string, id: string) {
+    return this.doc(path, id).delete();
+  }
+
+  doc(path: string, id: string) {
+    return this.afs.doc(`${path}/${id}`);
+  }
+
+  col(path: string, queryFn?: QueryFn): AngularFirestoreCollection<Item> {
     return this.afs.collection(path, queryFn);
   }
 
-  colWithIds$(path: string, queryFn?: QueryFn): Observable<Item[]> {
-    return this.col$(path, queryFn).snapshotChanges().map(actions => {
+  colWithIds(path: string, queryFn?: QueryFn): Observable<Item[]> {
+    return this.col(path, queryFn).snapshotChanges().map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Item;
-        data['id'] = a.payload.doc.id;
+        data['_id'] = a.payload.doc.id;
         return data;
       });
     });
