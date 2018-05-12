@@ -7,6 +7,18 @@
     <mat-icon>edit</mat-icon>
   </button>
   <span class="fill-remaining-space"></span>
+  <mat-chip-list>
+    <mat-chip *ngIf="problem.area==areas.skill_training" color="primary" [selected]="true" disabled="true">
+      Färdighetsproblem
+    </mat-chip>
+    <mat-chip *ngIf="problem.area==areas.tricky_question" color="warn" [selected]="true" disabled="true">
+      Kluring
+    </mat-chip>
+    <mat-chip *ngIf="problem.area==areas.problem_solving" color="accent" [selected]="true" disabled="true">
+      Problem i kontext
+    </mat-chip>
+  </mat-chip-list>
+  <span class="fill-remaining-space"></span>
   <button mat-icon-button class="delete-button" (click)="delete()">
     <mat-icon>delete</mat-icon>
   </button>

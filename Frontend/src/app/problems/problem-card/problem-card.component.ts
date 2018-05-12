@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Problem } from '../shared/problem.model';
+import { Problem, ProblemArea } from '../shared/problem.model';
 import { ProblemService } from '../shared/problem.service';
 import { FeedbackService } from '../../core/feedback/feedback.service';
 import { Router } from '@angular/router';
@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class ProblemCardComponent implements OnInit {
 
   @Input() problem: Problem;
+
+  areas = ProblemArea;
 
   constructor(
     private problemService: ProblemService,

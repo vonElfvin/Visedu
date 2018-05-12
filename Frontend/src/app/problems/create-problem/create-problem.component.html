@@ -29,7 +29,10 @@
       </mat-radio-group>
 
       <!-- Submit Button -->
-      <button mat-raised-button color="primary" [disabled]="problemForm.invalid">Skapa fråga</button>
+      <button mat-raised-button color="primary" [disabled]="problemForm.invalid">
+        <span *ngIf="problemId">Redigera problem</span>
+        <span *ngIf="!problemId">Skapa problem</span>
+      </button>
     </form>
   </mat-card>
 </div>
