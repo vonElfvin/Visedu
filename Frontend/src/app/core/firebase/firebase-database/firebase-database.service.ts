@@ -22,7 +22,7 @@ export class FirebaseDatabaseService<Item> {
   }
 
   list(path: string, queryFn?: QueryFn): Observable<Item[]> {
-    return this.colWithIds(path);
+    return this.colWithIds(path, queryFn);
   }
 
   delete(path: string, id: string) {

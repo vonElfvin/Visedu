@@ -8,15 +8,17 @@ import { Problem } from '../problem.model';
 export class ProblemFilterPipe implements PipeTransform {
 
   transform(problems: Problem[], args?: any[]): any {
-    return problems.filter(problem => {
-      let result = false;
-      args.forEach(arg => {
-        if (arg.type === problem.area && arg.selected === true) {
-          result = true;
-        }
+    if (problems) {
+      return problems.filter(problem => {
+        let result = false;
+        args.forEach(arg => {
+          if (arg.type === problem.area && arg.selected === true) {
+            result = true;
+          }
+        });
+        return result;
       });
-      return result;
-    });
+    }
   }
 
 }

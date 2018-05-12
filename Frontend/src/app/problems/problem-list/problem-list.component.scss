@@ -1,7 +1,12 @@
 #filter-card {
-  margin-top: 20px;
+  margin: 20px 0;
 }
 
 mat-grid-list {
-  margin: 20px;
+  margin:  0 20px 20px 20px;
+}
+
+#scrollable-div {
+  overflow: scroll;
+  height: 526px;
 }

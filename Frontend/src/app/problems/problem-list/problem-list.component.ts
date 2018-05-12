@@ -13,10 +13,10 @@ export class ProblemListComponent implements OnInit {
 
   filterOptions = [
     {
-      name: 'Kluring',
-      type: ProblemArea.tricky_question,
+      name: 'Problem i kontext',
+      type: ProblemArea.problem_solving,
       selected: true,
-      color: 'warn'
+      color: 'accent'
     },
     {
       name: 'Färdighetsproblem',
@@ -25,10 +25,10 @@ export class ProblemListComponent implements OnInit {
       color: 'primary'
     },
     {
-      name: 'Problem i kontext',
-      type: ProblemArea.problem_solving,
+      name: 'Kluring',
+      type: ProblemArea.tricky_question,
       selected: true,
-      color: 'accent'
+      color: 'warn'
     }
   ];
 
@@ -40,10 +40,6 @@ export class ProblemListComponent implements OnInit {
 
   ngOnInit() {
     this.problems = this.problemService.getProblems();
-  }
-
-  filter(value) {
-    console.log(value);
   }
 
 }

@@ -39,7 +39,7 @@ export class ProblemService {
   }
 
   getProblems() {
-    return this.firebaseDatabaseService.list(this.COLLECTION_PATH);
+    return this.firebaseDatabaseService.list(this.COLLECTION_PATH, ref => ref.orderBy('area'));
   }
 
   getProblem(id: string) {
