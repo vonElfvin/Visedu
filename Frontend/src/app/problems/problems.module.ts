@@ -12,6 +12,7 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProblemListComponent } from './problem-list/problem-list.component';
 import { ProblemCardComponent } from './problem-card/problem-card.component';
+import { ProblemFilterPipe } from './shared/pipes/problem-filter.pipe';
 
 @NgModule({
   imports: [
@@ -33,7 +34,7 @@ import { ProblemCardComponent } from './problem-card/problem-card.component';
     ProblemsRoutingModule,
   ],
   providers: [ProblemService],
-  declarations: [ProblemsComponent, CreateProblemComponent, ProblemListComponent, ProblemCardComponent],
+  declarations: [ProblemsComponent, CreateProblemComponent, ProblemListComponent, ProblemCardComponent, ProblemFilterPipe],
   exports: [
     CreateProblemComponent,
     ProblemListComponent,
