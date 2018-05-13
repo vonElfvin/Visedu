@@ -67,10 +67,18 @@ module.exports = (mongoose) => {
 
         // delete user
         delete: (req, res) => {
-            const query = {_id: req.params.id};
+            const uid = req.params.uid;
 
-            User.remove(query).then(user => {
-                res.json(user);
+            const query = {uid: uid};
+
+            console.log(uid);
+
+            firebase.auth().deleteUser(uid).then(() => {
+                User.remove(query).then(user => {
+                    res.json(user);
+                }).catch(err => {
+                    res.status(500).send(err.errors);
+                })
             }).catch(err => {
                 res.status(500).send(err.errors);
             })

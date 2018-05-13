@@ -17,7 +17,7 @@ export class AdminComponent {
     },
     {
       path: 'konton',
-      label: 'Användarkonton',
+      label: 'Konton',
     }
   ];
 }

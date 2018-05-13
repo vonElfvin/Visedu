@@ -6,5 +6,5 @@ module.exports = (app, mongoose) => {
     app.route('/users').get(User.list);
     app.route('/users/:id').get(User.get);
     app.route('/users').post(User.post);
-    app.route('/users/:id').delete(User.delete);
+    app.route('/users/:uid').delete(User.delete);
 };

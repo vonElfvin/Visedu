@@ -5,8 +5,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 // material imports
 import {
-  MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatRadioModule, MatSidenavModule,
-  MatStepperModule
+  MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatInputModule, MatMenuModule, MatPaginatorModule,
+  MatRadioModule,
+  MatSidenavModule,
+  MatStepperModule, MatTableModule,
 } from '@angular/material';
 
 // users imports
@@ -39,6 +41,9 @@ import { UserListComponent } from './user-list/user-list.component';
     MatStepperModule,
     MatRadioModule,
     MatSidenavModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatMenuModule,
 
     // custom modules
     UsersRoutingModule,

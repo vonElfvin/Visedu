@@ -125,6 +125,10 @@ export class UserService {
     return this.httpService.list(this.path);
   }
 
+  deleteUser(uid: string) {
+    return this.httpService.delete(this.path, uid);
+  }
+
   resetUser() {
     this.userObservable = Observable.of(null);
   }

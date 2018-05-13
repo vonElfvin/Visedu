@@ -1,0 +1,20 @@
+@import '../../../theme';
+
+#user-list-div {
+  margin: 20px;
+  height: 585px;
+  overflow: auto;
+}
+
+#header-row {
+  background-color: mat-color($accent);
+}
+
+mat-header-cell {
+  color: white!important;
+  font-size: 14px!important;
+}
+
+.mat-column-action {
+  flex: 0 0 50px;
+}

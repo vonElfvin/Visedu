@@ -43,6 +43,12 @@ export class FeedbackService {
       case 'guard-admin':
         result = 'Endast admin kommer åt den sidan.';
         break;
+      case 'user-delete-success':
+        result = 'Kontot raderat.';
+        break;
+      case 'user-delete-error':
+        result = 'Kontot kundet inte raderas.';
+        break;
       case 'create-class-success':
         result = 'Nytt klassrum skapat.';
         break;
