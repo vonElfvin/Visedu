@@ -1,3 +1,5 @@
+const firebase = require("../config/firebase");
+
 module.exports = (mongoose) => {
     // setup model
     const User = require('../models/user')(mongoose);
@@ -34,11 +36,31 @@ module.exports = (mongoose) => {
 
         // post user
         post: (req, res) => {
-            const data = req.body || {};
+            let data = req.body || {};
 
-            User.create(data).then(user => {
-                res.json(user);
-            }).catch(err => {
+            // create firebase user
+            firebase.auth().createUser({
+                email: data.email,
+                password: data.password,
+            }).then((credentials) => {
+
+                // assign firebase uid to data
+                const uid = credentials.uid;
+                Object.assign(
+                    data,
+                    { uid: uid }
+                );
+
+                // add user to database
+                User.create(data).then(user => {
+                    res.json(user);
+
+                // if error, delete user from firebase
+                }).catch(err => {
+                    firebase.auth().deleteUser(uid);
+                    res.status(500).send(err.errors);
+                });
+            }).catch((err) => {
                 res.status(500).send(err.errors);
             });
         },

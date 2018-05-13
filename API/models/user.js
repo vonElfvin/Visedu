@@ -28,10 +28,6 @@ module.exports = (mongoose) => {
             type: String,
             required: true,
             enum: ['student', 'teacher', 'admin'],
-        },
-        lastLogin: {
-            type: Number,
-            default: 0,
         }
     });
 

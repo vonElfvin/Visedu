@@ -84,10 +84,6 @@ export class UserService {
     });
   }
 
-  private createAccountWithEmailAndPassword(email, password) {
-    return this.authService.createAccountWithEmailAndPassword(email, password);
-  }
-
   logout() {
     this.resetUser();
     this.authService.logout();
@@ -96,37 +92,21 @@ export class UserService {
   }
 
   createStudentUser(studentData, userData) {
-    return this.createAccountWithEmailAndPassword(userData.email, userData.password)
-      .then((credentials: firebase.User) => {
-        userData = {
-          ...userData,
-          uid: credentials.uid,
-        };
-        this.createUser(userData).subscribe(user => {
-          return this.studentService.createStudent(studentData, user)
-            .subscribe(() => {
-              this.createUserSuccess(Role.student);
-              this.setUser();
-            });
+    this.createUser(userData).subscribe(user => {
+      return this.studentService.createStudent(studentData, user)
+        .subscribe(() => {
+          this.createUserSuccess(Role.student);
         });
-      });
+    });
   }
 
   createTeacherUser(teacherData, userData) {
-    return this.createAccountWithEmailAndPassword(userData.email, userData.password)
-      .then((credentials: firebase.User) => {
-        userData = {
-          ...userData,
-          uid: credentials.uid,
-        };
-        this.createUser(userData).subscribe(user => {
-          return this.teacherService.createTeacher(teacherData, user)
-            .subscribe(() => {
-              this.createUserSuccess(Role.teacher);
-              this.setUser();
-            });
+    this.createUser(userData).subscribe(user => {
+      return this.teacherService.createTeacher(teacherData, user)
+        .subscribe(() => {
+          this.createUserSuccess(Role.teacher);
         });
-      });
+    });
   }
 
   getUser(id: string) {
@@ -146,26 +126,21 @@ export class UserService {
         } else {
           return Observable.of(null);
         }
-      }).pipe(
-        tap(user => {
-          if (user) {
-            switch (user.role) {
-              // set student
-              case Role.student:
-                this.studentService.setStudent(user._id);
-                break;
-              // set teacher
-              case Role.teacher:
-                this.teacherService.setTeacher(user._id);
-                break;
-            }
-          }
-        }),
-      );
+      });
 
     // subscribe to trigger http call
     this.userObservable.subscribe(user => {
       if (user) {
+        switch (user.role) {
+          // set student
+          case Role.student:
+            this.studentService.setStudent(user._id);
+            break;
+          // set teacher
+          case Role.teacher:
+            this.teacherService.setTeacher(user._id);
+            break;
+        }
         return this.getUser(user.uid);
       } else {
         return Observable.of(null);
@@ -174,13 +149,12 @@ export class UserService {
   }
 
   private createUser(userData) {
-    const user: User = {
-      uid: userData.uid,
+    const user = {
       firstName: userData.firstName,
       lastName: userData.lastName,
       email: userData.email,
       role: userData.role,
-      lastLogin: + Date.now(),
+      password: userData.password, // to create firebase account
     };
     return this.httpService.post(this.path, user)
       .pipe(
@@ -189,7 +163,6 @@ export class UserService {
   }
 
   private createUserError(error: HttpErrorResponse) {
-    firebase.auth().currentUser.delete();
     return new ErrorObservable(error);
   }
 
