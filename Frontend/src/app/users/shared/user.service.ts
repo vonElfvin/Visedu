@@ -13,13 +13,13 @@ import { Feedback, FeedbackType } from '../../core/feedback/feedback.model';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserService {
 
   private userObservable: Observable<User>;
   private readonly path = 'users';
-  private feedback: Feedback = {};
 
   constructor(
     private authService: AuthService,
@@ -27,6 +27,7 @@ export class UserService {
     private studentService: StudentService,
     private teacherService: TeacherService,
     private feedbackService: FeedbackService,
+    private router: Router,
   ) {
     this.setUser();
   }
@@ -78,39 +79,50 @@ export class UserService {
 
   loginEmailAndPassword(email, password) {
     this.authService.loginEmailAndPassword(email, password).then(() => {
-      this.feedback = {type: FeedbackType.Success, message: 'login'};
-      this.feedbackService.openSnackbar(this.feedback);
+      this.feedbackService.openSnackbar({type: FeedbackType.Success, message: 'login'});
       this.setUser();
+      this.router.navigate(['']);
     });
   }
 
   logout() {
     this.resetUser();
     this.authService.logout();
-    this.feedback = {type: FeedbackType.Success, message: 'logout'};
-    this.feedbackService.openSnackbar(this.feedback);
+    this.feedbackService.openSnackbar({type: FeedbackType.Success, message: 'logout'});
   }
 
   createStudentUser(studentData, userData) {
-    this.createUser(userData).subscribe(user => {
-      return this.studentService.createStudent(studentData, user)
-        .subscribe(() => {
-          this.createUserSuccess(Role.student);
-        });
+    return this.createUser(userData).switchMap(user => {
+      return this.studentService.createStudent(studentData, user);
     });
   }
 
   createTeacherUser(teacherData, userData) {
-    this.createUser(userData).subscribe(user => {
-      return this.teacherService.createTeacher(teacherData, user)
-        .subscribe(() => {
-          this.createUserSuccess(Role.teacher);
-        });
+    return this.createUser(userData).switchMap(user => {
+      return this.teacherService.createTeacher(teacherData, user);
     });
+  }
+
+  private createUser(userData) {
+    const user = {
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      email: userData.email,
+      role: userData.role,
+      password: userData.password, // to create firebase account
+    };
+    return this.httpService.post(this.path, user)
+      .pipe(
+        catchError(this.createUserError)
+      );
   }
 
   getUser(id: string) {
     return this.httpService.get(this.path, id);
+  }
+
+  getUsers() {
+    return this.httpService.list(this.path);
   }
 
   resetUser() {
@@ -148,36 +160,7 @@ export class UserService {
     });
   }
 
-  private createUser(userData) {
-    const user = {
-      firstName: userData.firstName,
-      lastName: userData.lastName,
-      email: userData.email,
-      role: userData.role,
-      password: userData.password, // to create firebase account
-    };
-    return this.httpService.post(this.path, user)
-      .pipe(
-        catchError(this.createUserError)
-      );
-  }
-
   private createUserError(error: HttpErrorResponse) {
     return new ErrorObservable(error);
-  }
-
-  private createUserSuccess(role: Role) {
-    this.feedback.type = FeedbackType.Success;
-    switch (role) {
-      case Role.student:
-        this.feedback.message = 'Elevkonto skapat.';
-        break;
-      case Role.teacher:
-        this.feedback.message = 'Lärarkonto skapat.';
-        break;
-      default:
-        this.feedback.message = 'Konto skapat.';
-    }
-    this.feedbackService.openSnackbar(this.feedback);
   }
 }

@@ -49,12 +49,12 @@ export class ClassService {
     };
     return this.httpService.post(this.COLLECTION, classBody).subscribe(() => {
       // if success
-      this.feedback = {type: FeedbackType.Success, message: 'create-class'};
+      this.feedback = {type: FeedbackType.Success, message: 'create-class-success'};
       this.feedbackService.openSnackbar(this.feedback);
 
       // if error
     }, () => {
-      this.feedback = {type: FeedbackType.Error, message: 'create-class-fail'};
+      this.feedback = {type: FeedbackType.Error, message: 'create-class-error'};
       this.feedbackService.openSnackbar(this.feedback);
     });
   }

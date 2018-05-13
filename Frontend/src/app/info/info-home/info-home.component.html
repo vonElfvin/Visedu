@@ -1,6 +1,6 @@
 <div id="home-div" class="center">
   <div id="home-info">
-    <h1>Välkommen</h1>
-    <a id="home-a" mat-raised-button color="accent" href="#/skapa-konto">Skapa konto</a>
+    <h1>Välkommen!</h1>
+    <a *ngIf="!authService.isLoggedIn" id="home-a" mat-raised-button color="accent" href="#/skapa-konto">Skapa konto</a>
   </div>
 </div>

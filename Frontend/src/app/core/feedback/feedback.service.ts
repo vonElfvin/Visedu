@@ -43,11 +43,23 @@ export class FeedbackService {
       case 'guard-admin':
         result = 'Endast admin kommer åt den sidan.';
         break;
-      case 'create-class':
+      case 'create-class-success':
         result = 'Nytt klassrum skapat.';
         break;
-      case 'create-class-fail':
+      case 'create-class-error':
         result = 'Kunde inte skapa nytt klassrum.';
+        break;
+      case 'create-student-success':
+        result = 'Nytt studentkonto skapat.';
+        break;
+      case 'create-student-error':
+        result = 'Kunde inte skapa nytt studentkonto.';
+        break;
+      case 'create-teacher-success':
+        result = 'Nytt lärarkonto skapat.';
+        break;
+      case 'create-teacher-error':
+        result = 'Kunde inte skapa nytt lärarkonto.';
         break;
       case 'add-problem-success':
         result = 'Problem skapats.';

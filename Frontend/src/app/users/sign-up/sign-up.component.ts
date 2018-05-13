@@ -6,7 +6,9 @@ import { UserService } from '../shared/user.service';
 import { Role } from '../shared/user.model';
 import { ClassService } from '../../classes/shared/class.service';
 import { invalidClassCodeValidator } from '../../shared/validators/class-code.validators';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Feedback, FeedbackType } from '../../core/feedback/feedback.model';
+import { FeedbackService } from '../../core/feedback/feedback.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -77,6 +79,8 @@ export class SignUpComponent implements OnInit {
     private userService: UserService,
     private classService: ClassService,
     private route: ActivatedRoute,
+    private feedbackService: FeedbackService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -129,12 +133,25 @@ export class SignUpComponent implements OnInit {
     // student
     if (user.role === Role.student) {
       const student = this.studentForm.value;
-      this.userService.createStudentUser(student, user);
+      this.userService.createStudentUser(student, user).subscribe(() => {
+        this.signUpFeedback(FeedbackType.Success, 'create-student-success');
+      }, () => {
+        this.signUpFeedback(FeedbackType.Error, 'create-student-error');
+      });
 
     // teacher
     } else if (user.role === Role.teacher) {
       const teacher = this.teacherForm.value;
-      this.userService.createTeacherUser(teacher, user);
+      this.userService.createTeacherUser(teacher, user).subscribe(() => {
+        this.signUpFeedback(FeedbackType.Success, 'create-teacher-success');
+        this.router.navigate(['logga-in']);
+      }, () => {
+        this.signUpFeedback(FeedbackType.Error, 'create-teacher-error');
+      });
     }
+  }
+
+  private signUpFeedback(type: FeedbackType, message: string) {
+    this.feedbackService.openSnackbar({type: type, message: message});
   }
 }
