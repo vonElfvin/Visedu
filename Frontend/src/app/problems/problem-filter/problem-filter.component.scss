@@ -1,0 +1,11 @@
+#filter-card {
+  margin: 20px 0;
+}
+
+mat-chip {
+  user-select: none;
+}
+
+mat-chip:hover {
+  cursor: pointer;
+}

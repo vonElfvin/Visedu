@@ -3,6 +3,7 @@ import { ProblemService } from '../shared/problem.service';
 import { Problem, ProblemArea } from '../shared/problem.model';
 import { Observable } from 'rxjs/Observable';
 import { MatChip } from '@angular/material';
+import { Filter } from '../shared/filter.model';
 
 @Component({
   selector: 'app-problem-list',
@@ -11,26 +12,7 @@ import { MatChip } from '@angular/material';
 })
 export class ProblemListComponent implements OnInit {
 
-  filterOptions = [
-    {
-      name: 'Problem i kontext',
-      type: ProblemArea.problem_solving,
-      selected: true,
-      color: 'accent'
-    },
-    {
-      name: 'Färdighetsproblem',
-      type: ProblemArea.skill_training,
-      selected: true,
-      color: 'primary'
-    },
-    {
-      name: 'Kluring',
-      type: ProblemArea.tricky_question,
-      selected: true,
-      color: 'warn'
-    }
-  ];
+  filterOptions = this.problemService.filterOptions;
 
   problems: Observable<Problem[]>;
 

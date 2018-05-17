@@ -10,6 +10,11 @@
     <span *ngIf="authService.isLoggedIn && user">
 
       <!-- if student -->
+      <span *ngIf="userService.isStudent(user)">
+
+        <button mat-raised-button routerLink="problem-demo" color="accent">Problem Demo</button>
+
+      </span>
 
       <!-- if teacher -->
       <span *ngIf="userService.isTeacher(user)">

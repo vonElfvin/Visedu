@@ -1,15 +1,36 @@
 import { Injectable } from '@angular/core';
-import { Problem } from './problem.model';
+import { Problem, ProblemArea } from './problem.model';
 import { FirebaseDatabaseService } from '../../core/firebase/firebase-database/firebase-database.service';
 import { FeedbackService } from '../../core/feedback/feedback.service';
 import { Feedback, FeedbackType } from '../../core/feedback/feedback.model';
 import { Router } from '@angular/router';
+import { Filter } from './filter.model';
 
 @Injectable()
 export class ProblemService {
 
   private readonly COLLECTION_PATH = 'problems';
   private feedback: Feedback = {};
+  public filterOptions: Filter[] = [
+    {
+      name: 'Problem i kontext',
+      type: ProblemArea.problem_solving,
+      selected: true,
+      color: 'accent'
+    },
+    {
+      name: 'Färdighetsproblem',
+      type: ProblemArea.skill_training,
+      selected: true,
+      color: 'primary'
+    },
+    {
+      name: 'Kluring',
+      type: ProblemArea.tricky_question,
+      selected: true,
+      color: 'warn'
+    }
+  ];
 
   constructor(
     private firebaseDatabaseService: FirebaseDatabaseService<Problem>,
