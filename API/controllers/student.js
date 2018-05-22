@@ -31,6 +31,18 @@ module.exports = (mongoose) => {
             });
         },
 
+        update: (req, res) => {
+
+            let id = req.params.id;
+            let area = req.params.area;
+
+            Student.findByIdAndUpdate(id, { $inc: { [`total_problems.${area}`]: 1 } } ).then(student  => {
+                res.json(student);
+            }).catch(err => {
+                res.status(500).send(err.errors);
+            });
+        },
+
         // post student
         post: (req, res) => {
             const data = req.body || {};

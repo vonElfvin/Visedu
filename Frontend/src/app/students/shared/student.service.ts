@@ -4,6 +4,7 @@ import { Student } from './student.model';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import { UserService } from '../../users/shared/user.service';
+import { ProblemArea } from '../../problems/shared/problem.model';
 
 @Injectable()
 export class StudentService {
@@ -43,6 +44,10 @@ export class StudentService {
       classCode: studentData.classCode,
     };
     return this.httpService.post(this.COLLECTION, student);
+  }
+
+  incrementStudentTotalProblems(studentId: string, problemArea: ProblemArea) {
+    return this.httpService.update(this.COLLECTION, null, `${studentId}/${problemArea}`).toPromise();
   }
 
   setStudent() {

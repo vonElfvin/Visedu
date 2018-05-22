@@ -33,7 +33,9 @@ export class CompletedProblemService {
       studentId: this.studentId,
       problemId: problem._id,
     };
-    return this.firebaseDatabaseService.insert(this.COLLECTION_PATH, completedProblem);
+    return this.firebaseDatabaseService.insert(this.COLLECTION_PATH, completedProblem).then(() => {
+      return this.studentService.incrementStudentTotalProblems(this.studentId, problem.area);
+    });
   }
 
   setCompletedProblems() {

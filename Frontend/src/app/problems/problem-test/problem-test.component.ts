@@ -9,7 +9,7 @@ import { FeedbackType } from '../../core/feedback/feedback.model';
   templateUrl: './problem-test.component.html',
   styleUrls: ['./problem-test.component.scss']
 })
-export class ProblemTestComponent implements OnInit {
+export class ProblemTestComponent {
 
   @Input() problem: Problem;
   answer: string;
@@ -29,13 +29,10 @@ export class ProblemTestComponent implements OnInit {
     this.materialColors[ProblemArea.tricky_question] = 'warn';
   }
 
-  ngOnInit() {
-  }
-
   submitAnswer() {
     if (this.answer === this.problem.answer) {
-      this.completedProblemService.addCompletedProblem(this.problem._id);
       this.feedbackService.openSnackbar({type: FeedbackType.Success, message: 'problem-answer-correct'});
+      this.completedProblemService.addCompletedProblem(this.problem);
     } else {
       this.feedbackService.openSnackbar({type: FeedbackType.Error, message: 'problem-answer-wrong'});
     }

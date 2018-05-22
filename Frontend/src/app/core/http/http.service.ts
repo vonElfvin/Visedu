@@ -23,8 +23,8 @@ export class HttpService<ItemClass> {
     return this.http.post<ItemClass>(`${this.basePath}${collection}`, body);
   }
 
-  update(collection: string, body: ItemClass, id: string) {
-    return this.http.patch<ItemClass>(`${this.basePath}${collection}/${id}`, body);
+  update(collection: string, body: ItemClass, path: string) {
+    return this.http.patch<ItemClass>(`${this.basePath}${collection}/${path}`, body);
   }
 
   get(collection: string, path: string) {

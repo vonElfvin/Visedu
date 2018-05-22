@@ -7,4 +7,5 @@ module.exports = (app, mongoose) => {
     app.route('/students/:id').get(Student.get);
     app.route('/students').post(Student.post);
     app.route('/students/:id').delete(Student.delete);
+    app.route('/students/:id/:area').patch(Student.update);
 };
