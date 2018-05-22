@@ -17,6 +17,7 @@ import { ProblemsDemoComponent } from './problems-demo/problems-demo.component';
 import { ProblemFilterComponent } from './problem-filter/problem-filter.component';
 import { ProblemTestComponent } from './problem-test/problem-test.component';
 import { CompletedProblemService } from './shared/completed-problem.service';
+import { CompletedProblemsFilterPipe } from './shared/pipes/completed-problems-filter.pipe';
 
 @NgModule({
   imports: [
@@ -39,7 +40,7 @@ import { CompletedProblemService } from './shared/completed-problem.service';
     ProblemsRoutingModule,
   ],
   providers: [ProblemService, CompletedProblemService],
-  declarations: [ProblemsComponent, CreateProblemComponent, ProblemListComponent, ProblemCardComponent, ProblemFilterPipe, ProblemsDemoComponent, ProblemFilterComponent, ProblemTestComponent],
+  declarations: [ProblemsComponent, CreateProblemComponent, ProblemListComponent, ProblemCardComponent, ProblemFilterPipe, ProblemsDemoComponent, ProblemFilterComponent, ProblemTestComponent, CompletedProblemsFilterPipe],
   exports: [
     CreateProblemComponent,
     ProblemListComponent,

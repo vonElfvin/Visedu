@@ -17,29 +17,17 @@ export class ProblemsDemoComponent implements OnInit {
 
   problems: Observable<Problem[]>;
   completedProblems: Observable<CompletedProblem[]>;
-  filterOptions: Filter[] = this.problemService.filterOptions;
 
   constructor(
     private problemService: ProblemService,
     private studentService: StudentService,
     private userService: UserService,
+    private completedProblemsService: CompletedProblemService,
   ) { }
 
   ngOnInit() {
     this.problems = this.problemService.getProblems();
-    console.log('bajj');
-    this.studentService.student.subscribe(student => {
-      console.log(student);
-    });
-    // this.userService.user.subscribe(user => {
-    //   console.log(user);
-    //   if (user) {
-    //     this.studentService.getStudent(user._id).subscribe(student => {
-    //       console.log('student is', student);
-    //       this.completedProblems = this.completedProblemService.getCompletedProblems(student._id);
-    //     });
-    //   }
-    // });
+    this.completedProblems = this.completedProblemsService.completedProblems;
   }
 
 }

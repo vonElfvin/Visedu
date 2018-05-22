@@ -32,7 +32,7 @@ export class ClassService {
   }
 
   setClasses() {
-    // setting classes via teacher observable
+    // set classes via teacher observable
     this.classesObservable = this.teacherService.teacher.switchMap(teacher => {
       if (teacher) {
         this.teacherId = teacher._id;

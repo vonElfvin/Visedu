@@ -85,6 +85,12 @@ export class FeedbackService {
       case 'update-problem-error':
         result = 'Problem kunde inte uppdateras, var vänlig försök igen.';
         break;
+      case 'problem-answer-correct':
+        result = 'Rätt svar!';
+        break;
+      case 'problem-answer-wrong':
+        result = 'Fel svar! Försök igen.';
+        break;
       case 'edit-class':
         result = 'Klassrummet har redigerats.';
         break;

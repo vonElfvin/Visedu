@@ -1,0 +1,17 @@
+<mat-grid-tile-header class="mat-body" [ngStyle]="{'background-color': hexColors[problem.area]}">
+  {{problem.question}}
+</mat-grid-tile-header>
+<div style="width: 320px;">
+  <mat-form-field color="{{materialColors[problem.area]}}">
+    <input matInput [(ngModel)]="answer" type="text" placeholder="Ange svar" (keydown.enter)="submitAnswer()">
+  </mat-form-field>
+</div>
+<mat-grid-tile-footer>
+  <span class="fill-remaining-space"></span>
+  <mat-chip-list class="mat-body">
+    <mat-chip *ngIf="answer==problem.answer" color="primary" [selected]="true" disabled="true">
+      Rätt
+    </mat-chip>
+  </mat-chip-list>
+  <span class="fill-remaining-space"></span>
+</mat-grid-tile-footer>

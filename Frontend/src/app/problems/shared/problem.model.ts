@@ -7,7 +7,7 @@ export enum ProblemArea {
 export interface Problem {
   _id: string;
   question: string;
-  answer: number;
+  answer: string;
   area: ProblemArea;
 }
 

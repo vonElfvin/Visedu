@@ -12,11 +12,14 @@ export class ProblemFilterPipe implements PipeTransform {
     if (problems) {
       return problems.filter(problem => {
         let result = false;
+
+        // keep the problem if problem are is selected
         filterOptions.forEach(option => {
           if (option.type === problem.area && option.selected === true) {
             result = true;
           }
         });
+
         return result;
       });
     }
