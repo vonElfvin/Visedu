@@ -3,6 +3,7 @@ import { HttpService } from '../../core/http/http.service';
 import { Student } from './student.model';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
+import { UserService } from '../../users/shared/user.service';
 
 @Injectable()
 export class StudentService {
@@ -12,8 +13,9 @@ export class StudentService {
 
   constructor(
     private httpService: HttpService<Student>,
+    private userService: UserService,
   ) {
-    this.setStudent2();
+    this.setStudent();
   }
 
   get student() {
@@ -28,6 +30,12 @@ export class StudentService {
     return this.httpService.list(`${this.COLLECTION}?classCode=${classCode}`);
   }
 
+  createStudentUser(studentData, userData) {
+    return this.userService.createUser(userData).switchMap(user => {
+      return this.createStudent(studentData, user);
+    });
+  }
+
   createStudent(studentData, user) {
     const student: Student = {
       _id: user._id,
@@ -37,18 +45,14 @@ export class StudentService {
     return this.httpService.post(this.COLLECTION, student);
   }
 
-  setStudent2() {
-    // this.studentObservable = this.userService.user.switchMap(user => {
-    //   console.log(user);
-    //   if (user) {
-    //     this.studentObservable = this.httpService.get(this.COLLECTION, user._id);
-    //   } else {
-    //     this.studentObservable = Observable.of(null);
-    //   }
-    // });
-  }
-
-  setStudent(userId: string) {
-    this.studentObservable = this.httpService.get(this.COLLECTION, userId);
+  setStudent() {
+    // set student via user observable
+    this.studentObservable = this.userService.user.switchMap(user => {
+      if (user && this.userService.isStudent(user)) {
+        return this.getStudent(user._id);
+      } else {
+        return Observable.of(null);
+      }
+    });
   }
 }

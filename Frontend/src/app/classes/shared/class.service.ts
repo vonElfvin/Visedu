@@ -4,7 +4,6 @@ import { Class } from './class.model';
 import { Observable } from 'rxjs/Observable';
 import { TeacherService } from '../../teachers/shared/teacher.service';
 import { Feedback, FeedbackType } from '../../core/feedback/feedback.model';
-import { tap } from 'rxjs/operators';
 import { FeedbackService } from '../../core/feedback/feedback.service';
 
 @Injectable()
@@ -14,12 +13,15 @@ export class ClassService {
   private feedback: Feedback;
   private teacherId: string;
 
-  classesObservable: Observable<Class[]>;
+  private classesObservable: Observable<Class[]>;
 
   constructor(
     private httpService: HttpService<Class>,
+    private teacherService: TeacherService,
     private feedbackService: FeedbackService,
-  ) { }
+  ) {
+    this.setClasses();
+  }
 
   get classes(): Observable<Class[]> {
     return this.classesObservable;
@@ -29,9 +31,17 @@ export class ClassService {
     return this.httpService.list(this.COLLECTION + '?teacherId=' + this.teacherId);
   }
 
-  setClasses(teacherId) {
-    this.teacherId = teacherId;
-    this.classesObservable = this.getTeacherClasses();
+  setClasses() {
+    // setting classes via teacher observable
+    this.classesObservable = this.teacherService.teacher.switchMap(teacher => {
+      if (teacher) {
+        this.teacherId = teacher._id;
+        return this.getTeacherClasses();
+      } else {
+        this.teacherId = null;
+        return Observable.of(null);
+      }
+    });
   }
 
   getClassWithName(className: string) {

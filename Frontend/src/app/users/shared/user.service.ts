@@ -2,11 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from '../../core/auth/auth.service';
 import { Role, User } from './user.model';
 import { HttpService } from '../../core/http/http.service';
-import { catchError, map, take, tap } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import { StudentService } from '../../students/shared/student.service';
-import { TeacherService } from '../../teachers/shared/teacher.service';
+import { map } from 'rxjs/operators';
 import { FeedbackService } from '../../core/feedback/feedback.service';
 import { FeedbackType } from '../../core/feedback/feedback.model';
 import { Observable } from 'rxjs/Observable';
@@ -17,14 +13,12 @@ import { Router } from '@angular/router';
 @Injectable()
 export class UserService {
 
-  private userObservable: Observable<User>;
+  private userObservable: Observable<User> = Observable.of(null);
   private readonly path = 'users';
 
   constructor(
     private authService: AuthService,
     private httpService: HttpService<User>,
-    private studentService: StudentService,
-    private teacherService: TeacherService,
     private feedbackService: FeedbackService,
     private router: Router,
   ) {
@@ -87,18 +81,6 @@ export class UserService {
     this.feedbackService.openSnackbar({type: FeedbackType.Success, message: 'logout'});
   }
 
-  createStudentUser(studentData, userData) {
-    return this.createUser(userData).switchMap(user => {
-      return this.studentService.createStudent(studentData, user);
-    });
-  }
-
-  createTeacherUser(teacherData, userData) {
-    return this.createUser(userData).switchMap(user => {
-      return this.teacherService.createTeacher(teacherData, user);
-    });
-  }
-
   createUser(userData) {
     const user = {
       firstName: userData.firstName,
@@ -107,10 +89,7 @@ export class UserService {
       role: userData.role,
       password: userData.password, // to create firebase account
     };
-    return this.httpService.post(this.path, user)
-      .pipe(
-        catchError(this.createUserError)
-      );
+    return this.httpService.post(this.path, user);
   }
 
   getUser(id: string) {
@@ -130,33 +109,14 @@ export class UserService {
   }
 
   private setUser() {
-    // set user
+    // set user via authUser observable
     this.userObservable = this.authService.authUser
       .switchMap(authUser => {
         if (authUser) {
-          return this.getUser(authUser.uid).pipe(
-            tap(user => {
-              switch (user.role) {
-
-                // set student
-                case Role.student:
-                  this.studentService.setStudent(user._id);
-                  break;
-
-                // set teacher
-                case Role.teacher:
-                  this.teacherService.setTeacher(user._id);
-                  break;
-              }
-            })
-          );
+          return this.getUser(authUser.uid);
         } else {
           return Observable.of(null);
         }
       });
-  }
-
-  private createUserError(error: HttpErrorResponse) {
-    return new ErrorObservable(error);
   }
 }

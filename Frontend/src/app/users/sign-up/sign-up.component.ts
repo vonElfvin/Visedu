@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ALPHABET_PATTERN, EMAIL_PATTERN, PHONE_PATTERN } from '../../shared/shared.constants';
 import { PasswordValidators } from '../../shared/validators/password.validators';
-import { UserService } from '../shared/user.service';
 import { Role } from '../shared/user.model';
 import { ClassService } from '../../classes/shared/class.service';
 import { invalidClassCodeValidator } from '../../shared/validators/class-code.validators';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Feedback, FeedbackType } from '../../core/feedback/feedback.model';
+import { FeedbackType } from '../../core/feedback/feedback.model';
 import { FeedbackService } from '../../core/feedback/feedback.service';
+import { StudentService } from '../../students/shared/student.service';
+import { TeacherService } from '../../teachers/shared/teacher.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -76,7 +77,8 @@ export class SignUpComponent implements OnInit {
   }, PasswordValidators.passwordsDoNotMatch);
 
   constructor(
-    private userService: UserService,
+    private teacherService: TeacherService,
+    private studentService: StudentService,
     private classService: ClassService,
     private route: ActivatedRoute,
     private feedbackService: FeedbackService,
@@ -133,7 +135,7 @@ export class SignUpComponent implements OnInit {
     // student
     if (user.role === Role.student) {
       const student = this.studentForm.value;
-      this.userService.createStudentUser(student, user).subscribe(() => {
+      this.studentService.createStudentUser(student, user).subscribe(() => {
         this.signUpFeedback(FeedbackType.Success, 'create-student-success');
       }, () => {
         this.signUpFeedback(FeedbackType.Error, 'create-student-error');
@@ -142,7 +144,7 @@ export class SignUpComponent implements OnInit {
     // teacher
     } else if (user.role === Role.teacher) {
       const teacher = this.teacherForm.value;
-      this.userService.createTeacherUser(teacher, user).subscribe(() => {
+      this.teacherService.createTeacherUser(teacher, user).subscribe(() => {
         this.signUpFeedback(FeedbackType.Success, 'create-teacher-success');
         this.router.navigate(['logga-in']);
       }, () => {

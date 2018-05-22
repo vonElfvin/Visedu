@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Class } from '../shared/class.model';
 import { ClassService } from '../shared/class.service';
 import { Observable } from 'rxjs/Observable';
@@ -15,7 +15,7 @@ export class ClassListComponent implements OnInit {
   constructor(private classService: ClassService) { }
 
   ngOnInit() {
-    this.classes = this.classService.classesObservable;
+    this.classes = this.classService.classes;
   }
 
 }
