@@ -5,11 +5,10 @@ import { HttpService } from '../../core/http/http.service';
 import { catchError, map, take, tap } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import * as firebase from 'firebase';
 import { StudentService } from '../../students/shared/student.service';
 import { TeacherService } from '../../teachers/shared/teacher.service';
 import { FeedbackService } from '../../core/feedback/feedback.service';
-import { Feedback, FeedbackType } from '../../core/feedback/feedback.model';
+import { FeedbackType } from '../../core/feedback/feedback.model';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
@@ -42,7 +41,6 @@ export class UserService {
 
   get isStudentObservable(): Observable<boolean> {
     return this.user.pipe(
-      take(1),
       map(user => user && this.isStudent(user))
     );
   }
@@ -53,7 +51,6 @@ export class UserService {
 
   get isTeacherObservable(): Observable<boolean> {
     return this.user.pipe(
-      take(1),
       map(user => user && this.isTeacher(user))
     );
   }
@@ -64,7 +61,6 @@ export class UserService {
 
   get isAdminObservable(): Observable<boolean> {
     return this.user.pipe(
-      take(1),
       map(user => user && this.isAdmin(user))
     );
   }
@@ -103,7 +99,7 @@ export class UserService {
     });
   }
 
-  private createUser(userData) {
+  createUser(userData) {
     const user = {
       firstName: userData.firstName,
       lastName: userData.lastName,
@@ -136,32 +132,28 @@ export class UserService {
   private setUser() {
     // set user
     this.userObservable = this.authService.authUser
-      .switchMap(user => {
-        if (user) {
-          return this.getUser(user.uid);
+      .switchMap(authUser => {
+        if (authUser) {
+          return this.getUser(authUser.uid).pipe(
+            tap(user => {
+              switch (user.role) {
+
+                // set student
+                case Role.student:
+                  this.studentService.setStudent(user._id);
+                  break;
+
+                // set teacher
+                case Role.teacher:
+                  this.teacherService.setTeacher(user._id);
+                  break;
+              }
+            })
+          );
         } else {
           return Observable.of(null);
         }
       });
-
-    // subscribe to trigger http call
-    this.userObservable.subscribe(user => {
-      if (user) {
-        switch (user.role) {
-          // set student
-          case Role.student:
-            this.studentService.setStudent(user._id);
-            break;
-          // set teacher
-          case Role.teacher:
-            this.teacherService.setTeacher(user._id);
-            break;
-        }
-        return this.getUser(user.uid);
-      } else {
-        return Observable.of(null);
-      }
-    });
   }
 
   private createUserError(error: HttpErrorResponse) {

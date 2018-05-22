@@ -14,7 +14,7 @@ export class StudentPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private studentService: StudentService
+    private studentService: StudentService,
   ) { }
 
   ngOnInit() {

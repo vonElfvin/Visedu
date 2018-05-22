@@ -1,6 +1,11 @@
 <app-problem-filter [filterOptions]="filterOptions"></app-problem-filter>
-<div id="demo-div" class="center">
-  <mat-card class="mat-elevation-z2">
-    
-  </mat-card>
+<div id="demo-div">
+  <mat-grid-list [cols]="4" rowHeight="2:1" gutterSize="10">
+    <mat-grid-tile
+      class="mat-elevation-z2"
+      *ngFor="let problem of problems | async | problemFilter: filterOptions"
+    >
+      <app-problem-test [problem]="problem"></app-problem-test>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>

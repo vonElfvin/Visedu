@@ -3,6 +3,7 @@ import { HttpService } from '../../core/http/http.service';
 import { Teacher } from './teacher.model';
 import { Observable } from 'rxjs/Observable';
 import { ClassService } from '../../classes/shared/class.service';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class TeacherService {
@@ -27,8 +28,8 @@ export class TeacherService {
     return this.httpService.post(this.COLLECTION, teacher);
   }
 
-  setTeacher(id: string) {
-    this.teacherObservable = this.httpService.get(this.COLLECTION, id);
-    this.classService.setClasses(id);
+  setTeacher(userId: string) {
+    this.teacherObservable = this.httpService.get(this.COLLECTION, userId);
+    this.classService.setClasses(userId);
   }
 }

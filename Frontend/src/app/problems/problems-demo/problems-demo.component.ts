@@ -3,6 +3,8 @@ import { ProblemService } from '../shared/problem.service';
 import { Observable } from 'rxjs/Observable';
 import { Problem } from '../shared/problem.model';
 import { Filter } from '../shared/filter.model';
+import { StudentService } from '../../students/shared/student.service';
+import { UserService } from '../../users/shared/user.service';
 
 @Component({
   selector: 'app-problems-demo',
@@ -16,10 +18,14 @@ export class ProblemsDemoComponent implements OnInit {
 
   constructor(
     private problemService: ProblemService,
+    private studentService: StudentService,
   ) { }
 
   ngOnInit() {
     this.problems = this.problemService.getProblems();
+    this.studentService.student.subscribe(student => {
+      console.log(student);
+    });
   }
 
 }
