@@ -7,24 +7,24 @@
     <span class="fill-remaining-space"></span>
 
     <!-- if logged in -->
-    <span *ngIf="authService.isLoggedIn && user">
+    <span *ngIf="authService.isLoggedIn && user | async">
 
       <!-- if student -->
-      <span *ngIf="userService.isStudent(user)">
+      <span *ngIf="isStudent | async">
 
         <button mat-raised-button routerLink="problem-demo" color="accent">Problem Demo</button>
 
       </span>
 
       <!-- if teacher -->
-      <span *ngIf="userService.isTeacher(user)">
+      <span *ngIf="isTeacher | async">
 
         <button mat-raised-button routerLink="klassrum" color="accent">Klassrum</button>
 
       </span>
 
       <!-- if admin -->
-      <span *ngIf="userService.isAdmin(user)">
+      <span *ngIf="isAdmin | async">
 
         <button mat-raised-button routerLink="admin" color="accent">Admin</button>
 
@@ -32,7 +32,7 @@
 
       <!-- Profile -->
       <button mat-button routerLink="profilsida">
-        {{ user.firstName }}
+        {{ (user | async)?.firstName }}
       </button>
 
       <!-- Logout -->

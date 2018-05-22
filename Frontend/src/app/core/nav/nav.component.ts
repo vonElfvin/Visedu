@@ -11,7 +11,10 @@ import { Observable } from 'rxjs/Observable';
 })
 export class NavComponent implements OnInit {
 
-  user: User;
+  user: Observable<User>;
+  isAdmin: Observable<boolean>;
+  isTeacher: Observable<boolean>;
+  isStudent: Observable<boolean>;
 
   constructor(
     public authService: AuthService,
@@ -19,9 +22,10 @@ export class NavComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.user.subscribe(user => {
-      this.user = user;
-    });
+    this.user = this.userService.user;
+    this.isAdmin = this.userService.isAdminObservable;
+    this.isTeacher = this.userService.isTeacherObservable;
+    this.isStudent = this.userService.isStudentObservable;
   }
 
 }
