@@ -44,8 +44,8 @@ export class ClassService {
     });
   }
 
-  getClassWithName(className: string) {
-    return this.httpService.get(this.COLLECTION, `${this.teacherId}/${className}`);
+  getClassWithTeacherIdAndName(teacherId: string, className: string) {
+    return this.httpService.get(this.COLLECTION, `${teacherId}/${className}`);
   }
 
   getClassWithCode(classCode: string) {

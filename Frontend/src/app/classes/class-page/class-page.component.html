@@ -1,4 +1,8 @@
-<span *ngIf="class">
-  <h2 class="mat-h2">Klasskod: {{class.code}}</h2>
-  <app-student-list [classCode]="class.code"></app-student-list>
+<span *ngIf="class | async as c">
+  <mat-card id="class-info-card">
+    <h1 style="margin:0;">Klass {{c.name}}</h1>
+    <p style="margin-top:0;">{{c.school}}</p>
+    <p><b>Klasskod:</b> {{c.code}}</p>
+  </mat-card>
+  <app-student-list [classCode]="c.code"></app-student-list>
 </span>
