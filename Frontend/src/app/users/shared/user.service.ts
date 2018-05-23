@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class UserService {
 
-  private userObservable: Observable<User> = Observable.of(null);
+  private userObservable: Observable<User>;
   private readonly path = 'users';
 
   constructor(
@@ -70,15 +70,16 @@ export class UserService {
   loginEmailAndPassword(email, password) {
     this.authService.loginEmailAndPassword(email, password).then(() => {
       this.feedbackService.openSnackbar({type: FeedbackType.Success, message: 'login'});
-      this.setUser();
       this.router.navigate(['']);
     });
   }
 
   logout() {
-    this.resetUser();
-    this.authService.logout();
-    this.feedbackService.openSnackbar({type: FeedbackType.Success, message: 'logout'});
+    this.authService.logout().then(() => {
+      this.resetUser();
+      this.feedbackService.openSnackbar({type: FeedbackType.Success, message: 'logout'});
+      this.router.navigate(['']);
+    });
   }
 
   createUser(userData) {

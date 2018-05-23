@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClassService } from '../shared/class.service';
+import { TeacherService } from '../../teachers/shared/teacher.service';
 
 @Component({
   selector: 'app-class-option',
@@ -14,6 +15,7 @@ export class ClassOptionComponent implements OnInit {
   constructor(
     private router: Router,
     private classService: ClassService,
+    private teacherService: TeacherService,
   ) { }
 
   ngOnInit() {
@@ -28,13 +30,15 @@ export class ClassOptionComponent implements OnInit {
   }
 
   navigate(className: string) {
-    this.classService.getClassWithName(className).subscribe(c => {
-      this.router.navigate(
-        ['skapa-konto'],
-        {
-          queryParams: {classCode: c.code},
-        }
-      );
+    this.teacherService.teacher.subscribe(teacher => {
+      this.classService.getClassWithTeacherIdAndName(teacher._id, className).subscribe(c => {
+        this.router.navigate(
+          ['skapa-konto'],
+          {
+            queryParams: {classCode: c.code},
+          }
+        );
+      });
     });
   }
 }

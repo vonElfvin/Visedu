@@ -32,10 +32,6 @@ export class AuthService {
     return this.firebaseAuthService.loginEmailAndPassword(email, password);
   }
 
-  createAccountWithEmailAndPassword(email: string, password: string) {
-    return this.firebaseAuthService.createAccountWithEmailAndPassword(email, password);
-  }
-
   logout() {
     return this.firebaseAuthService.logout();
   }

@@ -4,6 +4,7 @@ import { ALPHABET_NUMBERS_PATTERN } from '../../shared/shared.constants';
 import { ClassService } from '../shared/class.service';
 import { ActivatedRoute } from '@angular/router';
 import { Class } from '../shared/class.model';
+import { TeacherService } from '../../teachers/shared/teacher.service';
 
 @Component({
   selector: 'app-create-class',
@@ -29,16 +30,21 @@ export class CreateClassComponent implements OnInit {
   constructor(
     private classService: ClassService,
     private route: ActivatedRoute,
+    private teacherService: TeacherService,
   ) {
   }
 
   ngOnInit() {
     const className = this.route.snapshot.queryParams.klass;
     if (className) {
-      this.classService.getClassWithName(className).subscribe(c => {
-        this.school = c.school as any;
-        this.name = c.name as any;
-        this._id = c._id;
+      this.teacherService.teacher.subscribe(teacher => {
+        if (teacher) {
+          this.classService.getClassWithTeacherIdAndName(teacher._id, className).subscribe(c => {
+            this.school = c.school as any;
+            this.name = c.name as any;
+            this._id = c._id;
+          });
+        }
       });
     }
   }

@@ -10,6 +10,9 @@ module.exports = (mongoose) => {
         list: (req, res) => {
             const query = req.query || {};
 
+            const token = req.header('Authorization');
+            console.log(token);
+
             User.find(query)
             // .select('name _id')
                 .then(users => {

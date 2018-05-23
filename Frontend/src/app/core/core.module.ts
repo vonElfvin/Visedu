@@ -1,7 +1,7 @@
 // angular modules
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -32,6 +32,7 @@ import { TeacherGuard } from './auth/guards/teacher.guard';
 import { StudentGuard } from './auth/guards/student.guard';
 import { AdminGuard } from './auth/guards/admin.guard';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { TokenInterceptor } from './http/token.interceptor';
 
 @NgModule({
   imports: [
@@ -52,9 +53,32 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     // custom modules
     FirebaseModule,
   ],
-  providers: [FeedbackService, AuthService, AuthGuard, TeacherGuard, StudentGuard, AdminGuard, HttpService, GlobalErrorHandler],
-  declarations: [NavComponent, FooterComponent, ConfirmDialogComponent, ConfirmDialogComponent, SnackbarComponent],
-  entryComponents: [ConfirmDialogComponent, SnackbarComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    FeedbackService,
+    AuthService,
+    AuthGuard,
+    TeacherGuard,
+    StudentGuard,
+    AdminGuard,
+    HttpService,
+    GlobalErrorHandler
+  ],
+  declarations: [
+    NavComponent,
+    FooterComponent,
+    ConfirmDialogComponent,
+    ConfirmDialogComponent,
+    SnackbarComponent
+  ],
+  entryComponents: [
+    ConfirmDialogComponent,
+    SnackbarComponent
+  ],
   exports: [NavComponent, FooterComponent]
 })
 export class CoreModule { }
