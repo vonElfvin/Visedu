@@ -1,3 +1,12 @@
-<pre>
-  {{student | json}}
-</pre>
+<mat-card id="student-info-div" *ngIf="student | async as s">
+  <h1>{{s.user.firstName}} {{s.user.lastName}}</h1>
+  <p>
+    <b>Email:</b> {{s.user.email}}
+    <mat-icon id="verified-icon" [ngStyle]="{'background-color': s.user.emailVerified ? '#8BC34A' : '#F44336'}">
+      {{s.user.emailVerified ? 'check' : 'clear'}}
+    </mat-icon>
+  </p>
+  <p><b>Klass:</b> {{(class | async)?.name}}</p>
+  <p><b>Skola:</b> {{(class | async)?.school}}</p>
+</mat-card>
+<app-completed-problems-chart [student]="student"></app-completed-problems-chart>

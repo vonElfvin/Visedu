@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProblemService } from '../shared/problem.service';
-import { Problem, ProblemArea } from '../shared/problem.model';
+import { Problem } from '../shared/problem.model';
 import { Observable } from 'rxjs/Observable';
-import { MatChip } from '@angular/material';
-import { Filter } from '../shared/filter.model';
+import { filterOptions } from '../shared/problem.data.ts';
 
 @Component({
   selector: 'app-problem-list',
@@ -12,7 +11,7 @@ import { Filter } from '../shared/filter.model';
 })
 export class ProblemListComponent implements OnInit {
 
-  filterOptions = this.problemService.filterOptions;
+  filterOptions = filterOptions;
 
   problems: Observable<Problem[]>;
 

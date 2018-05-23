@@ -8,9 +8,10 @@ import { StudentsComponent } from './students.component';
 import { StudentService } from './shared/student.service';
 import { StudentListComponent } from './student-list/student-list.component';
 import { StudentCardComponent } from './student-card/student-card.component';
-import { MatCardModule } from '@angular/material';
+import { MatCardModule, MatIconModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { StudentPageComponent } from './student-page/student-page.component';
+import { ProblemsModule } from '../problems/problems.module';
 
 @NgModule({
   imports: [
@@ -20,9 +21,13 @@ import { StudentPageComponent } from './student-page/student-page.component';
 
     // material modules
     MatCardModule,
+    MatIconModule,
+
+    // custom modules
+    ProblemsModule,
 
     // students modules
-    StudentsRoutingModule
+    StudentsRoutingModule,
   ],
   providers: [StudentService],
   declarations: [StudentsComponent, StudentListComponent, StudentCardComponent, StudentPageComponent],

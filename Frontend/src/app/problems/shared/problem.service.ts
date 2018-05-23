@@ -11,26 +11,6 @@ export class ProblemService {
 
   private readonly COLLECTION_PATH = 'problems';
   private feedback: Feedback = {};
-  public filterOptions: Filter[] = [
-    {
-      name: 'Problem i kontext',
-      type: ProblemArea.problem_solving,
-      selected: true,
-      color: 'accent'
-    },
-    {
-      name: 'Färdighetsproblem',
-      type: ProblemArea.skill_training,
-      selected: true,
-      color: 'primary'
-    },
-    {
-      name: 'Kluring',
-      type: ProblemArea.tricky_question,
-      selected: true,
-      color: 'warn'
-    }
-  ];
 
   constructor(
     private firebaseDatabaseService: FirebaseDatabaseService<Problem>,

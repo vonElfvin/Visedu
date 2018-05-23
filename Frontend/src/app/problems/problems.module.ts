@@ -18,6 +18,8 @@ import { ProblemFilterComponent } from './problem-filter/problem-filter.componen
 import { ProblemTestComponent } from './problem-test/problem-test.component';
 import { CompletedProblemService } from './shared/completed-problem.service';
 import { CompletedProblemsFilterPipe } from './shared/pipes/completed-problems-filter.pipe';
+import { CompletedProblemsChartComponent } from './completed-problems-chart/completed-problems-chart.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   imports: [
@@ -25,6 +27,9 @@ import { CompletedProblemsFilterPipe } from './shared/pipes/completed-problems-f
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+
+    // other
+    NgxChartsModule,
 
     // material
     MatButtonModule,
@@ -40,10 +45,22 @@ import { CompletedProblemsFilterPipe } from './shared/pipes/completed-problems-f
     ProblemsRoutingModule,
   ],
   providers: [ProblemService, CompletedProblemService],
-  declarations: [ProblemsComponent, CreateProblemComponent, ProblemListComponent, ProblemCardComponent, ProblemFilterPipe, ProblemsDemoComponent, ProblemFilterComponent, ProblemTestComponent, CompletedProblemsFilterPipe],
+  declarations: [
+    ProblemsComponent,
+    CreateProblemComponent,
+    ProblemListComponent,
+    ProblemCardComponent,
+    ProblemFilterPipe,
+    ProblemsDemoComponent,
+    ProblemFilterComponent,
+    ProblemTestComponent,
+    CompletedProblemsFilterPipe,
+    CompletedProblemsChartComponent
+  ],
   exports: [
     CreateProblemComponent,
     ProblemListComponent,
+    CompletedProblemsChartComponent,
   ],
 })
 export class ProblemsModule { }
