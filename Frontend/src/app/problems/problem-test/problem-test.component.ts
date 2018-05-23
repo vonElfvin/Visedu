@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Problem, ProblemArea } from '../shared/problem.model';
+import { Component, Input } from '@angular/core';
+import { Problem } from '../shared/problem.model';
 import { FeedbackService } from '../../core/feedback/feedback.service';
 import { CompletedProblemService } from '../shared/completed-problem.service';
 import { FeedbackType } from '../../core/feedback/feedback.model';

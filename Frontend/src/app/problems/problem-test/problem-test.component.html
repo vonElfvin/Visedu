@@ -2,7 +2,7 @@
   {{problem.question}}
 </mat-grid-tile-header>
 <div style="width: 320px;">
-  <mat-form-field color="{{materialColors[problem.area]}}">
+  <mat-form-field color="{{matColors[problem.area]}}">
     <input matInput [(ngModel)]="answer" type="text" placeholder="Ange svar" (keydown.enter)="submitAnswer()">
   </mat-form-field>
 </div>

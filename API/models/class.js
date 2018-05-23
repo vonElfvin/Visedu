@@ -1,4 +1,6 @@
-shortid = require('shortid');
+'use strict';
+
+const shortId = require('shortid');
 
 module.exports = (mongoose) => {
 
@@ -9,7 +11,7 @@ module.exports = (mongoose) => {
         },
         code: {
             type: String,
-            default: shortid.generate,
+            default: shortId.generate,
         },
         school: {
             type: String,
@@ -24,9 +26,3 @@ module.exports = (mongoose) => {
 
     return mongoose.model('Class', ClassSchema);
 };
-
-// _id: string;
-// name: string;
-// code: string;
-// school: string;
-// teacherId: string;

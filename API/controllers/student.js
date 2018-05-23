@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = (mongoose) => {
     // setup model
     const Student = require('../models/student')(mongoose);

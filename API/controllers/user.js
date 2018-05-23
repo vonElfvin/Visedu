@@ -1,6 +1,9 @@
+'use strict';
+
 const firebase = require("../config/firebase");
 
 module.exports = (mongoose) => {
+
     // setup model
     const User = require('../models/user')(mongoose);
 
@@ -9,9 +12,6 @@ module.exports = (mongoose) => {
         // get all users
         list: (req, res) => {
             const query = req.query || {};
-
-            const token = req.header('Authorization');
-            console.log(token);
 
             User.find(query)
             // .select('name _id')

@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = (mongoose) => {
 
     const TeacherSchema = new mongoose.Schema({

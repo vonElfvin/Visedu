@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = (app, mongoose) => {
     // setup controller
     const Student = require('../controllers/student')(mongoose);

@@ -1,3 +1,5 @@
+'use strict';
+
 const admin = require("firebase-admin");
 
 const serviceAccount = require("./visedu-firebase-only-project-firebase-admin-sdk.json");

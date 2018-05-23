@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = (app, mongoose) => {
     // setup controller
     const Class = require('../controllers/class')(mongoose);
