@@ -71,6 +71,7 @@ export class UserService {
     this.authService.loginEmailAndPassword(email, password).then(() => {
       this.feedbackService.openSnackbar({type: FeedbackType.Success, message: 'login'});
       this.router.navigate(['']);
+      this.setUser();
     });
   }
 
