@@ -1,7 +1,6 @@
 # Visedu
 Repository for the course TDDD27 - Advanced Web Programming <br><br>
-Application available live at: https://visedu-app.firebaseapp.com <br>
-API available through: https://visedu-app.appspot.com/
+Application available live at: https://granat.app <br>
 
 ## Functionalities
 ### The idea
@@ -19,7 +18,7 @@ This project is a pilot project to build a prototype for the system Visedu are g
 Framework: [Angular](https://angular.io/)<br>
 Packages: [Angular Material](https://material.angular.io/), [Flex Layout](https://github.com/angular/flex-layout), [AngularFire2](https://github.com/angular/angularfire2) (for Firebase authentication)<br>
 Hosting: [Firebase Hosting](https://firebase.google.com/docs/hosting/)<br>
-Live: https://visedu-app.appspot.com/
+Live: https://granat.app
 
 #### Backend
 Framework: [Node.js](https://nodejs.org/en/)<br>
