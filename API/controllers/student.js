@@ -33,10 +33,10 @@ module.exports = (mongoose) => {
             });
         },
 
+        // increment total_problems of given area
         update: (req, res) => {
-
-            let id = req.params.id;
-            let area = req.params.area;
+            const id = req.params.id;
+            const area = req.params.area;
 
             Student.findByIdAndUpdate(id, { $inc: { [`total_problems.${area}`]: 1 } } ).then(student  => {
                 res.json(student);

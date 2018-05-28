@@ -86,7 +86,7 @@ export class SignUpComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.classCode = this.route.snapshot.queryParams.classCode;
+    this.classCode.setValue(this.route.snapshot.queryParams.classCode);
   }
 
   get firstName() {

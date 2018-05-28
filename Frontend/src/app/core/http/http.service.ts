@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../../environments/environment';
-import { retry } from 'rxjs/operators';
+import { retry, take } from 'rxjs/operators';
 
 @Injectable()
 export class HttpService<ItemClass> {
@@ -23,7 +23,9 @@ export class HttpService<ItemClass> {
   }
 
   update(collection: string, body: ItemClass, path: string) {
-    return this.http.patch<ItemClass>(`${this.basePath}${collection}/${path}`, body);
+    return this.http.patch<ItemClass>(`${this.basePath}${collection}/${path}`, body).pipe(
+      take(1)
+    ).toPromise();
   }
 
   get(collection: string, path: string) {
