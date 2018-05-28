@@ -47,7 +47,7 @@ export class StudentService {
   }
 
   incrementStudentTotalProblems(studentId: string, problemArea: ProblemArea) {
-    return this.httpService.update(this.COLLECTION, null, `${studentId}/${problemArea}`);
+    return this.httpService.update(this.COLLECTION, null, `${studentId}/${problemArea}`).toPromise();
   }
 
   setStudent() {

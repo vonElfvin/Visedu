@@ -25,7 +25,7 @@ export class HttpService<ItemClass> {
   update(collection: string, body: ItemClass, path: string) {
     return this.http.patch<ItemClass>(`${this.basePath}${collection}/${path}`, body).pipe(
       take(1)
-    ).toPromise();
+    );
   }
 
   get(collection: string, path: string) {
