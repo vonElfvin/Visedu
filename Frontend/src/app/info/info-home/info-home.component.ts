@@ -8,11 +8,14 @@ import { AuthService } from '../../core/auth/auth.service';
 })
 export class InfoHomeComponent implements OnInit {
 
+  isLoggedIn = false;
+
   constructor(
     private authService: AuthService,
   ) { }
 
   ngOnInit() {
+    this.isLoggedIn = this.authService.isLoggedIn;
   }
 
 }

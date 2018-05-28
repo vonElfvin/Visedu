@@ -24,13 +24,18 @@ export let filterOptions: Filter[] = [
 ];
 
 // hex color for problem area
-export let hexColors: {[key: string]: string} = {};
-this.hexColors[ProblemArea.problem_solving] = '#8E24AA';
-this.hexColors[ProblemArea.skill_training] = '#00897B';
-this.hexColors[ProblemArea.tricky_question] = '#F4511E';
+// this.hexColors[ProblemArea.problem_solving] = '#8E24AA';
+// this.hexColors[ProblemArea.skill_training] = '#00897B';
+// this.hexColors[ProblemArea.tricky_question] = '#F4511E';
+export const hexColors: {[key: string]: string} = {
+  [ProblemArea.problem_solving]: '#8E24AA',
+  [ProblemArea.skill_training]: '#00897B',
+  [ProblemArea.tricky_question]: '#F4511E',
+};
 
 // material color for problem area
-export let matColors: {[key: string]: string} = {};
-this.matColors[ProblemArea.problem_solving] = 'accent';
-this.matColors[ProblemArea.skill_training] = 'primary';
-this.matColors[ProblemArea.tricky_question] = 'warn';
+export const matColors: {[key: string]: string} = {
+  [ProblemArea.problem_solving]: 'accent',
+  [ProblemArea.skill_training]: 'primary',
+  [ProblemArea.tricky_question]: 'warn',
+};
