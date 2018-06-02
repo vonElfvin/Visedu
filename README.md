@@ -1,6 +1,7 @@
 # Visedu
 [![Build Status](https://travis-ci.org/vonElfvin/Visedu.svg?branch=master)](https://travis-ci.org/vonElfvin/Visedu)<br>
 Repository for the course TDDD27 - Advanced Web Programming <br><br>
+Screencast available at: https://www.youtube.com/watch?v=30vwJvsEZJk <br>
 Application available live at: https://granat.app <br>
 
 ## Functionalities

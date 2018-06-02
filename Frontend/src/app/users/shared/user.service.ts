@@ -77,7 +77,6 @@ export class UserService {
 
   logout() {
     this.authService.logout().then(() => {
-      this.resetUser();
       this.feedbackService.openSnackbar({type: FeedbackType.Success, message: 'logout'});
       this.router.navigate(['']);
     });
@@ -104,10 +103,6 @@ export class UserService {
 
   deleteUser(uid: string) {
     return this.httpService.delete(this.path, uid);
-  }
-
-  resetUser() {
-    this.userObservable = Observable.of(null);
   }
 
   private setUser() {
