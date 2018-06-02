@@ -8,7 +8,6 @@ export function invalidClassCodeValidator(classService: ClassService): AsyncVali
   return (control: AbstractControl): Observable<ValidationErrors | null> => {
     const classCode = control.value;
     return classService.getClassWithCode(classCode).pipe(
-      take(1),
       map(
         c => {
           return !c ? {'invalidClassCode': true} : null;

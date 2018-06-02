@@ -14,7 +14,7 @@ export class HttpService<ItemClass> {
   list(collection: string): Observable<ItemClass[]> {
     return this.http.get<ItemClass[]>(`${this.basePath}${collection}`)
       .pipe(
-        retry(2),
+        take(1),
       );
   }
 
@@ -31,11 +31,13 @@ export class HttpService<ItemClass> {
   get(collection: string, path: string) {
     return this.http.get<ItemClass>(`${this.basePath}${collection}/${path}`)
       .pipe(
-        retry(2),
+        take(1),
       );
   }
 
   delete(collection: string, id: string) {
-    return this.http.delete<ItemClass>(`${this.basePath}${collection}/${id}`);
+    return this.http.delete<ItemClass>(`${this.basePath}${collection}/${id}`).pipe(
+      take(1),
+    );
   }
 }

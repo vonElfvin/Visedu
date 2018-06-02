@@ -4,7 +4,6 @@ import { FirebaseDatabaseService } from '../../core/firebase/firebase-database/f
 import { FeedbackService } from '../../core/feedback/feedback.service';
 import { Feedback, FeedbackType } from '../../core/feedback/feedback.model';
 import { Router } from '@angular/router';
-import { Filter } from './filter.model';
 
 @Injectable()
 export class ProblemService {
